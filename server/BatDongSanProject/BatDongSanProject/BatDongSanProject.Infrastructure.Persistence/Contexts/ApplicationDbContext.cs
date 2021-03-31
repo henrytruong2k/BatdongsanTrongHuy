@@ -28,7 +28,7 @@ namespace BatDongSanProject.Infrastructure.Persistence.Contexts
         public DbSet<Category> Categories { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Comment> Comments { get; set; }
-        public DbSet<Country> Countries { get; set; }
+      
         public DbSet<District> Districts { get; set; }
         public DbSet<Enterprise> Enterprises { get; set; }
         public DbSet<Formality> Formalities { get; set; }

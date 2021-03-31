@@ -1,7 +1,10 @@
 ﻿using AutoMapper;
+using BatDongSanProject.Application.Features.Cities.Queries.GetAllCities;
+using BatDongSanProject.Application.Features.Districts.Queries.GetDistrictsByCityId;
 using BatDongSanProject.Application.Features.Products.Commands.CreateProduct;
 using BatDongSanProject.Application.Features.Products.Queries.GetAllProducts;
 using BatDongSanProject.Domain.Entities;
+using KinhDoanhBatDongSan.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -15,6 +18,12 @@ namespace BatDongSanProject.Application.Mappings
             CreateMap<Product, GetAllProductsViewModel>().ReverseMap();
             CreateMap<CreateProductCommand, Product>();
             CreateMap<GetAllProductsQuery, GetAllProductsParameter>();
+
+            CreateMap<GetAllCitiesQuery, GetAllCitiesParameter>();
+            CreateMap<City, GetAllCitiesViewModel>().ReverseMap();
+
+            CreateMap<GetDistrictsCityIdQuery, GetDistrictsByCityIdParameter>();
+            CreateMap<District, GetDistrictsByCityIdViewModel>().ReverseMap();
         }
     }
 }
