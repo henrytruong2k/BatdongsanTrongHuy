@@ -19,5 +19,9 @@
   <ItemGroup>
     <ProjectReference Include="..\BatDongSanProject.Domain\BatDongSanProject.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\Cities\Command\" />
+    <Folder Include="Features\Districts\Command\" />
+  </ItemGroup>
 
 </Project>
