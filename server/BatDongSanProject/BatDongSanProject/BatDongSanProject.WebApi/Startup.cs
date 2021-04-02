@@ -9,7 +9,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
+using System.IO;
 
 namespace BatDongSanProject.WebApi
 {
@@ -30,6 +32,17 @@ namespace BatDongSanProject.WebApi
             services.AddControllers();
             services.AddApiVersioningExtension();
             services.AddHealthChecks();
+            services.AddDirectoryBrowser();
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
+            services.AddControllersWithViews()
+                 .AddNewtonsoftJson(options =>
+                  options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
             services.AddScoped<IAuthenticatedUserService, AuthenticatedUserService>();
         }
 
@@ -50,7 +63,13 @@ namespace BatDongSanProject.WebApi
             app.UseAuthorization();
             app.UseSwaggerExtension();
             app.UseErrorHandlingMiddleware();
+            app.UseCors("MyPolicy");
+            app.UseStaticFiles();
+          
+
+
             app.UseHealthChecks("/health");
+
 
             app.UseEndpoints(endpoints =>
              {

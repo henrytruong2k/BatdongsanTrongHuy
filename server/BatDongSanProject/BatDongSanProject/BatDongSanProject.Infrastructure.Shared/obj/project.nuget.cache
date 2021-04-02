@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "kl7ZAF5UNEGgwbkEhGDqkO7mKnf7usy8doF790yMHYZ3R2dLMoEbdwNlOzZEqWu/KqTHkYI5C5+ocA5s4w6zeQ==",
+  "dgSpecHash": "07uKvPZWQv+SyHgK6/WfZza32zUph6Jm+IyoXjDk1BPogGAW0AOssT4TtgTy094pU1ugRP79UnzJ30m4utnPtg==",
   "success": true,
   "projectFilePath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,7 @@
     "C:\\Users\\DELL\\.nuget\\packages\\mailkit\\2.8.0\\mailkit.2.8.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\mediatr\\8.1.0\\mediatr.8.1.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\mediatr.extensions.microsoft.dependencyinjection\\8.1.0\\mediatr.extensions.microsoft.dependencyinjection.8.1.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.aspnetcore.http.features\\5.0.4\\microsoft.aspnetcore.http.features.5.0.4.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.bcl.hashcode\\1.1.0\\microsoft.bcl.hashcode.1.1.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
@@ -29,7 +30,7 @@
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.7\\microsoft.extensions.logging.abstractions.3.1.7.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.options\\3.1.7\\microsoft.extensions.options.3.1.7.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.options.configurationextensions\\3.1.7\\microsoft.extensions.options.configurationextensions.3.1.7.nupkg.sha512",
-    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.7\\microsoft.extensions.primitives.3.1.7.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.platforms\\2.0.0\\microsoft.netcore.platforms.2.0.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\microsoft.win32.primitives\\4.3.0\\microsoft.win32.primitives.4.3.0.nupkg.sha512",
@@ -65,6 +66,7 @@
     "C:\\Users\\DELL\\.nuget\\packages\\system.io\\4.3.0\\system.io.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.io.filesystem\\4.3.0\\system.io.filesystem.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.io.filesystem.primitives\\4.3.0\\system.io.filesystem.primitives.4.3.0.nupkg.sha512",
+    "C:\\Users\\DELL\\.nuget\\packages\\system.io.pipelines\\5.0.1\\system.io.pipelines.5.0.1.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.linq\\4.3.0\\system.linq.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.net.nameresolution\\4.3.0\\system.net.nameresolution.4.3.0.nupkg.sha512",
     "C:\\Users\\DELL\\.nuget\\packages\\system.net.primitives\\4.3.0\\system.net.primitives.4.3.0.nupkg.sha512",

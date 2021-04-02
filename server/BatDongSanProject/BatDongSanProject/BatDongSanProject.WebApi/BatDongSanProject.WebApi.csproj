@@ -42,4 +42,14 @@
     <ProjectReference Include="..\BatDongSanProject.Infrastructure.Shared\BatDongSanProject.Infrastructure.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\be-thu213612.jpg" />
+    <None Include="wwwroot\Images\logo2215720.jpg" />
+    <None Include="wwwroot\Images\P_20201120210839.jpg" />
+  </ItemGroup>
+
 </Project>

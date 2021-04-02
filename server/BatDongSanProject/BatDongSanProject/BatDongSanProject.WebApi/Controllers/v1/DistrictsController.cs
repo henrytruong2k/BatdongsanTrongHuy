@@ -15,7 +15,7 @@ namespace BatDongSanProject.WebApi.Controllers.v1
     {
 
         // GET: api/<controller>
-        [HttpGet]
+        [HttpGet("GetDistricByCityId")]
         public async Task<IActionResult> GetDistrictByCityId([FromQuery] GetDistrictsCityIdQuery filter, CancellationToken cancellationToken)
         {
             return Ok(await Mediator.Send(filter,cancellationToken));

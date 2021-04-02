@@ -189,3 +189,5 @@ D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDon
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Debug\netcoreapp3.1\BatDongSanProject.WebApi.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Debug\netcoreapp3.1\BatDongSanProject.WebApi.pdb
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Debug\netcoreapp3.1\BatDongSanProject.WebApi.genruntimeconfig.cache
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Features.dll
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\bin\Debug\netcoreapp3.1\System.IO.Pipelines.dll

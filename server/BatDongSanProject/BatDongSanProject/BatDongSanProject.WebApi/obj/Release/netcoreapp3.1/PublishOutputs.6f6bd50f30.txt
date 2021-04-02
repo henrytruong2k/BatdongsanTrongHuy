@@ -1,4 +1,8 @@
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\BatDongSanProject.WebApi.exe
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\be-thu213612.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\logo2215720.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\P_20201120210839.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\P_20201120212036.jpg
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.Development.json
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.json
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\BatDongSanProject.WebApi.dll
@@ -16,6 +20,7 @@ D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDon
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Cryptography.Internal.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Http.Features.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.JsonPatch.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
@@ -98,6 +103,7 @@ D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDon
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\System.Configuration.ConfigurationManager.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\System.Diagnostics.DiagnosticSource.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\System.IdentityModel.Tokens.Jwt.dll
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\System.IO.Pipelines.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\System.Runtime.Caching.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\System.Security.Cryptography.ProtectedData.dll
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\System.Text.Json.dll
