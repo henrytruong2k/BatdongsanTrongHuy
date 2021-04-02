@@ -12,7 +12,7 @@ namespace BatDongSanProject.WebApi.Controllers.v1
     public class CitiesController : BaseApiController
     {
         // GET: api/<controller>
-        [HttpGet]
+        [HttpGet("GetAllCities")]
         public async Task<IActionResult> Get([FromQuery] GetAllCitiesParameter filter)
         {
             return Ok(await Mediator.Send(new GetAllCitiesQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));

@@ -66,6 +66,8 @@ namespace KinhDoanhBatDongSan.Models
         public ICollection<Comment> Comments { get; set; }
 
         public int Status { get; set; }   
+
+
         
     }
 }

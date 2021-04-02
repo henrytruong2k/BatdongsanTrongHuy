@@ -16,6 +16,11 @@ namespace BatDongSanProject.Application.DTOs.Account
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+
+        [Required]
+        [DataType(DataType.PhoneNumber)]
+        public string PhoneNumber { get; set; }
+
         [Required]
         [MinLength(6)]
         public string UserName { get; set; }
