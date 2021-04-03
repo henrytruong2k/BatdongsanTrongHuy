@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {}
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
         "projectName": "BatDongSanProject.Domain",
-        "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\obj\\",
+        "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
+        "packagesPath": "C:\\Users\\ASUS-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,7 +26,6 @@
         },
         "frameworks": {
           "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
             "projectReferences": {}
           }
         },
@@ -38,7 +37,6 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
           "imports": [
             "net461",
             "net462",
@@ -54,7 +52,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

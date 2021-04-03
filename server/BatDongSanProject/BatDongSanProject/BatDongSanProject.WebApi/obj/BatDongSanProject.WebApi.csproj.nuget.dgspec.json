@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj": {}
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj": {}
   },
   "projects": {
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj",
         "projectName": "BatDongSanProject.Application",
-        "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\obj\\",
+        "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj",
+        "packagesPath": "C:\\Users\\ASUS-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -26,10 +26,9 @@
         },
         "frameworks": {
           "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
             "projectReferences": {
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj"
               }
             }
           }
@@ -42,7 +41,6 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
           "dependencies": {
             "AutoMapper": {
               "target": "Package",
@@ -96,21 +94,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
         "projectName": "BatDongSanProject.Domain",
-        "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\obj\\",
+        "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj",
+        "packagesPath": "C:\\Users\\ASUS-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -122,7 +120,6 @@
         },
         "frameworks": {
           "netstandard2.1": {
-            "targetAlias": "netstandard2.1",
             "projectReferences": {}
           }
         },
@@ -134,7 +131,6 @@
       },
       "frameworks": {
         "netstandard2.1": {
-          "targetAlias": "netstandard2.1",
           "imports": [
             "net461",
             "net462",
@@ -150,21 +146,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj": {
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj",
         "projectName": "BatDongSanProject.Infrastructure.Identity",
-        "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\obj\\",
+        "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj",
+        "packagesPath": "C:\\Users\\ASUS-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -176,10 +172,9 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
               }
             }
           }
@@ -192,7 +187,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
@@ -255,21 +249,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj": {
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj",
         "projectName": "BatDongSanProject.Infrastructure.Persistence",
-        "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\obj\\",
+        "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj",
+        "packagesPath": "C:\\Users\\ASUS-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -281,13 +275,12 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
               },
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Domain\\BatDongSanProject.Domain.csproj"
               }
             }
           }
@@ -300,7 +293,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -334,21 +326,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj": {
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj",
         "projectName": "BatDongSanProject.Infrastructure.Shared",
-        "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\obj\\",
+        "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj",
+        "packagesPath": "C:\\Users\\ASUS-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -360,10 +352,9 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
               }
             }
           }
@@ -376,7 +367,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "MailKit": {
               "target": "Package",
@@ -406,21 +396,21 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj": {
+    "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj": {
       "version": "1.1.0",
       "restore": {
-        "projectUniqueName": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj",
         "projectName": "BatDongSanProject.WebApi",
-        "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj",
-        "packagesPath": "C:\\Users\\DELL\\.nuget\\packages\\",
-        "outputPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\obj\\",
+        "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\BatDongSanProject.WebApi.csproj",
+        "packagesPath": "C:\\Users\\ASUS-PC\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\DELL\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ASUS-PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -432,19 +422,18 @@
         },
         "frameworks": {
           "netcoreapp3.1": {
-            "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Application\\BatDongSanProject.Application.csproj"
               },
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Identity\\BatDongSanProject.Infrastructure.Identity.csproj"
               },
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Persistence\\BatDongSanProject.Infrastructure.Persistence.csproj"
               },
-              "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj": {
-                "projectPath": "D:\\Documents\\TotNghiepProject\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj"
+              "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj": {
+                "projectPath": "C:\\Users\\ASUS-PC\\Desktop\\BatdongsanTrongHuy\\server\\BatDongSanProject\\BatDongSanProject\\BatDongSanProject.Infrastructure.Shared\\BatDongSanProject.Infrastructure.Shared.csproj"
               }
             }
           }
@@ -457,7 +446,6 @@
       },
       "frameworks": {
         "netcoreapp3.1": {
-          "targetAlias": "netcoreapp3.1",
           "dependencies": {
             "FluentValidation.AspNetCore": {
               "target": "Package",
@@ -532,7 +520,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.104\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
