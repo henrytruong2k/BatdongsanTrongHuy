@@ -1,9 +1,0 @@
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\bin\Release\netstandard2.1\BatDongSanProject.Domain.deps.json
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\bin\Release\netstandard2.1\BatDongSanProject.Domain.dll
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\bin\Release\netstandard2.1\BatDongSanProject.Domain.pdb
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\obj\Release\netstandard2.1\BatDongSanProject.Domain.csprojAssemblyReference.cache
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\obj\Release\netstandard2.1\BatDongSanProject.Domain.AssemblyInfoInputs.cache
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\obj\Release\netstandard2.1\BatDongSanProject.Domain.AssemblyInfo.cs
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\obj\Release\netstandard2.1\BatDongSanProject.Domain.csproj.CoreCompileInputs.cache
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\obj\Release\netstandard2.1\BatDongSanProject.Domain.dll
-D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Domain\obj\Release\netstandard2.1\BatDongSanProject.Domain.pdb
