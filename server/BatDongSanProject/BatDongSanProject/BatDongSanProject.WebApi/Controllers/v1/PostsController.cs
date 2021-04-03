@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using BatDongSanProject.Application.DTOs;
 using BatDongSanProject.Application.Features.Posts.Command.CreatePost;
+using BatDongSanProject.Application.Features.Posts.Command.DeletePostById;
 using BatDongSanProject.Application.Features.Posts.Queries.GetAllPosts;
 using BatDongSanProject.WebApi.Models;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +31,12 @@ namespace BatDongSanProject.WebApi.Controllers.v1
         public async Task<IActionResult> Get([FromQuery] GetAllPostsParameter filter)
         {
             return Ok(await Mediator.Send(new GetAllPostsQuery() { PageSize = filter.PageSize, PageNumber = filter.PageNumber }));
+        }
+
+        [HttpDelete("Delete/{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await Mediator.Send(new DeletePostByIdCommand { Id = id }));
         }
 
         // POST api/<controller>

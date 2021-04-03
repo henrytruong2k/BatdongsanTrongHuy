@@ -6,6 +6,7 @@ using MediatR;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -56,6 +57,7 @@ namespace BatDongSanProject.Application.Features.Posts.Command.CreatePost
 
         public int MessageBoardType { get; set; }
 
+        [DataType(DataType.DateTime)]
         public DateTime StartDate { get; set; }
 
         public DateTime EndDate { get; set; }

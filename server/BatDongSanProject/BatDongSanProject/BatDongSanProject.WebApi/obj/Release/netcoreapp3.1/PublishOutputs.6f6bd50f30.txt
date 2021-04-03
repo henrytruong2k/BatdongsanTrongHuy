@@ -1,8 +1,17 @@
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\BatDongSanProject.WebApi.exe
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\be-thu213612.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\biethu5213004.jfif
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\binhduong210159.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\binhduong210253.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\dat210538.jpg
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\logo2215720.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\matien1215856.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\project2212041.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\project2212054.jpg
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\P_20201120210839.jpg
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\P_20201120212036.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\vinhome1215452.jpg
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\wwwroot\Images\vinhome2215653.jpg
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.Development.json
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\appsettings.json
 D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.WebApi\obj\Release\netcoreapp3.1\PubTmp\Out\BatDongSanProject.WebApi.dll

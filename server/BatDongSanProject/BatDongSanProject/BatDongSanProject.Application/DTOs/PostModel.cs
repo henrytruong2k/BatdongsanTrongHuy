@@ -28,7 +28,8 @@ namespace BatDongSanProject.Application.DTOs
         [Required]
         public string District { get; set; }
 
-        [StringLength(1000)]
+        [StringLength(100000)]
+        [DataType(DataType.Html)]
         public string Description { get; set; }
 
         [Required]

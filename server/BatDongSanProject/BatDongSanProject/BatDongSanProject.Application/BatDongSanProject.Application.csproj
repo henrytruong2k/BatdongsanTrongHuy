@@ -23,8 +23,6 @@
   <ItemGroup>
     <Folder Include="Features\Cities\Command\" />
     <Folder Include="Features\Districts\Command\" />
-    <Folder Include="Features\Posts\Command\DeletePostById\" />
-    <Folder Include="Features\Posts\Command\UpdatePostById\" />
     <Folder Include="Features\Posts\Queries\GetAllPostsByDistrict\" />
   </ItemGroup>
 
