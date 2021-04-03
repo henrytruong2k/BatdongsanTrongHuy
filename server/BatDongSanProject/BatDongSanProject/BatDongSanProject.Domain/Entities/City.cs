@@ -11,10 +11,9 @@ namespace KinhDoanhBatDongSan.Models
 
         public string Name { get; set; }
 
-        public int CountryId { get; set; }
-        public Country Country { get; set; }
+        public string Slug { get; set; }
 
-        public ICollection<District> Cities { get; set; }
+        public ICollection<District> Districts { get; set; }
 
 
     }

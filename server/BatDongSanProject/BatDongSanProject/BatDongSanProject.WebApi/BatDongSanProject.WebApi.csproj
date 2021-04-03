@@ -8,6 +8,7 @@
     <RepositoryType>Public</RepositoryType>
     <PackageProjectUrl>https://www.codewithmukesh.com/project/aspnet-core-webapi-clean-architecture/</PackageProjectUrl>
     <Version>1.1.0</Version>
+    <UserSecretsId>191e2f9e-3a57-4eaa-bcbb-dbf228c59013</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -39,6 +40,16 @@
     <ProjectReference Include="..\BatDongSanProject.Infrastructure.Identity\BatDongSanProject.Infrastructure.Identity.csproj" />
     <ProjectReference Include="..\BatDongSanProject.Infrastructure.Persistence\BatDongSanProject.Infrastructure.Persistence.csproj" />
     <ProjectReference Include="..\BatDongSanProject.Infrastructure.Shared\BatDongSanProject.Infrastructure.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\Images\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Images\be-thu213612.jpg" />
+    <None Include="wwwroot\Images\logo2215720.jpg" />
+    <None Include="wwwroot\Images\P_20201120210839.jpg" />
   </ItemGroup>
 
 </Project>

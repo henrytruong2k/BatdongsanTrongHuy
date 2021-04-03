@@ -47,15 +47,13 @@ namespace BatDongSanProject.Infrastructure.Persistence.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CountryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.Property<string>("Slug")
+                        .HasColumnType("nvarchar(max)");
 
-                    b.HasIndex("CountryId");
+                    b.HasKey("Id");
 
                     b.ToTable("Cities");
                 });
@@ -101,21 +99,6 @@ namespace BatDongSanProject.Infrastructure.Persistence.Migrations
                     b.HasIndex("PostId");
 
                     b.ToTable("Comments");
-                });
-
-            modelBuilder.Entity("KinhDoanhBatDongSan.Models.Country", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
                 });
 
             modelBuilder.Entity("KinhDoanhBatDongSan.Models.District", b =>
@@ -449,15 +432,6 @@ namespace BatDongSanProject.Infrastructure.Persistence.Migrations
                     b.ToTable("Wallets");
                 });
 
-            modelBuilder.Entity("KinhDoanhBatDongSan.Models.City", b =>
-                {
-                    b.HasOne("KinhDoanhBatDongSan.Models.Country", "Country")
-                        .WithMany("Cities")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
             modelBuilder.Entity("KinhDoanhBatDongSan.Models.Comment", b =>
                 {
                     b.HasOne("KinhDoanhBatDongSan.Models.New", "New")
@@ -476,7 +450,7 @@ namespace BatDongSanProject.Infrastructure.Persistence.Migrations
             modelBuilder.Entity("KinhDoanhBatDongSan.Models.District", b =>
                 {
                     b.HasOne("KinhDoanhBatDongSan.Models.City", "City")
-                        .WithMany("Cities")
+                        .WithMany("Districts")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

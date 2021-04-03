@@ -1,0 +1,14 @@
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\bin\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.deps.json
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\bin\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.dll
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\bin\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.pdb
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\bin\Release\netcoreapp3.1\BatDongSanProject.Application.dll
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\bin\Release\netcoreapp3.1\BatDongSanProject.Domain.dll
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\bin\Release\netcoreapp3.1\BatDongSanProject.Application.pdb
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\bin\Release\netcoreapp3.1\BatDongSanProject.Domain.pdb
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\obj\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.csprojAssemblyReference.cache
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\obj\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.AssemblyInfoInputs.cache
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\obj\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.AssemblyInfo.cs
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\obj\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.csproj.CoreCompileInputs.cache
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\obj\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.csproj.CopyComplete
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\obj\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.dll
+D:\Documents\TotNghiepProject\BatdongsanTrongHuy\server\BatDongSanProject\BatDongSanProject\BatDongSanProject.Infrastructure.Shared\obj\Release\netcoreapp3.1\BatDongSanProject.Infrastructure.Shared.pdb

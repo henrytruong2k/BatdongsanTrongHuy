@@ -31,6 +31,9 @@ namespace BatDongSanProject.Infrastructure.Persistence
             #region Repositories
             services.AddTransient(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
             services.AddTransient<IProductRepositoryAsync, ProductRepositoryAsync>();
+            services.AddTransient<ICityRepositoryAsync, CityRepositoryAsync>();
+            services.AddTransient<IDistrictRepositoryAsync, DistrictRepositoryAsync>();
+            services.AddTransient<IPostRepositoryAsync, PostRepositoryAsync>();
             #endregion
         }
     }
