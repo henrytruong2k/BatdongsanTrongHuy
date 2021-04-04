@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
 import Button from '@material-ui/core/Button';
-import './style.scss';
-import { Link, NavLink } from 'react-router-dom';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
+import React, { useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { Link, NavLink } from 'react-router-dom';
 import { router } from '../../constants/router';
+import Register from '../../containers/Auth/components/Register';
+import './style.scss';
 
 export const Header = () => {
   const [open, setOpen] = useState(false);
@@ -61,18 +60,7 @@ export const Header = () => {
               aria-labelledby="form-dialog-title"
             >
               <DialogContent>
-                <DialogContentText>
-                  To subscribe to this website, please enter your email address
-                  here. We will send updates occasionally.
-                </DialogContentText>
-                <TextField
-                  autoFocus
-                  margin="dense"
-                  id="name"
-                  label="Email Address"
-                  type="email"
-                  fullWidth
-                />
+                <Register />
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary">

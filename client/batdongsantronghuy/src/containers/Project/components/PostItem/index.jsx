@@ -8,13 +8,13 @@ PostItem.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     image: PropTypes.string,
-    description: PropTypes.string.isRequired,
+    description: PropTypes.string,
   }),
 };
 
 function PostItem(props) {
   const { post } = props;
-  const desc = post.description
+  const publishDesc = post.description
     .replace(/<\/?[^>]+(>|$)/g, '')
     .substr(0, 200)
     .concat('...');
@@ -23,13 +23,13 @@ function PostItem(props) {
     <Col className="col-lg-4">
       <Card>
         <Card.Img
-          src={post.image ? post.image : `/project-page/286x180.svg`}
+          src={post.image}
           // onError={`/project-page/286x180.svg`}
           alt={post.title}
         />
         <Card.Body>
           <Card.Title>{post.title}</Card.Title>
-          <Card.Text>{desc}</Card.Text>
+          <Card.Text>{publishDesc}</Card.Text>
         </Card.Body>
         <Card.Footer>
           <Button variant="primary">Xem thêm</Button>

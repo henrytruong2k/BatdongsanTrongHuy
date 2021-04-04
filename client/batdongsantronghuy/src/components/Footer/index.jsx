@@ -1,36 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import cityAPI from '../../api/cityAPI';
 import './style.scss';
 
 export const Footer = () => {
-  const bigCities = [
-    {
-      id: 1,
-      slug: '/tphcm',
-      name: 'TP.HCM',
-    },
-    {
-      id: 2,
-      slug: '/hanoi',
-      name: 'Hà Nội',
-    },
-    {
-      id: 3,
-      slug: '/haiphong',
-      name: 'Hải Phòng',
-    },
-    {
-      id: 4,
-      slug: '/cantho',
-      name: 'Cần Thơ',
-    },
-    {
-      id: 5,
-      slug: '/danang',
-      name: 'Đà Nẵng',
-    },
-  ];
+  const [cities, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchCities = async () => {
+      const postList = await cityAPI.getAll();
+      setPosts(postList);
+      setLoading(false);
+    };
+    fetchCities();
+  }, []);
+
   return (
     <div className="footer pt-lg-5 pb-lg-4">
       <Container>
@@ -47,15 +32,17 @@ export const Footer = () => {
           <Col className="col-lg-3 flex-column">
             <h5>Danh sách các thành phố lớn</h5>
             <ul>
-              {bigCities.map((item) => {
-                return (
-                  <li className="ml-lg-3">
-                    <Link key={item.id} to={item.slug}>
-                      {item.name}
-                    </Link>
-                  </li>
-                );
-              })}
+              {loading
+                ? 'Loading...'
+                : cities.map((item) => {
+                    return (
+                      <li key={item.id} className="ml-lg-3">
+                        <Link key={item.id} to={item.slug}>
+                          {item.name}
+                        </Link>
+                      </li>
+                    );
+                  })}
             </ul>
           </Col>
           <Col className="col-lg-2">

@@ -18,10 +18,10 @@ function PostList(props) {
           <Loading />
         ) : posts.length > 0 ? (
           posts.map((post) => {
-            return <PostItem post={post} />;
+            return <PostItem key={post.id} post={post} />;
           })
         ) : (
-          <h3>Server gặp vấn đề :( </h3>
+          <h3>Server đang gặp vấn đề :( </h3>
         )}
       </Row>
     </Container>
