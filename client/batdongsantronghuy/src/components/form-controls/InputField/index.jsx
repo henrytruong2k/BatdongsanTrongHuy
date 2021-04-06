@@ -11,10 +11,11 @@ InputField.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 function InputField(props) {
-  const { form, name, label, disabled } = props;
+  const { form, name, label, disabled, className } = props;
   const { formState } = form;
   // const hasError = formState.touchedFields[name] && formState.errors[name];
   // console.log(formState.errors[name], formState.touchedFields[name]);
@@ -23,8 +24,8 @@ function InputField(props) {
     <Controller
       render={({ field }) => (
         <TextField
+          className={className}
           variant="outlined"
-          margin="normal"
           {...field}
           label={label}
           disabled={disabled}

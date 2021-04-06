@@ -1,10 +1,4 @@
-import {
-  Avatar,
-  Button,
-  Input,
-  makeStyles,
-  Typography,
-} from '@material-ui/core';
+import { Avatar, Button, makeStyles, Typography } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -26,6 +20,10 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
     fontWeight: 'bold',
   },
+  password: {},
+  input: {
+    marginBottom: theme.spacing(2),
+  },
   submit: {
     margin: theme.spacing(1, 0),
   },
@@ -38,6 +36,7 @@ RegisterForm.propTypes = {
 function RegisterForm(props) {
   const classes = useStyles();
   const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const PHONE_REGEX = /^[0-9-()+ ]*$/;
   const schema = yup.object().shape({
     fullname: yup
       .string()
@@ -65,6 +64,11 @@ function RegisterForm(props) {
       .required('Vui lòng nhập mật khẩu xác nhận.')
       .min(6, 'Vui lòng nhập ít nhất 6 kí tự.')
       .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không chính xác.'),
+    phone: yup
+      .string()
+      .required('Vui lòng nhập số điện thoại.')
+      .min(10, 'Vui lòng nhập số điện thoại ít nhất 10 chữ số')
+      .matches(PHONE_REGEX, 'Vui lòng kiểm tra lại kí tự'),
   });
   const form = useForm({
     defaultValues: {
@@ -72,6 +76,7 @@ function RegisterForm(props) {
       email: '',
       password: '',
       confirmPassword: '',
+      phone: '',
     },
     resolver: yupResolver(schema),
   });
@@ -91,13 +96,37 @@ function RegisterForm(props) {
       </Avatar>
       <Typography className={classes.title}>Đăng ký tài khoản</Typography>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <InputField form={form} name="fullname" label="Họ tên" />
-        <InputField form={form} name="email" label="Email" />
-        <PasswordField form={form} name="password" label="Password" />
+        <InputField
+          form={form}
+          name="fullname"
+          label="Họ tên"
+          className={classes.input}
+        />
+        <InputField
+          form={form}
+          name="email"
+          label="Email"
+          className={classes.input}
+        />
+
         <PasswordField
+          className={`mr-lg-2 pr-lg-1 ${classes.input}`}
+          form={form}
+          name="password"
+          label="Password"
+        />
+        <PasswordField
+          className={`ml-lg-2 ${classes.input}`}
           form={form}
           name="confirmPassword"
           label="Xác nhận Password"
+        />
+
+        <InputField
+          form={form}
+          name="phone"
+          label="Số điện thoại"
+          className={classes.input}
         />
         <Button
           type="submit"
