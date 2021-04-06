@@ -53,8 +53,8 @@ export const Header = () => {
               Đăng kí
             </Button>
             <Dialog
-              disableBackdropClick
-              disableEscapeKeyDown
+              disableBackdropClick  
+              // disableEscapeKeyDown
               open={open}
               onClose={handleClose}
               aria-labelledby="form-dialog-title"
