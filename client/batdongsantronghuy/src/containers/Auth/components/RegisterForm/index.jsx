@@ -1,4 +1,10 @@
-import { Avatar, Button, makeStyles, Typography } from '@material-ui/core';
+import {
+  Avatar,
+  Button,
+  LinearProgress,
+  makeStyles,
+  Typography,
+} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useForm } from 'react-hook-form';
@@ -7,9 +13,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { LockOutlined } from '@material-ui/icons';
 import PasswordField from '../../../../components/form-controls/PasswordField';
+import { validationRegister } from '../../../../ults/validationRegister';
 
 const useStyles = makeStyles((theme) => ({
-  root: {},
+  root: {
+    position: 'relative',
+    paddingTop: theme.spacing(2),
+  },
   avatar: {
     margin: '0 auto',
     backgroundColor: theme.palette.secondary.main,
@@ -27,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(1, 0),
   },
+  progress: {
+    position: 'absolute',
+    top: theme.spacing(0.5),
+    left: 0,
+    right: 0,
+  },
 }));
 
 RegisterForm.propTypes = {
@@ -35,62 +51,32 @@ RegisterForm.propTypes = {
 
 function RegisterForm(props) {
   const classes = useStyles();
-  const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  const PHONE_REGEX = /^[0-9-()+ ]*$/;
-  const schema = yup.object().shape({
-    fullname: yup
-      .string()
-      .required('Vui lòng điền đầy đủ họ tên.')
-      .test(
-        'should has at least two words',
-        'Vui lòng nhập ít nhất 2 từ',
-        (value) => {
-          return value.split(' ').length >= 2;
-        }
-      ),
-    email: yup
-      .string()
-      .required('Vui lòng nhập email.')
-      .matches(
-        EMAIL_REGEX,
-        'Nhập tài khoản theo định dạng: yourname@example.com.'
-      ),
-    password: yup
-      .string()
-      .required('Vui lòng nhập mật khẩu.')
-      .min(6, 'Vui lòng nhập ít nhất 6 kí tự.'),
-    confirmPassword: yup
-      .string()
-      .required('Vui lòng nhập mật khẩu xác nhận.')
-      .min(6, 'Vui lòng nhập ít nhất 6 kí tự.')
-      .oneOf([yup.ref('password')], 'Mật khẩu xác nhận không chính xác.'),
-    phone: yup
-      .string()
-      .required('Vui lòng nhập số điện thoại.')
-      .min(10, 'Vui lòng nhập số điện thoại ít nhất 10 chữ số')
-      .matches(PHONE_REGEX, 'Vui lòng kiểm tra lại kí tự'),
-  });
+  const schema = validationRegister;
   const form = useForm({
     defaultValues: {
       fullname: '',
       email: '',
       password: '',
       confirmPassword: '',
-      phone: '',
+      phoneNumber: '',
     },
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (values) => {
+  const onSubmit = async (values) => {
     const { onSubmit } = props;
     if (onSubmit) {
-      onSubmit(values);
+      await onSubmit(values);
     }
     form.reset();
   };
 
+  const { isSubmitting } = form.formState;
+
   return (
     <div className={classes.root}>
+      {isSubmitting && <LinearProgress className={classes.progress} />}
+
       <Avatar className={classes.avatar}>
         <LockOutlined />
       </Avatar>
@@ -113,22 +99,23 @@ function RegisterForm(props) {
           className={`mr-lg-2 pr-lg-1 ${classes.input}`}
           form={form}
           name="password"
-          label="Password"
+          label="Mật khẩu"
         />
         <PasswordField
           className={`ml-lg-2 ${classes.input}`}
           form={form}
           name="confirmPassword"
-          label="Xác nhận Password"
+          label="Mật khẩu xác nhận"
         />
 
         <InputField
           form={form}
-          name="phone"
+          name="phoneNumber"
           label="Số điện thoại"
           className={classes.input}
         />
         <Button
+          disabled={isSubmitting}
           type="submit"
           variant="contained"
           color="primary"

@@ -15,7 +15,7 @@ function ProjectContainer(props) {
   useEffect(() => {
     const fetchPosts = async () => {
       const postList = await postAPI.getAll();
-      setPosts(postList);
+      setPosts(postList.data);
       setLoading(false);
     };
     fetchPosts();

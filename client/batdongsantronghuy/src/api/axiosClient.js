@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosClient = axios.create({
-  baseURL: 'https://batdongsanth.azurewebsites.net/api/v1/',
+  baseURL: 'https://batdongsanth.azurewebsites.net/api/',
   headers: {
     'Content-Type': 'application/json',
   },
@@ -19,7 +19,7 @@ axiosClient.interceptors.request.use(
 
 axiosClient.interceptors.response.use(
   function (response) {
-    return response.data.data;
+    return response.data;
   },
   function (error) {
     return Promise.reject(error);

@@ -10,7 +10,7 @@ export const Footer = () => {
   useEffect(() => {
     const fetchCities = async () => {
       const postList = await cityAPI.getAll();
-      setPosts(postList);
+      setPosts(postList.data);
       setLoading(false);
     };
     fetchCities();
@@ -38,7 +38,7 @@ export const Footer = () => {
                     return (
                       <li key={item.id} className="ml-lg-3">
                         <Link key={item.id} to={item.slug}>
-                          {item.name}
+                          {item.cityName}
                         </Link>
                       </li>
                     );
