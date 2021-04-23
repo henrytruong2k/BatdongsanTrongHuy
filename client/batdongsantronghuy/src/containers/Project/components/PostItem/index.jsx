@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Card, Col } from 'react-bootstrap';
 import './style.scss';
+import { Link } from 'react-router-dom';
 
 PostItem.propTypes = {
   post: PropTypes.shape({
@@ -14,11 +15,7 @@ PostItem.propTypes = {
 
 function PostItem(props) {
   const { post } = props;
-  const publishDesc = post.description
-    .replace(/<\/?[^>]+(>|$)/g, '')
-    .substr(0, 200)
-    .concat('...');
-
+  const publishDesc = post.description.replace(/<\/?[^>]+(>|$)/g, '');
   return (
     <Col className="col-lg-4">
       <Card>
@@ -32,7 +29,9 @@ function PostItem(props) {
           <Card.Text>{publishDesc}</Card.Text>
         </Card.Body>
         <Card.Footer>
-          <Button variant="primary">Xem thêm</Button>
+          <Link to={`/du-an/${post.id}`}>
+            <Button variant="primary">Xem thêm</Button>
+          </Link>
         </Card.Footer>
       </Card>
     </Col>

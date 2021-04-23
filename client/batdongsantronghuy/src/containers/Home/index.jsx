@@ -1,15 +1,18 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Select from 'react-select';
-import { Container } from 'react-bootstrap';
+import { Button, Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cityAPI from '../../api/cityAPI';
+import { useSnackbar } from 'notistack';
+import postAPI from '../../api/postAPI';
+import PostList from '../Project/components/PostList';
 
 const HomeWrapper = styled.div`
-  height: 100vh;
   display: flex;
   align-items: center;
+  padding-top: 100px;
 `;
 
 export const HomeContainer = () => {
@@ -17,7 +20,11 @@ export const HomeContainer = () => {
   const [options, setOptions] = useState([]);
   const [isLoadingCity, setIsLoadingCity] = useState(true);
   const [isLoadingDistrict, setIsLoadingDistrict] = useState(false);
+  console.log('isLoadingDistrict: ', isLoadingDistrict);
   const [isDisabled, setIsDisabled] = useState(true);
+
+  const [isLoading, setIsLoading] = useState(true);
+  const [postList, setPostList] = useState([]);
   useEffect(() => {
     const fetchCities = async () => {
       const cities = await cityAPI.getAll();
@@ -25,6 +32,13 @@ export const HomeContainer = () => {
       setIsLoadingCity(false);
     };
     fetchCities();
+
+    const fetchPosts = async () => {
+      const postList = await postAPI.getAll();
+      setPostList(postList.data);
+      setIsLoading(false);
+    };
+    fetchPosts();
   }, []);
 
   const cityOptions = options.map((item) => {
@@ -43,13 +57,14 @@ export const HomeContainer = () => {
   };
   const [districtOptions, setDistrictOptions] = useState([]);
   useEffect(() => {
-    setIsLoadingDistrict(true);
     const fetchDistricts = async () => {
       if (selectedOptionCity) {
+        setIsLoadingDistrict(true);
         const districts = await cityAPI.getDistrictsByCityId(
           selectedOptionCity.value
         );
         setDistrictOptions(districts.data);
+
         setIsLoadingDistrict(false);
         onClear();
         setIsDisabled(false);
@@ -69,9 +84,35 @@ export const HomeContainer = () => {
   //redux for register
   const loggedRegister = useSelector((state) => state.user.current);
 
+  const { enqueueSnackbar } = useSnackbar();
+  const handleClick = () => {
+    enqueueSnackbar('You clicked to show noti', { variant: 'success' });
+  };
+  const [isClicked, setIsClicked] = useState(false);
+  const handleSearch = async (city, district) => {
+    setIsClicked(true);
+    city = selectedOptionCity?.value;
+    district = selectedOptionDistrict?.value;
+    if (city) {
+      setIsLoading(true);
+      const cityPost = await postAPI.getPostByCityId(city);
+      console.log('cityPost: ', cityPost.data);
+      setIsLoading(false);
+      setPostList(cityPost.data);
+      console.log(cityPost.data.length);
+      if (district) {
+        setIsLoading(true);
+        const districtPost = await postAPI.getPostByDistrictId(district);
+        console.log('districtPost: ', districtPost);
+        setIsLoading(false);
+        setPostList(districtPost.data);
+      }
+    }
+  };
   return (
     <HomeWrapper>
       <Container>
+        <Button onClick={handleClick}>Show noti</Button>
         <h1 className="text-center">This is home page</h1>
         {loggedRegister.url && (
           <a href={loggedRegister.url}>{loggedRegister.url}</a>
@@ -99,9 +140,21 @@ export const HomeContainer = () => {
           noOptionsMessage={() => 'Không tìm thấy kết quả'}
           isDisabled={isDisabled}
         />
-        <p>
-          {selectedOptionCity?.label} &nbsp; {selectedOptionDistrict?.label}
-        </p>
+
+        <Button type="submit" onClick={handleSearch}>
+          TÌM KIẾM
+        </Button>
+
+        {isClicked && (
+          <p>
+            Đã tìm kiếm {postList.length} phù hợp cho
+            {selectedOptionCity?.label}
+            &nbsp;
+            {selectedOptionDistrict?.label}
+          </p>
+        )}
+
+        <PostList posts={postList} loading={isLoading} />
       </Container>
     </HomeWrapper>
   );

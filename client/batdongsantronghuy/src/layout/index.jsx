@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router';
 import { Header } from '../components/Header';
@@ -12,6 +12,9 @@ import { router } from '../constants/router';
 Layout.propTypes = {};
 
 function Layout(props) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <>
       <Header />

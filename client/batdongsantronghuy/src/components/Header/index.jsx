@@ -4,12 +4,18 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import React, { useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
 import { router } from '../../constants/router';
+import Login from '../../containers/Auth/components/Login';
 import Register from '../../containers/Auth/components/Register';
 import './style.scss';
 
 export const Header = () => {
+  const loggedInUser = useSelector((state) => state.user.current.user);
+  console.log('loggedInUser: ', loggedInUser);
+  const isLoggedIn = loggedInUser?.id;
+
   const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
@@ -38,29 +44,35 @@ export const Header = () => {
               height="20"
               alt=""
             />
-            <img
-              className="mr-lg-2"
-              src="/home-page/profile-user.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleClickOpen}
-            >
-              Đăng kí
-            </Button>
+            {isLoggedIn && (
+              <img
+                className="mr-lg-2"
+                src="/home-page/profile-user.svg"
+                width="20"
+                height="20"
+                alt={loggedInUser.userName}
+              />
+            )}
+            {isLoggedIn && loggedInUser.userName}
+            {!isLoggedIn && (
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleClickOpen}
+              >
+                Đăng nhập
+              </Button>
+            )}
             <Dialog
-              disableBackdropClick  
+              disableBackdropClick
               // disableEscapeKeyDown
               open={open}
               onClose={handleClose}
               aria-labelledby="form-dialog-title"
             >
               <DialogContent>
-                <Register />
+                {/* <Register closeDialog={handleClose} /> */}
+                <Login closeDialog={handleClose} />
               </DialogContent>
               <DialogActions>
                 <Button onClick={handleClose} color="primary">

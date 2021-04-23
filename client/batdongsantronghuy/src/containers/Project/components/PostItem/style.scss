@@ -1,9 +1,16 @@
+@import '../../../../ults/scss/mixins';
 .card {
-  height: 520px;
+  height: auto;
   margin-bottom: 50px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   transition: 0.3s;
 
+  &-title {
+    @include textClamp(2);
+  }
+  &-text {
+    @include textClamp(3);
+  }
   img {
     width: 100%;
     height: 180px;

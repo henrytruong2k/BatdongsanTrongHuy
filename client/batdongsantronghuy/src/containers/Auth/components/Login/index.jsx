@@ -3,17 +3,16 @@ import { useSnackbar } from 'notistack';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { register } from '../../userSlice';
-import RegisterForm from '../RegisterForm';
+import { login } from '../../userSlice';
+import LoginForm from '../LoginForm';
 
-function Register(props) {
+function Login(props) {
   const { closeDialog } = props;
   const dispatch = useDispatch();
-  const { enqueueSnackbar } = useSnackbar();
 
   const handleFormSubmit = async (values) => {
     try {
-      const action = register(values);
+      const action = login(values);
       const resultAction = await dispatch(action);
       const user = unwrapResult(resultAction);
 
@@ -23,20 +22,19 @@ function Register(props) {
       }
 
       console.log('New user: ', user);
-      enqueueSnackbar('Đăng kí thành công!', { variant: 'success' });
     } catch (error) {
       console.log('Fail to register: ', error);
     }
   };
   return (
     <div>
-      <RegisterForm onSubmit={handleFormSubmit} />
+      <LoginForm onSubmit={handleFormSubmit} />
     </div>
   );
 }
 
-Register.propTypes = {
+Login.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
 
-export default Register;
+export default Login;

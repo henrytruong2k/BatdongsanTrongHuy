@@ -13,7 +13,11 @@ function ProjectRouter(props) {
     <div>
       <Switch>
         <Route exact path={match.path} component={ProjectsPage} />
-        <Route exact path={`${match.path}/:ID`} component={ProjectDetailPage} />
+        <Route
+          exact
+          path={`${match.path}/:slug`}
+          component={ProjectDetailPage}
+        />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

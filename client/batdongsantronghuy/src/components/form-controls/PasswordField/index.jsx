@@ -17,7 +17,7 @@ PasswordField.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
-  className: PropTypes.string,
+  className: PropTypes.string,  
 };
 
 function PasswordField(props) {

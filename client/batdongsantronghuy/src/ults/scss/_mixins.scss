@@ -1,0 +1,10 @@
+@mixin textClamp($textClamp) {
+  display: -webkit-box;
+  -webkit-line-clamp: $textClamp;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  max-width: 100%;
+  word-break: break-word;
+}
