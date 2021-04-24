@@ -64,8 +64,8 @@ function LoginForm(props) {
     const { onSubmit } = props;
     if (onSubmit) {
       await onSubmit(values);
+      form.reset();
     }
-    form.reset();
   };
 
   const { isSubmitting } = form.formState;

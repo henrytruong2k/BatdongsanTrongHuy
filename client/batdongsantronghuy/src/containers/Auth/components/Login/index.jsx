@@ -9,6 +9,7 @@ import LoginForm from '../LoginForm';
 function Login(props) {
   const { closeDialog } = props;
   const dispatch = useDispatch();
+  const { enqueueSnackbar } = useSnackbar();
 
   const handleFormSubmit = async (values) => {
     try {
@@ -24,6 +25,7 @@ function Login(props) {
       console.log('New user: ', user);
     } catch (error) {
       console.log('Fail to register: ', error);
+      enqueueSnackbar(error.message, { variant: 'error' });
     }
   };
   return (

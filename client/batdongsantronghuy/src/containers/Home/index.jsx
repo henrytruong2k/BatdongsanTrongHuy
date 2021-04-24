@@ -5,9 +5,10 @@ import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import cityAPI from '../../api/cityAPI';
-import { useSnackbar } from 'notistack';
+
 import postAPI from '../../api/postAPI';
 import PostList from '../Project/components/PostList';
+import { getTrackBackground, Range } from 'react-range';
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -81,13 +82,15 @@ export const HomeContainer = () => {
     return { value: item.id, label: item.districtName };
   });
 
+  //react-range
+  const STEP = 500000;
+  const MIN = 0;
+  const MAX = 10000000000;
+  const [values, setValues] = React.useState([0, 10]);
+
   //redux for register
   const loggedRegister = useSelector((state) => state.user.current);
 
-  const { enqueueSnackbar } = useSnackbar();
-  const handleClick = () => {
-    enqueueSnackbar('You clicked to show noti', { variant: 'success' });
-  };
   const [isClicked, setIsClicked] = useState(false);
   const handleSearch = async (city, district) => {
     setIsClicked(true);
@@ -112,7 +115,6 @@ export const HomeContainer = () => {
   return (
     <HomeWrapper>
       <Container>
-        <Button onClick={handleClick}>Show noti</Button>
         <h1 className="text-center">This is home page</h1>
         {loggedRegister.url && (
           <a href={loggedRegister.url}>{loggedRegister.url}</a>
@@ -140,6 +142,92 @@ export const HomeContainer = () => {
           noOptionsMessage={() => 'Không tìm thấy kết quả'}
           isDisabled={isDisabled}
         />
+
+        {/* react-range */}
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            flexWrap: 'wrap',
+          }}
+        >
+          <Range
+            values={values}
+            step={STEP}
+            min={MIN}
+            max={MAX}
+            rtl={false}
+            onChange={(values) => {
+              setValues(values);
+            }}
+            renderTrack={({ props, children }) => (
+              <div
+                onMouseDown={props.onMouseDown}
+                onTouchStart={props.onTouchStart}
+                style={{
+                  ...props.style,
+                  height: '36px',
+                  display: 'flex',
+                  width: '100%',
+                }}
+              >
+                <div
+                  ref={props.ref}
+                  style={{
+                    height: '5px',
+                    width: '100%',
+                    borderRadius: '4px',
+                    background: getTrackBackground({
+                      values,
+                      colors: ['#ccc', '#548BF4', '#ccc'],
+                      min: MIN,
+                      max: MAX,
+                    }),
+                    alignSelf: 'center',
+                  }}
+                >
+                  {children}
+                </div>
+              </div>
+            )}
+            renderThumb={({ props, isDragged }) => (
+              <div
+                {...props}
+                style={{
+                  ...props.style,
+                  height: '42px',
+                  width: '42px',
+                  borderRadius: '4px',
+                  backgroundColor: '#FFF',
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  boxShadow: '0px 2px 6px #AAA',
+                }}
+              >
+                <div
+                  style={{
+                    height: '16px',
+                    width: '5px',
+                    backgroundColor: isDragged ? '#548BF4' : '#CCC',
+                  }}
+                />
+              </div>
+            )}
+          />
+          <output style={{ marginTop: '30px' }} id="output">
+            Từ&nbsp;
+            {Intl.NumberFormat('vi-VN', {
+              style: 'currency',
+              currency: 'VND',
+            }).format(values[0])}
+            &nbsp;đến&nbsp;
+            {Intl.NumberFormat('vi-VN', {
+              style: 'currency',
+              currency: 'VND',
+            }).format(values[1])}
+          </output>
+        </div>
 
         <Button type="submit" onClick={handleSearch}>
           TÌM KIẾM

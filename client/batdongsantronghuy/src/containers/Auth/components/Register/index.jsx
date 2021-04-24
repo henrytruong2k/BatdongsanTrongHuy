@@ -23,9 +23,10 @@ function Register(props) {
       }
 
       console.log('New user: ', user);
-      enqueueSnackbar('Đăng kí thành công!', { variant: 'success' });
+      enqueueSnackbar('Register successfully !', { variant: 'success' });
     } catch (error) {
       console.log('Fail to register: ', error);
+      enqueueSnackbar(error.message, { variant: 'error' });
     }
   };
   return (
