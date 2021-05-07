@@ -1,0 +1,22 @@
+.tab {
+  border: 1px solid #ebebeb;
+  tr {
+    border-bottom: 1px solid #ebebeb;
+    &:last-child {
+      border-bottom: none;
+    }
+    td {
+      padding: 10px 0;
+    }
+  }
+}
+.no-outline:focus {
+  outline: none;
+}
+.left-table {
+  flex: 0 0 48%;
+  margin-right: 25px;
+}
+.right-table {
+  width: 49%;
+}

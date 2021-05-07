@@ -30,9 +30,10 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
     fontWeight: 'bold',
   },
-  password: {},
+
   input: {
     marginBottom: theme.spacing(2),
+    width: '100%',
   },
   submit: {
     margin: theme.spacing(1, 0),
@@ -64,8 +65,8 @@ function LoginForm(props) {
     const { onSubmit } = props;
     if (onSubmit) {
       await onSubmit(values);
-      form.reset();
     }
+    // form.reset();
   };
 
   const { isSubmitting } = form.formState;
@@ -87,11 +88,10 @@ function LoginForm(props) {
         />
 
         <PasswordField
-          className={`mr-lg-2 pr-lg-1 ${classes.input}`}
+          className={classes.input}
           form={form}
           name="password"
           label="Mật khẩu"
-          fullWidth
         />
 
         <Button

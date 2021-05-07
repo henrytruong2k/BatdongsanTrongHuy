@@ -17,10 +17,10 @@ function PostItem(props) {
   const { post } = props;
   const publishDesc = post.description.replace(/<\/?[^>]+(>|$)/g, '');
   return (
-    <Col className="col-lg-4">
+    <Col className="post__item col-lg-4">
       <Card>
         <Card.Img
-          src={post.image}
+          src={post?.images[0]?.url}
           // onError={`/project-page/286x180.svg`}
           alt={post.title}
         />

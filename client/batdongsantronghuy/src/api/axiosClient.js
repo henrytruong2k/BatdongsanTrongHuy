@@ -23,16 +23,20 @@ axiosClient.interceptors.response.use(
   },
   function (error) {
     console.log('ERROR RESPONSE: ', error.response);
-    const { config, status, data } = error.response;
-    if (config.url === '/Account/register' && status === 400) {
-      const { message } = data;
-      throw new Error(message);
+    try {
+      const { config, status, data } = error.response;
+      if (config.url === '/Account/register' && status === 400) {
+        const { message } = data;
+        throw new Error(message);
+      }
+      if (config.url === '/Account/authenticate' && status === 400) {
+        const { message } = data;
+        throw new Error(message);
+      }
+      return Promise.reject(error);
+    } catch (error) {
+      console.log(error);
     }
-    if (config.url === '/Account/authenticate' && status === 400) {
-      const { message } = data;
-      throw new Error(message);
-    }
-    return Promise.reject(error);
   }
 );
 

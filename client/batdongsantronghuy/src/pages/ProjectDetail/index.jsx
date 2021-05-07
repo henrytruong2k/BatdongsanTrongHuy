@@ -9,7 +9,7 @@ import Loading from '../../components/Loading';
 import PostDetail from '../../containers/Project/components/PostDetail';
 
 const ProjectDetailWrapper = styled.div`
-  padding-top: 100px;
+  padding-top: 60px;
 `;
 
 const ProjectDetailPage = (props) => {
@@ -29,11 +29,9 @@ const ProjectDetailPage = (props) => {
     fetchPostDetail();
   }, [slug]);
   return (
-    <Container>
-      <ProjectDetailWrapper>
-        {isLoading ? <Loading /> : <PostDetail post={post} />}
-      </ProjectDetailWrapper>
-    </Container>
+    <ProjectDetailWrapper>
+      {isLoading ? <Loading /> : <PostDetail post={post} />}
+    </ProjectDetailWrapper>
   );
 };
 

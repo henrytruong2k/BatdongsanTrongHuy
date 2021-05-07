@@ -17,11 +17,11 @@ PasswordField.propTypes = {
   label: PropTypes.string,
   disabled: PropTypes.bool,
   autoFocus: PropTypes.bool,
-  className: PropTypes.string,  
+  className: PropTypes.string,
 };
 
 function PasswordField(props) {
-  const { form, name, label, disabled, className } = props;
+  const { form, name, label, disabled, className, fullWidth } = props;
   const { formState } = form;
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => {
@@ -52,6 +52,7 @@ function PasswordField(props) {
               </InputAdornment>
             }
             disabled={disabled}
+            fullWidth
           />
         )}
         control={form.control}

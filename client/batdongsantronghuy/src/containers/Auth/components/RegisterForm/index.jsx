@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
     textTransform: 'uppercase',
     fontWeight: 'bold',
   },
-  password: {},
+  password: {
+    width: '50%',
+  },
   input: {
     marginBottom: theme.spacing(2),
   },
@@ -96,13 +98,13 @@ function RegisterForm(props) {
         />
 
         <PasswordField
-          className={`mr-lg-2 pr-lg-1 ${classes.input}`}
+          className={`${classes.input} ${classes.password} pr-lg-2`}
           form={form}
           name="password"
           label="Mật khẩu"
         />
         <PasswordField
-          className={`ml-lg-2 ${classes.input}`}
+          className={`${classes.input} ${classes.password}`}
           form={form}
           name="confirmPassword"
           label="Mật khẩu xác nhận"

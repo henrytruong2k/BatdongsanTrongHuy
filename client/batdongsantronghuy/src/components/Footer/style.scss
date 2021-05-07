@@ -1,26 +1,75 @@
 .footer {
   margin-top: 100px;
-  background-color: #9e9e9e;
-  &__logo {
-    text-transform: uppercase;
-    font-size: 1.125rem;
-    font-weight: bold;
-  }
-  form {
-    width: 100%;
-  }
+  color: #aaaab3;
+  background-image: url('../../images/footer-bg.jpg');
   #inputEmail {
-    width: 85%;
-    padding: 15px 10px;
-    border-radius: 5px 0 0px 5px;
+    width: 80%;
+    border: 1px solid #2cbdb8;
+
+    padding: 5px;
+    display: inline-block;
+    border-radius: 8px 0 0px 8px;
+    outline: none;
   }
   button {
-    width: 15%;
-    padding: 15px 10px;
-    border-left: none;
-    background-color: greenyellow;
-    border-radius: 0 5px 5px 0;
+    padding: 5px;
+    border: 1px solid #2cbdb8;
+    outline: none;
+    i {
+      color: #2cbdb8;
+    }
+  }
+  ul {
+    li {
+      margin-bottom: 10px;
+      list-style: none;
+    }
+    a {
+      font-size: 14px;
+      color: #aaaab3;
+      text-decoration: none;
+    }
+    i {
+      color: #aaaab3;
+      font-size: 18px;
+    }
+  }
+  &__logo {
     text-transform: uppercase;
-    font-weight: 600;
+
+    font-weight: bold;
+  }
+  &__cities {
+    ul {
+      width: 50%;
+      float: left;
+      li {
+        i {
+          color: #2cbdb8;
+        }
+      }
+    }
+  }
+  &__social {
+    li {
+      margin-bottom: 10px;
+    }
+    a {
+      font-size: 14px;
+      color: #aaaab3;
+      text-decoration: none;
+    }
+    i {
+      color: #aaaab3;
+      font-size: 18px;
+    }
+  }
+  h4,
+  h5 {
+    color: #fff;
+  }
+  .caret-right-solid {
+    width: 8px;
+    height: fit-content;
   }
 }

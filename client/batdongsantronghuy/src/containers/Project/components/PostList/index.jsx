@@ -11,21 +11,19 @@ PostList.propTypes = {
 
 function PostList(props) {
   const { posts, loading } = props;
-  console.log(posts);
+  console.log('Component pass value postlist: ' + posts);
   return (
-    <Container>
-      <Row>
-        {loading ? (
-          <Loading />
-        ) : posts?.length > 0 ? (
-          posts.map((post) => {
-            return <PostItem key={post.id} post={post} />;
-          })
-        ) : (
-          <h3>Không có dữ liệu </h3>
-        )}
-      </Row>
-    </Container>
+    <Row>
+      {loading ? (
+        <Loading />
+      ) : posts?.length > 0 ? (
+        posts.map((post) => {
+          return <PostItem key={post.id} post={post} />;
+        })
+      ) : (
+        <h3>Không có dữ liệu </h3>
+      )}
+    </Row>
   );
 }
 

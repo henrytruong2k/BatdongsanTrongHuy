@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import PostList from './components/PostList';
 import styled from 'styled-components';
 import postAPI from '../../api/postAPI';
+import { Container } from 'react-bootstrap';
 
 ProjectContainer.propTypes = {};
 const ProjectWrapper = styled.div`
@@ -22,9 +23,11 @@ function ProjectContainer(props) {
   }, []);
 
   return (
-    <ProjectWrapper>
-      <PostList posts={posts} loading={loading} />
-    </ProjectWrapper>
+    <Container>
+      <ProjectWrapper>
+        <PostList posts={posts} loading={loading} />
+      </ProjectWrapper>
+    </Container>
   );
 }
 

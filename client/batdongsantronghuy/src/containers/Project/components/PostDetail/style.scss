@@ -3,9 +3,76 @@
     width: 100%;
     height: auto;
     object-fit: contain;
+    &-leaflet {
+      width: 80px;
+      height: 50px;
+      object-fit: contain;
+      margin-right: 14px;
+    }
   }
 }
+.hero-image {
+  position: relative;
+  &__text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 35px 50px;
+    background-color: rgba(28, 28, 28, 0.6);
+    text-align: center;
+    color: #fff;
 
+    i {
+      color: #2cbdb8;
+    }
+    p:first-child {
+      font-size: 14px;
+    }
+    h2 {
+      font-size: 44px;
+      font-weight: 600;
+    }
+
+    .room {
+      &__price {
+        margin-bottom: 35px;
+        span {
+          font-size: 14px;
+          color: #aaaab3;
+          margin-right: 10px;
+          display: inline-block;
+        }
+        p {
+          font-size: 22px;
+          margin-bottom: 0;
+          display: inline-block;
+        }
+      }
+      &__features {
+        li {
+          text-align: center;
+          list-style: none;
+          display: inline-block;
+          margin-right: 65px;
+          &:last-child {
+            margin-right: 0;
+          }
+          i {
+            font-size: 24px;
+            color: #2cbdb8;
+            margin-bottom: 10px;
+          }
+        }
+      }
+    }
+  }
+  img {
+    width: 100%;
+    height: fit-content;
+    object-fit: cover;
+  }
+}
 .leaflet-container {
   height: 600px;
   width: 100%;
