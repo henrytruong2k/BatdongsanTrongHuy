@@ -15,25 +15,64 @@ PostItem.propTypes = {
 
 function PostItem(props) {
   const { post } = props;
-  const publishDesc = post.description.replace(/<\/?[^>]+(>|$)/g, '');
+
   return (
-    <Col className="post__item col-lg-4">
-      <Card>
-        <Card.Img
-          src={post?.images[0]?.url}
-          // onError={`/project-page/286x180.svg`}
-          alt={post.title}
-        />
-        <Card.Body>
-          <Card.Title>{post.title}</Card.Title>
-          <Card.Text>{publishDesc}</Card.Text>
-        </Card.Body>
-        <Card.Footer>
-          <Link to={`/du-an/${post.id}`}>
-            <Button variant="primary">Xem thêm</Button>
-          </Link>
-        </Card.Footer>
-      </Card>
+    <Col className="post col-lg-4">
+      <Link to={`/bai-dang/${post.id}`}>
+        <Card>
+          <div className="d-flex justify-content-space-between">
+            <div className="post__tag post__tag--category">
+              {post.category.name}
+            </div>
+            <div className="post__tag post__tag--city">
+              {post?.address?.city.cityName}
+            </div>
+          </div>
+          <Card.Img
+            src={post?.images[0]?.url}
+            // onError={`/project-page/286x180.svg`}
+            alt={post.title}
+          />
+          <Card.Body>
+            <Card.Title>{post.title}</Card.Title>
+            <p className="post__address">
+              <i className="fa fa-map-marker mr-2 color-blue"></i>
+              {post.address.street},&nbsp;
+              {post.address.district.districtName}
+              ,&nbsp;{post.address.city.cityName}
+            </p>
+            <Card.Text
+              dangerouslySetInnerHTML={{ __html: post.description }}
+            ></Card.Text>
+            <div className="post__price">
+              <h5>
+                Giá:&nbsp;
+                {Intl.NumberFormat('vi-VN', {
+                  style: 'currency',
+                  currency: 'VND',
+                }).format(post.price)}
+              </h5>
+            </div>
+          </Card.Body>
+          <div className="post__footer">
+            <ul>
+              <li>
+                <i className="fa fa-arrows mr-2 color-blue"></i>
+                {post.direction}
+              </li>
+              <li>
+                <i className="fa fa-bed mr-2 color-blue"></i>
+                {post.bedroom}
+              </li>
+              <li>
+                <i className="fa fa-home mr-2 color-blue"></i>
+                {post.numberofFloor} tầng
+              </li>
+              <li></li>
+            </ul>
+          </div>
+        </Card>
+      </Link>
     </Col>
   );
 }

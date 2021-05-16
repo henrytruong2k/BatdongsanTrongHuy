@@ -95,9 +95,9 @@ export default function TabsPanel({ tabProps }) {
                 <td className="p-value">3</td>
               </tr>
               <tr>
-                <td className="pt-name">Diện tích sân vườn</td>
+                <td className="pt-name">Diện tích mặt tiền</td>
                 <td className="p-value">
-                  200 m<sup>2</sup>
+                  {tabProps.frontiSpiece} m<sup>2</sup>
                 </td>
               </tr>
               <tr>
@@ -125,7 +125,7 @@ export default function TabsPanel({ tabProps }) {
                 <td className="p-value">{tabProps.phoneNumber}</td>
               </tr>
               <tr>
-                <td className="pt-name">Email liên hệ</td>
+                <td className="pt-name">Email</td>
                 <td className="p-value">
                   <a href={`mailto:${tabProps.email}`}>{tabProps.email}</a>
                 </td>

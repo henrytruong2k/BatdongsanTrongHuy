@@ -9,6 +9,8 @@ import './style.scss';
 import postAPI from '../../api/postAPI';
 import PostList from '../Project/components/PostList';
 import { getTrackBackground, Range } from 'react-range';
+import useCityOptions from '../../components/CustomHook/useCityOptions';
+import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -18,17 +20,18 @@ const HomeWrapper = styled.div`
 
 export const HomeContainer = () => {
   //filter value
-  const [filter, setFilter] = useState({
+  const initialFilter = {
     city: '',
     district: '',
     price: [],
     keyword: '',
-  });
+  };
+  const [filter, setFilter] = useState(initialFilter);
 
   //get all cities
-  const [cities, setCities] = useState([]);
+
   const [districts, setDistricts] = useState([]);
-  const [isLoadingCity, setIsLoadingCity] = useState(true);
+
   const [isLoadingDistrict, setIsLoadingDistrict] = useState(false);
 
   const [isDisabled, setIsDisabled] = useState(true);
@@ -37,28 +40,19 @@ export const HomeContainer = () => {
   const [postList, setPostList] = useState([]);
   useEffect(() => {
     try {
-      const fetchCities = async () => {
-        const response = await cityAPI.getAll();
-        setCities(response.data);
-        setIsLoadingCity(false);
-      };
-      fetchCities();
-
       const fetchPosts = async () => {
-        const postList = await postAPI.getAll();
-        setPostList(postList.data);
+        const response = await postAPI.getAll();
+        setPostList(response?.data);
         setIsLoading(false);
       };
+      //execute
       fetchPosts();
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   }, []);
 
-  const cityOptions = cities.map((item) => {
-    return { value: item.id, label: item.cityName };
-  });
-
+  const { cityOptions, isLoadingCity } = useCityOptions();
   const handleChangeCity = (value) => {
     setFilter({
       ...filter,
@@ -77,6 +71,7 @@ export const HomeContainer = () => {
   useEffect(() => {
     try {
       const fetchDistricts = async () => {
+        setIsDisabled(true);
         if (filter.city) {
           onClear();
           setIsLoadingDistrict(true);
@@ -92,7 +87,7 @@ export const HomeContainer = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [filter.city]);
+  }, [filter?.city]);
 
   const handleChangeDistrict = (value) => {
     setFilter({
@@ -108,8 +103,8 @@ export const HomeContainer = () => {
   //react-range
   const STEP = 1000000;
   const MIN = 0;
-  const MAX = 1000000000;
-  const [values, setValues] = React.useState([MIN, MIN]);
+  const MAX = 100000000000;
+  const [values, setValues] = React.useState([MIN, MAX]);
 
   const [isClicked, setIsClicked] = useState(false);
 
@@ -130,8 +125,6 @@ export const HomeContainer = () => {
   const renderPostList = useMemo(() => {
     return <PostList posts={postList} loading={isLoading} />;
   }, [postList, isLoading]);
-
-  // const renderPostList = <PostList posts={postList} loading={isLoading} />;
 
   //handle search
   const handleSearch = async () => {
@@ -154,13 +147,50 @@ export const HomeContainer = () => {
         if (filter.price.length > 0) {
           if (filter.keyword) {
             console.log('city+district+price+keyword');
+            setIsLoading(true);
+            const response = await postAPI.getPostByDistrictIdPrice(
+              filter.district.value,
+              filter.price[1],
+              filter.price[0]
+            );
+
+            const result = response.data.filter((post) =>
+              post.title.toLowerCase().includes(filter.keyword.toLowerCase())
+            );
+            setPostList(result);
+            setIsLoading(false);
           } else {
             console.log('city+district+price');
+            setIsLoading(true);
+            const response = await postAPI.getPostByDistrictIdPrice(
+              filter.district.value,
+              filter.price[1],
+              filter.price[0]
+            );
+            setPostList(response.data);
+            setIsLoading(false);
           }
         } else if (filter.keyword) {
-          console.log('city+district+price+keyword');
+          console.log('city+district+keyword');
+          setIsLoading(true);
+          const response = await postAPI.getPostByDistrictId(
+            filter.district.value
+          );
+          console.log(response.data);
+          const result = response.data.filter((post) =>
+            post.title.toLowerCase().includes(filter.keyword.toLowerCase())
+          );
+          console.log('result city+keyword', result);
+          setIsLoading(false);
+          setPostList(result);
         } else {
-          console.log('city+district');
+          setIsLoading(true);
+          const response = await postAPI.getPostByDistrictId(
+            filter.district.value
+          );
+          console.log(response.data);
+          setPostList(response.data);
+          setIsLoading(false);
         }
       }
       //ko district
@@ -170,11 +200,32 @@ export const HomeContainer = () => {
             console.log('city+price+keyword');
           } else {
             console.log('city+price');
+            setIsLoading(true);
+            const response = await postAPI.getPostByCityPrice(
+              filter.city.value,
+              filter.price[1],
+              filter.price[0]
+            );
+            setPostList(response.data);
+            setIsLoading(false);
+            console.log('filter city+price: ', response.data);
           }
         } else if (filter.keyword) {
           console.log('city+keyword');
+          setIsLoading(true);
+          const response = await postAPI.getPostByCityId(filter.city.value);
+          const postList = response.data;
+          const result = postList.filter((post) =>
+            post.title.toLowerCase().includes(filter.keyword.toLowerCase())
+          );
+          console.log('result city+keyword', result);
+          setIsLoading(false);
+          setPostList(result);
         } else {
-          console.log('city');
+          setIsLoading(true);
+          const response = await postAPI.getPostByCityId(filter.city.value);
+          setIsLoading(false);
+          setPostList(response.data);
         }
       }
     }
@@ -182,16 +233,57 @@ export const HomeContainer = () => {
     else if (filter.price.length > 0) {
       if (filter.keyword) {
         console.log('price + keyword');
+        setIsLoading(true);
+        const response = await postAPI.getPostByPrice(
+          filter.price[1],
+          filter.price[0]
+        );
+
+        const postList = response.data;
+        const result = postList.filter((post) =>
+          post.title.toLowerCase().includes(filter.keyword.toLowerCase())
+        );
+        console.log('result', result);
+        setPostList(result);
+        setIsLoading(false);
       } else {
         console.log('price');
+        // if (filter.price[0] === 0 && filter.price[1] === 0) {
+        //   console.log('0 ,0');
+        //   setIsLoading(true);
+        //   const response = await postAPI.getAll();
+        //   setIsLoading(false);
+        //   setPostList(response.data);
+        // }
+        setIsLoading(true);
+        const response = await postAPI.getPostByPrice(
+          filter.price[1],
+          filter.price[0]
+        );
+        setIsLoading(false);
+        console.log('price: ', response.data);
+        setPostList(response.data);
       }
     } else if (filter.keyword) {
       console.log('keyword');
+      setIsLoading(true);
+      const response = await postAPI.getPostByKeyword(filter.keyword);
+      setIsLoading(false);
+      setPostList(response.data);
     } else {
       console.log('ko có filter');
+      setIsLoading(true);
+      const response = await postAPI.getAll();
+      setIsLoading(false);
+      setPostList(response.data);
     }
   };
 
+  //handle Refresh
+  const handleRefresh = () => {
+    setFilter(initialFilter);
+    setValues([MIN, MAX]);
+  };
   return (
     <HomeWrapper>
       <Container>
@@ -200,7 +292,8 @@ export const HomeContainer = () => {
             <Select
               defaultOptions
               cacheOptions
-              value={filter.city}
+              isClearable
+              value={filter?.city}
               onChange={handleChangeCity}
               options={cityOptions}
               isLoading={isLoadingCity}
@@ -213,7 +306,8 @@ export const HomeContainer = () => {
               ref={selectDistrict}
               defaultOptions
               cacheOptions
-              value={filter.district}
+              isClearable
+              value={filter?.district}
               onChange={handleChangeDistrict}
               options={districtOptions}
               isLoading={isLoadingDistrict}
@@ -311,6 +405,7 @@ export const HomeContainer = () => {
           <Col className="col-lg-8 mt-3 mb-3">
             <input
               id="inputSearch"
+              className="outline-none"
               value={filter.keyword}
               onChange={handleChangeKeyword}
               placeholder="Nhập từ khóa bạn muốn tìm kiếm..."
@@ -320,6 +415,13 @@ export const HomeContainer = () => {
             <button type="submit" onClick={handleSearch} className="btn-search">
               Tìm kiếm
             </button>
+
+            <RotateLeftIcon
+              fontSize="large"
+              color="primary"
+              className="btn-refresh"
+              onClick={handleRefresh}
+            />
           </Col>
         </Row>
 
@@ -348,7 +450,6 @@ export const HomeContainer = () => {
           </>
         )}
 
-        {/* <PostList posts={postList} loading={isLoading} /> */}
         {renderPostList}
       </Container>
     </HomeWrapper>

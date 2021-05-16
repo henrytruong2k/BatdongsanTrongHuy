@@ -11,7 +11,6 @@ PostList.propTypes = {
 
 function PostList(props) {
   const { posts, loading } = props;
-  console.log('Component pass value postlist: ' + posts);
   return (
     <Row>
       {loading ? (

@@ -58,6 +58,7 @@ function RegisterForm(props) {
     defaultValues: {
       fullname: '',
       email: '',
+      address: '',
       password: '',
       confirmPassword: '',
       phoneNumber: '',
@@ -109,7 +110,12 @@ function RegisterForm(props) {
           name="confirmPassword"
           label="Mật khẩu xác nhận"
         />
-
+        <InputField
+          form={form}
+          name="address"
+          label="Địa chỉ"
+          className={classes.input}
+        />
         <InputField
           form={form}
           name="phoneNumber"

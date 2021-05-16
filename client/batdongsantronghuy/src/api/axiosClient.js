@@ -1,9 +1,21 @@
 import axios from 'axios';
+import { domain } from '../constants/config';
+
+const access_token = localStorage.getItem('access_token');
+
+const accept = access_token
+  ? {
+      Authorization: `Bearer ${access_token}`,
+    }
+  : null;
 
 const axiosClient = axios.create({
-  baseURL: 'https://batdongsanth.azurewebsites.net/api/',
+  baseURL: domain,
+  
   headers: {
+    // 'Content-Type': 'multipart/form-data',
     'Content-Type': 'application/json',
+    ...accept,
   },
 });
 

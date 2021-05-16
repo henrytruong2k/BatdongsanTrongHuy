@@ -22,7 +22,7 @@ function Layout(props) {
         <Route exact path={router.ROOT} component={HomePage} />
         <Route path={router.TRANGCHU} component={HomePage} />
         <Route path={router.TINTUC} component={NewsPage} />
-        <Route path={router.DUAN} component={ProjectRouter} />
+        <Route path={router.BAIDANG} component={ProjectRouter} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />

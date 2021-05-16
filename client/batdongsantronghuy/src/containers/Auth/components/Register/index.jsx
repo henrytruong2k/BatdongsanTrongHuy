@@ -23,7 +23,9 @@ function Register(props) {
       }
 
       console.log('New user: ', user);
-      enqueueSnackbar('Register successfully !', { variant: 'success' });
+      enqueueSnackbar('Đăng kí thành công. Vui lòng kiểm tra email', {
+        variant: 'success',
+      });
     } catch (error) {
       console.log('Fail to register: ', error);
       enqueueSnackbar(error.message, { variant: 'error' });
@@ -37,7 +39,7 @@ function Register(props) {
 }
 
 Register.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func,
 };
 
 export default Register;

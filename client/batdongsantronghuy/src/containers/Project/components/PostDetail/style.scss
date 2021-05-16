@@ -69,12 +69,12 @@
   }
   img {
     width: 100%;
-    height: fit-content;
+    height: 500px;
     object-fit: cover;
   }
 }
 .leaflet-container {
-  height: 600px;
+  height: 350px;
   width: 100%;
   z-index: 1;
 }

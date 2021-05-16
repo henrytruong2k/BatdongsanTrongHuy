@@ -4,32 +4,18 @@ import { Col, Container, Row } from 'react-bootstrap';
 import './style.scss';
 import moment from 'moment';
 import 'moment/locale/vi';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import osm from '../../../../constants/osm-providers';
+
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
+
 import TabsPanel from './components/TabsPanel';
 import Slider from 'react-slick';
+import Map from './components/Map';
 
 moment.locale('vi');
 
 PostDetail.propTypes = {};
 
 function PostDetail({ post }) {
-  const center = {
-    lat: post.locationX,
-    lng: post.locationY,
-  };
-
-  const markerIcon = new L.icon({
-    iconUrl: '/location.svg',
-    iconSize: [35, 45],
-    popupAnchor: [3, -25],
-  });
-
-  const ZOOM_LEVEL = 50;
-  const mapRef = useRef();
-
   const publishDate = post.address.createAt;
   const tabProps = {
     price: post.price,
@@ -43,6 +29,8 @@ function PostDetail({ post }) {
     address: post.address.street,
     furniture: post.furniture,
     juridical: post.juridical,
+    direction: post.direction,
+    frontiSpiece: post.frontiSpiece,
   };
 
   const settings = {
@@ -62,7 +50,7 @@ function PostDetail({ post }) {
   };
   return (
     <>
-      <Container fluid={true} className="pl-0 pr-0 mb-5">
+      <Container fluid className="pl-0 pr-0 mb-5">
         <div className="hero-image">
           <img src="/assets/hero-bg.jpg" alt={post.title} />
           <div className="hero-image__text">
@@ -71,7 +59,7 @@ function PostDetail({ post }) {
               &nbsp; {post.address.street}
             </p>
 
-            <h2>{post.title}</h2>
+            <h3>{post.title}</h3>
             <div className="room__price">
               <span>Giá bán: </span>
               <p>
@@ -84,21 +72,15 @@ function PostDetail({ post }) {
             <ul className="room__features">
               <li>
                 <i className="fa fa-arrows"></i>
-                <p>
-                  5201 m<sup>2</sup>
-                </p>
+                <p>{post.direction}</p>
               </li>
               <li>
                 <i className="fa fa-bed"></i>
-                <p>8 phòng ngủ</p>
+                <p>{post.bedroom} phòng ngủ</p>
               </li>
               <li>
-                <i className="fa fa-bath"></i>
-                <p>7 phòng tắm</p>
-              </li>
-              <li>
-                <i className="fa fa-car"></i>
-                <p>1 Gara</p>
+                <i className="fa fa-home"></i>
+                <p>{post.numberofFloor} tầng</p>
               </li>
             </ul>
           </div>
@@ -106,7 +88,7 @@ function PostDetail({ post }) {
       </Container>
       <Container>
         <Row>
-          <Col className="col-lg-8">
+          <Col className="col-lg-9">
             <img
               src={post?.images[0]?.url}
               alt={post.title}
@@ -120,23 +102,11 @@ function PostDetail({ post }) {
             ></p>
             <TabsPanel tabProps={tabProps} />
             <div className="mt-lg-5">
-              <MapContainer center={center} zoom={ZOOM_LEVEL} ref={mapRef}>
-                <TileLayer
-                  url={osm.maptiler.url}
-                  attribution={osm.maptiler.attribution}
-                />
-                <Marker position={center} icon={markerIcon}>
-                  <Popup>
-                    <img
-                      src={post.images[0].url}
-                      alt={post.title}
-                      className="post-detail__image-leaflet"
-                    />
-                    <b>Bạn đang ở đây, {post.address.street}</b>
-                  </Popup>
-                </Marker>
-              </MapContainer>
+              <Map post={post} />
             </div>
+          </Col>
+          <Col className="col-lg-3 bg-dark">
+            <p className="text-white">Thông tin bên lề</p>
           </Col>
         </Row>
       </Container>

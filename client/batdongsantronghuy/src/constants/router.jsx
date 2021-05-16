@@ -1,7 +1,8 @@
 export const router = {
   ROOT: '/',
   TRANGCHU: '/trang-chu',
-  DUAN: '/du-an',
+  BAIDANG: '/bai-dang',
   TINTUC: '/tin-tuc',
   LIENHE: '/lien-he',
+  TAOBAIVIET: '/bai-dang/tao-bai-viet',
 };

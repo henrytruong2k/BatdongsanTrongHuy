@@ -34,3 +34,17 @@
     }
   }
 }
+
+.icon-btn,
+.btn-close,
+.outline-none {
+  &:focus {
+    outline: none;
+  }
+}
+.user-click {
+  cursor: pointer;
+  p {
+    cursor: pointer;
+  }
+}

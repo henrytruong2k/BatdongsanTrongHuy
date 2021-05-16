@@ -4,21 +4,25 @@ import Dialog from '@material-ui/core/Dialog';
 
 import DialogContent from '@material-ui/core/DialogContent';
 import { Close } from '@material-ui/icons';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink } from 'react-router-dom';
-
+import postAPI from '../../api/postAPI';
+import { useHistory } from 'react-router-dom';
 import { MODE } from '../../constants/mode';
 import { router } from '../../constants/router';
 import Login from '../../containers/Auth/components/Login';
 import Register from '../../containers/Auth/components/Register';
+import Setting from '../../containers/Auth/components/Setting';
 import { logout } from '../../containers/Auth/userSlice';
+import usePostsManagement from './components/usePostsManagement';
 import './style.scss';
+import Management from '../../containers/Auth/components/Management';
 
 export const Header = () => {
   const loggedInUser = useSelector((state) => state.user.current.user);
-  console.log('loggedInUser: ', loggedInUser);
+
   const isLoggedIn = loggedInUser?.id;
 
   const [open, setOpen] = useState(false);
@@ -33,6 +37,7 @@ export const Header = () => {
       right: theme.spacing(1),
       color: theme.palette.grey[500],
       zIndex: 1,
+      outline: 'none',
     },
   }));
   const classes = useStyles();
@@ -53,6 +58,28 @@ export const Header = () => {
     setAnchorEl(null);
   };
 
+  //setting user
+  const handleClickSettingUser = () => {
+    setOpen(true);
+    setMode(MODE.SETTING);
+    handleCloseMenu();
+  };
+  //create post
+  let history = useHistory();
+  const handleClickCreatPost = () => {
+    history.push(router.TAOBAIVIET);
+    handleCloseMenu();
+    handleClose();
+  };
+
+  //manage post
+  const { postList } = usePostsManagement(loggedInUser?.userName);
+  const handleClickManagePost = () => {
+    setOpen(true);
+    setMode(MODE.MANAGEMENT);
+    handleCloseMenu();
+  };
+
   //logout
   const dispatch = useDispatch();
   const handleLogoutClick = () => {
@@ -69,9 +96,10 @@ export const Header = () => {
           </Col>
           <Col className="header__menu col-lg-9">
             <NavLink to={router.TRANGCHU}>Trang chủ</NavLink>
-            <NavLink to={router.DUAN}>Dự án</NavLink>
+            <NavLink to={router.BAIDANG}>Bài đăng</NavLink>
             <NavLink to={router.TINTUC}>Tin tức</NavLink>
             <NavLink to={router.LIENHE}>Liên hệ</NavLink>
+
             <img
               className="mr-lg-2"
               src="/home-page/heart.svg"
@@ -79,23 +107,30 @@ export const Header = () => {
               height="20"
               alt=""
             />
+
             {isLoggedIn && (
-              <IconButton color="inherit" onClick={handleUserClick}>
-                <img
-                  className="mr-lg-2"
-                  src="/home-page/profile-user.svg"
-                  width="20"
-                  height="20"
-                  alt={loggedInUser.userName}
-                />
-              </IconButton>
+              <div
+                className="d-flex align-items-center user-click"
+                onClick={handleUserClick}
+              >
+                <IconButton color="inherit" className="icon-btn">
+                  <img
+                    className="mr-lg-2"
+                    src="/home-page/profile-user.svg"
+                    width="20"
+                    height="20"
+                    alt={loggedInUser.userName}
+                  />
+                </IconButton>
+                <p className="mb-0">{loggedInUser.userName}</p>
+              </div>
             )}
-            {isLoggedIn && loggedInUser.userName}
             {!isLoggedIn && (
               <Button
                 variant="contained"
                 color="primary"
                 onClick={handleClickOpen}
+                className="outline-none"
               >
                 Đăng nhập
               </Button>
@@ -117,7 +152,14 @@ export const Header = () => {
               }}
               getContentAnchorEl={null}
             >
-              <MenuItem onClick={handleCloseMenu}>Thông tin tài khoản</MenuItem>
+              <MenuItem onClick={handleClickSettingUser}>
+                Thông tin tài khoản
+              </MenuItem>
+              <MenuItem onClick={handleClickCreatPost}>Đăng bài</MenuItem>
+              <MenuItem onClick={handleClickManagePost}>
+                Quản lý bài đăng
+              </MenuItem>
+
               <MenuItem onClick={handleLogoutClick}>Đăng xuất</MenuItem>
             </Menu>
             <Dialog
@@ -127,7 +169,10 @@ export const Header = () => {
               onClose={handleClose}
               aria-labelledby="form-dialog-title"
             >
-              <IconButton className={classes.closeButton} onClick={handleClose}>
+              <IconButton
+                className={`btn-close ${classes.closeButton}`}
+                onClick={handleClose}
+              >
                 <Close />
               </IconButton>
               <DialogContent>
@@ -161,6 +206,23 @@ export const Header = () => {
                         Chưa có tài khoản ?
                       </Button>
                     </Box>
+                  </>
+                )}
+                {mode === MODE.SETTING && (
+                  <>
+                    <Setting
+                      userInformation={loggedInUser}
+                      closeDialog={handleClose}
+                    />
+                  </>
+                )}
+                {mode === MODE.MANAGEMENT && (
+                  <>
+                    <Management
+                      list={postList}
+                      createPost={handleClickCreatPost}
+                      closeDialog={handleClose}
+                    />
                   </>
                 )}
               </DialogContent>

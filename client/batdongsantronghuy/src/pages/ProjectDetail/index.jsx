@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 import postAPI from '../../api/postAPI';
 import styled from 'styled-components';
-import Loading from '../../components/Loading';
 import PostDetail from '../../containers/Project/components/PostDetail';
+import { CircularProgress, makeStyles } from '@material-ui/core';
 
 const ProjectDetailWrapper = styled.div`
   padding-top: 60px;
@@ -28,9 +28,21 @@ const ProjectDetailPage = (props) => {
     };
     fetchPostDetail();
   }, [slug]);
+
+  const useStyles = makeStyles((theme) => ({
+    circular: {
+      display: 'flex',
+      margin: '20% auto',
+    },
+  }));
+  const classes = useStyles();
   return (
     <ProjectDetailWrapper>
-      {isLoading ? <Loading /> : <PostDetail post={post} />}
+      {isLoading ? (
+        <CircularProgress size="5rem" className={classes.circular} />
+      ) : (
+        <PostDetail post={post} />
+      )}
     </ProjectDetailWrapper>
   );
 };

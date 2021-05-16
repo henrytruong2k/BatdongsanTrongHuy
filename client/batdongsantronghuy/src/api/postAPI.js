@@ -1,3 +1,4 @@
+import { domain } from '../constants/config';
 import axiosClient from './axiosClient';
 
 const postAPI = {
@@ -15,15 +16,55 @@ const postAPI = {
 
   getPostByCityId(id) {
     const url = `/v1/Post/SearchPostByCityId?CityId=${id}`;
-    console.log(url);
+
+    return axiosClient.get(url);
+  },
+  getPostByCityPrice(id, max, min) {
+    const url = `v1/Post/SearchPostByCityId?CityId=${id}&MaxPrice=${max}&MinPrice=${min}`;
+
     return axiosClient.get(url);
   },
   getPostByDistrictId(id) {
     const url = `/v1/Post/SearchPostByDistrictId?DistrictId=${id}`;
     return axiosClient.get(url);
   },
+  getPostByDistrictIdPrice(id, max, min) {
+    const url = `/v1/Post/SearchPostByDistrictId?DistrictId=${id}&MaxPrice=${max}&MinPrice=${min}`;
+
+    return axiosClient.get(url);
+  },
   getPostByPrice(max, min) {
     const url = `/v1/Post/SearchPostByPrice?MaxPrice=${max}&MinPrice=${min}`;
+    return axiosClient.get(url);
+  },
+  getPostByKeyword(keyword) {
+    const url = `/v1/Post/SearchPostByKeyword?Keyword=${keyword}`;
+    return axiosClient.get(url);
+  },
+  async createPost(data) {
+    const url = `/v1/Post/CreatePost`;
+
+    const formData = new FormData();
+    for (const name in data) {
+      formData.append(name, data[name]);
+    }
+    const access_token = localStorage.getItem('access_token');
+    // const accept = access_token
+    //   ? {
+    //       Authorization: `Bearer ${access_token}`,
+    //     }
+    //   : null;
+    const response = await fetch(domain + url, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        Authorization: `Bearer ${access_token}`,
+      },
+    });
+    return response.json();
+  },
+  getAllPostsByNameContact(name) {
+    const url = `/v1/Post/GetAllPostsByNameContact?NameContact=${name}`;
     return axiosClient.get(url);
   },
 };
