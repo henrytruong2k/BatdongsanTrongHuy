@@ -9,6 +9,8 @@ SelectField.propTypes = {};
 function SelectField(props) {
   const { form, name, ref, disabled, className, options, value, ...others } =
     props;
+  console.log('ref component', ref);
+  console.log('value component: ', value);
   return (
     <Controller
       control={form.control}
@@ -18,7 +20,7 @@ function SelectField(props) {
           {...field}
           ref={ref}
           defaultOptions
-          cacheOptions
+          cacheOptions={true}
           isClearable
           className={className}
           options={options}

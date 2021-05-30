@@ -9,8 +9,10 @@ import './style.scss';
 import postAPI from '../../api/postAPI';
 import PostList from '../Project/components/PostList';
 import { getTrackBackground, Range } from 'react-range';
-import useCityOptions from '../../components/CustomHook/useCityOptions';
+
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
+import useCityOptions from '../../components/hooks/useCityOptions';
+import useGeoLocation from '../../components/hooks/useGeoLocation';
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -19,6 +21,7 @@ const HomeWrapper = styled.div`
 `;
 
 export const HomeContainer = () => {
+  useGeoLocation();
   //filter value
   const initialFilter = {
     city: '',
@@ -129,154 +132,17 @@ export const HomeContainer = () => {
   //handle search
   const handleSearch = async () => {
     setIsClicked(true);
-    console.log(
-      'khách hàng chọn: ' +
-        ' city: ' +
-        filter.city?.value +
-        ' district: ' +
-        filter.district?.value +
-        ' price: ' +
-        filter?.price +
-        ' keyword: ' +
-        filter.keyword
-    );
-    //filter city
-    if (filter.city) {
-      //có filter district
-      if (filter.district) {
-        if (filter.price.length > 0) {
-          if (filter.keyword) {
-            console.log('city+district+price+keyword');
-            setIsLoading(true);
-            const response = await postAPI.getPostByDistrictIdPrice(
-              filter.district.value,
-              filter.price[1],
-              filter.price[0]
-            );
-
-            const result = response.data.filter((post) =>
-              post.title.toLowerCase().includes(filter.keyword.toLowerCase())
-            );
-            setPostList(result);
-            setIsLoading(false);
-          } else {
-            console.log('city+district+price');
-            setIsLoading(true);
-            const response = await postAPI.getPostByDistrictIdPrice(
-              filter.district.value,
-              filter.price[1],
-              filter.price[0]
-            );
-            setPostList(response.data);
-            setIsLoading(false);
-          }
-        } else if (filter.keyword) {
-          console.log('city+district+keyword');
-          setIsLoading(true);
-          const response = await postAPI.getPostByDistrictId(
-            filter.district.value
-          );
-          console.log(response.data);
-          const result = response.data.filter((post) =>
-            post.title.toLowerCase().includes(filter.keyword.toLowerCase())
-          );
-          console.log('result city+keyword', result);
-          setIsLoading(false);
-          setPostList(result);
-        } else {
-          setIsLoading(true);
-          const response = await postAPI.getPostByDistrictId(
-            filter.district.value
-          );
-          console.log(response.data);
-          setPostList(response.data);
-          setIsLoading(false);
-        }
-      }
-      //ko district
-      else {
-        if (filter.price.length > 0) {
-          if (filter.keyword) {
-            console.log('city+price+keyword');
-          } else {
-            console.log('city+price');
-            setIsLoading(true);
-            const response = await postAPI.getPostByCityPrice(
-              filter.city.value,
-              filter.price[1],
-              filter.price[0]
-            );
-            setPostList(response.data);
-            setIsLoading(false);
-            console.log('filter city+price: ', response.data);
-          }
-        } else if (filter.keyword) {
-          console.log('city+keyword');
-          setIsLoading(true);
-          const response = await postAPI.getPostByCityId(filter.city.value);
-          const postList = response.data;
-          const result = postList.filter((post) =>
-            post.title.toLowerCase().includes(filter.keyword.toLowerCase())
-          );
-          console.log('result city+keyword', result);
-          setIsLoading(false);
-          setPostList(result);
-        } else {
-          setIsLoading(true);
-          const response = await postAPI.getPostByCityId(filter.city.value);
-          setIsLoading(false);
-          setPostList(response.data);
-        }
-      }
-    }
-    //ko city, có keyword ?
-    else if (filter.price.length > 0) {
-      if (filter.keyword) {
-        console.log('price + keyword');
-        setIsLoading(true);
-        const response = await postAPI.getPostByPrice(
-          filter.price[1],
-          filter.price[0]
-        );
-
-        const postList = response.data;
-        const result = postList.filter((post) =>
-          post.title.toLowerCase().includes(filter.keyword.toLowerCase())
-        );
-        console.log('result', result);
-        setPostList(result);
-        setIsLoading(false);
-      } else {
-        console.log('price');
-        // if (filter.price[0] === 0 && filter.price[1] === 0) {
-        //   console.log('0 ,0');
-        //   setIsLoading(true);
-        //   const response = await postAPI.getAll();
-        //   setIsLoading(false);
-        //   setPostList(response.data);
-        // }
-        setIsLoading(true);
-        const response = await postAPI.getPostByPrice(
-          filter.price[1],
-          filter.price[0]
-        );
-        setIsLoading(false);
-        console.log('price: ', response.data);
-        setPostList(response.data);
-      }
-    } else if (filter.keyword) {
-      console.log('keyword');
-      setIsLoading(true);
-      const response = await postAPI.getPostByKeyword(filter.keyword);
-      setIsLoading(false);
-      setPostList(response.data);
-    } else {
-      console.log('ko có filter');
-      setIsLoading(true);
-      const response = await postAPI.getAll();
-      setIsLoading(false);
-      setPostList(response.data);
-    }
+    const request = {
+      CityId: filter?.city?.value,
+      DistrictId: filter?.district?.value,
+      Keyword: filter?.keyword,
+      MaxPrice: filter?.price[1],
+      MinPrice: filter?.price[0],
+    };
+    setIsLoading(true);
+    const response = await postAPI.getAll(request);
+    setPostList(response.data);
+    setIsLoading(false);
   };
 
   //handle Refresh

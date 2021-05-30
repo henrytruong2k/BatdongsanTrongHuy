@@ -1,28 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import cityAPI from '../../api/cityAPI';
+import useCityOptions from '../hooks/useCityOptions';
+
 import './style.scss';
 
 export const Footer = () => {
-  const [cities, setPosts] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [len, setLen] = useState(0);
-
-  useEffect(() => {
-    try {
-      const fetchCities = async () => {
-        const postList = await cityAPI.getAll();
-
-        await setPosts(postList.data);
-        await setLen(postList.data.length);
-        await setLoading(false);
-      };
-      fetchCities();
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
+  const { cities, isLoadingCity } = useCityOptions();
 
   return (
     <div className="footer pt-lg-5 pb-lg-4">
@@ -43,9 +27,9 @@ export const Footer = () => {
           <Col className="footer__cities col-lg-3 offset-lg-1">
             <h5>Danh sách thành phố lớn</h5>
             <ul>
-              {loading
+              {isLoadingCity
                 ? 'Loading...'
-                : cities.slice(0, 5).map((item) => {
+                : cities?.slice(0, 5)?.map((item) => {
                     return (
                       <li key={item.id}>
                         <i className="fa fa-caret-right mr-2"></i>
@@ -57,7 +41,7 @@ export const Footer = () => {
                   })}
             </ul>
             <ul>
-              {cities.slice(6, len).map((item) => {
+              {cities?.slice(6, cities.length)?.map((item) => {
                 return (
                   <li key={item.id}>
                     <i className="fa fa-caret-right mr-2"></i>

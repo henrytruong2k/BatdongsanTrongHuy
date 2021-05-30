@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Container, Row } from 'react-bootstrap';
 import PostItem from '../PostItem';
 import Loading from '../../../../components/Loading';
+import PostSkeletonList from '../PostSkeletonList';
 
 PostList.propTypes = {
   posts: PropTypes.arrayOf(PostItem),
@@ -14,7 +15,7 @@ function PostList(props) {
   return (
     <Row>
       {loading ? (
-        <Loading />
+        <PostSkeletonList />
       ) : posts?.length > 0 ? (
         posts.map((post) => {
           return <PostItem key={post.id} post={post} />;

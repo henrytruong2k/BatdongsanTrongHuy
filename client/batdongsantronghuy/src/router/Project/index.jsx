@@ -6,6 +6,7 @@ import ProjectDetailPage from '../../pages/ProjectDetail';
 import { NotFoundPage } from '../../pages/NotFound';
 import { router } from '../../constants/router';
 import CreateProject from '../../pages/CreateProject';
+import ManageProject from '../../pages/ManageProject';
 
 ProjectRouter.propTypes = {};
 
@@ -16,6 +17,7 @@ function ProjectRouter(props) {
       <Switch>
         <Route exact path={match.path} component={ProjectsPage} />
         <Route exact path={router.TAOBAIVIET} component={CreateProject} />
+        <Route exact path={router.QUANLYBAIVIET} component={ManageProject} />
         <Route
           exact
           path={`${match.path}/:slug`}

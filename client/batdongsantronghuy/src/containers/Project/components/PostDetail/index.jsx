@@ -9,7 +9,10 @@ import 'leaflet/dist/leaflet.css';
 
 import TabsPanel from './components/TabsPanel';
 import Slider from 'react-slick';
-import Map from './components/Map';
+import MarkersMap from './components/MarkersMap';
+import postAPI from '../../../../api/postAPI';
+import orderBy from 'lodash/orderBy';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 
 moment.locale('vi');
 
@@ -48,6 +51,44 @@ function PostDetail({ post }) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+  const [comment, setComment] = useState('');
+
+  const handleChange = (e) => {
+    setComment(e.target.value);
+  };
+
+  const list = orderBy(
+    post.comments,
+    [
+      function (obj) {
+        return moment(obj.createAt);
+      },
+    ],
+    ['desc']
+  );
+  const [commentList, setCommentList] = useState(list);
+  console.log(commentList);
+
+  const [isLoading, setIsLoading] = useState(false);
+  const handleSubmit = async (e) => {
+    setIsLoading(true);
+    e.preventDefault();
+
+    const response = await postAPI.commentPost({
+      content: comment,
+      postId: post.id,
+    });
+    // commentList.unshift(response.data);
+
+    // setCommentList(commentList);
+    // setIsLoading(false);
+
+    const newArr = [...commentList];
+    newArr.unshift(response.data);
+    setCommentList(newArr);
+    setIsLoading(false);
+  };
+
   return (
     <>
       <Container fluid className="pl-0 pr-0 mb-5">
@@ -101,8 +142,47 @@ function PostDetail({ post }) {
               className="mb-lg-3"
             ></p>
             <TabsPanel tabProps={tabProps} />
-            <div className="mt-lg-5">
-              <Map post={post} />
+            <div className="mt-lg-5 mb-lg-5">
+              <MarkersMap mapConfig={post} />
+            </div>
+
+            <div>
+              <form onSubmit={handleSubmit}>
+                <h3>Gửi bình luận</h3>
+                <textarea
+                  placeholder="Nhập bình luận..."
+                  name="comment"
+                  rows="8"
+                  className="w-100"
+                  onChange={handleChange}
+                ></textarea>
+                <input type="submit" id="send" value="Gửi" />
+              </form>
+            </div>
+
+            <div className="comment mt-5">
+              <h3>Bình luận</h3>
+              <ul>
+                {isLoading && <li>Loading...</li>}
+                {commentList.map((item) => {
+                  return (
+                    <li key={item.id} className="comment__item d-flex">
+                      <div>
+                        <AccountCircleIcon fontSize="large" className="mr-3" />
+                      </div>
+                      <div>
+                        <div className="comment__author d-flex">
+                          <p className="mr-4">{item.createdBy}</p>
+                          <p className="text-capitalize">
+                            {moment(item.createAt).calendar()}
+                          </p>
+                        </div>
+                        <p>{item.content}</p>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
           </Col>
           <Col className="col-lg-3 bg-dark">

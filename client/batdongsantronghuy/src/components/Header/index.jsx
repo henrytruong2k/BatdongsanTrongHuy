@@ -19,6 +19,10 @@ import { logout } from '../../containers/Auth/userSlice';
 import usePostsManagement from './components/usePostsManagement';
 import './style.scss';
 import Management from '../../containers/Auth/components/Management';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import PostAddIcon from '@material-ui/icons/PostAdd';
+import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 
 export const Header = () => {
   const loggedInUser = useSelector((state) => state.user.current.user);
@@ -77,6 +81,7 @@ export const Header = () => {
   const handleClickManagePost = () => {
     setOpen(true);
     setMode(MODE.MANAGEMENT);
+    // history.push(router.QUANLYBAIVIET);
     handleCloseMenu();
   };
 
@@ -86,6 +91,7 @@ export const Header = () => {
     const action = logout();
     dispatch(action);
     handleCloseMenu();
+    history.push(router.ROOT);
   };
   return (
     <div className="header d-lg-flex align-items-lg-center">
@@ -115,7 +121,6 @@ export const Header = () => {
               >
                 <IconButton color="inherit" className="icon-btn">
                   <img
-                    className="mr-lg-2"
                     src="/home-page/profile-user.svg"
                     width="20"
                     height="20"
@@ -153,14 +158,22 @@ export const Header = () => {
               getContentAnchorEl={null}
             >
               <MenuItem onClick={handleClickSettingUser}>
+                <AccountCircleIcon className="mr-2" />
                 Thông tin tài khoản
               </MenuItem>
-              <MenuItem onClick={handleClickCreatPost}>Đăng bài</MenuItem>
+              <MenuItem onClick={handleClickCreatPost}>
+                <PostAddIcon className="mr-2" />
+                Đăng bài
+              </MenuItem>
               <MenuItem onClick={handleClickManagePost}>
+                <WorkOutlineIcon className="mr-2" />
                 Quản lý bài đăng
               </MenuItem>
 
-              <MenuItem onClick={handleLogoutClick}>Đăng xuất</MenuItem>
+              <MenuItem onClick={handleLogoutClick}>
+                <ExitToAppIcon className="mr-2" />
+                Đăng xuất
+              </MenuItem>
             </Menu>
             <Dialog
               disableBackdropClick

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import cityAPI from '../../api/cityAPI';
-import postAPI from '../../api/postAPI';
 
 function useCityOptions() {
   const [cities, setCities] = useState([]);
@@ -10,6 +9,7 @@ function useCityOptions() {
     try {
       const fetch = async () => {
         const response = await cityAPI.getAll();
+
         setCities(response?.data);
         setIsLoadingCity(false);
       };
@@ -19,9 +19,9 @@ function useCityOptions() {
     }
   }, []);
 
-  const cityOptions = cities.map((item) => {
+  const cityOptions = cities?.map((item) => {
     return { value: item.id, label: item.cityName };
   });
-  return { cityOptions, isLoadingCity };
+  return { cities, cityOptions, isLoadingCity };
 }
 export default useCityOptions;

@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
 import './style.scss';
 import { useParams } from 'react-router-dom';
-import { Container } from 'react-bootstrap';
 import postAPI from '../../api/postAPI';
 import styled from 'styled-components';
 import PostDetail from '../../containers/Project/components/PostDetail';
@@ -12,7 +10,7 @@ const ProjectDetailWrapper = styled.div`
   padding-top: 60px;
 `;
 
-const ProjectDetailPage = (props) => {
+const ProjectDetailPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -46,7 +44,5 @@ const ProjectDetailPage = (props) => {
     </ProjectDetailWrapper>
   );
 };
-
-ProjectDetailPage.propTypes = {};
 
 export default ProjectDetailPage;

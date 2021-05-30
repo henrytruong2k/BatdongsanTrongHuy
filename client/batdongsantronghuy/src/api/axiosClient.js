@@ -1,27 +1,21 @@
 import axios from 'axios';
 import { domain } from '../constants/config';
 
-const access_token = localStorage.getItem('access_token');
-
-const accept = access_token
-  ? {
-      Authorization: `Bearer ${access_token}`,
-    }
-  : null;
-
 const axiosClient = axios.create({
   baseURL: domain,
-  
   headers: {
-    // 'Content-Type': 'multipart/form-data',
     'Content-Type': 'application/json',
-    ...accept,
   },
 });
 
 // Interceptors
 axiosClient.interceptors.request.use(
   function (config) {
+    const access_token = localStorage.getItem('access_token');
+    console.log('access_token: ', access_token);
+    if (access_token) {
+      config.headers.Authorization = `Bearer ${access_token}`;
+    }
     return config;
   },
   function (error) {
@@ -35,6 +29,7 @@ axiosClient.interceptors.response.use(
   },
   function (error) {
     console.log('ERROR RESPONSE: ', error.response);
+
     try {
       const { config, status, data } = error.response;
       if (config.url === '/Account/register' && status === 400) {
@@ -45,9 +40,18 @@ axiosClient.interceptors.response.use(
         const { message } = data;
         throw new Error(message);
       }
+      if (config.url === '/v1/Post/CreatePost' && status === 500) {
+        const message = 'Token hết hạn. Vui lòng đăng nhập';
+        throw new Error(message);
+      }
+      if (config.url === '/v1/Post/CreatePost' && status === 401) {
+        console.log('run');
+        const { message } = data;
+        throw new Error(message);
+      }
       return Promise.reject(error);
     } catch (error) {
-      console.log(error);
+      console.log('ERROR: ', error);
     }
   }
 );

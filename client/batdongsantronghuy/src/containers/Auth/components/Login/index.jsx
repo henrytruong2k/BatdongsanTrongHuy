@@ -25,7 +25,7 @@ function Login(props) {
 
       console.log('New user: ', user);
     } catch (error) {
-      console.log('Fail to register: ', error);
+      console.log('Fail to login: ', error);
       // enqueueSnackbar(error.message, { variant: 'error' });
       setErrorMessage(error.message);
     }

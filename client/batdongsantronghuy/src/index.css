@@ -23,3 +23,8 @@ a {
 a:hover {
   text-decoration: none;
 }
+textarea {
+  resize: none;
+  padding: 10px;
+  border-radius: 5px;
+}

@@ -1,3 +1,4 @@
+import QueryString from 'qs';
 import { domain } from '../constants/config';
 import axiosClient from './axiosClient';
 
@@ -6,6 +7,7 @@ const postAPI = {
     const url = '/v1/Post/GetAllPosts';
 
     //{ params: params } maybe use {params}
+
     return axiosClient.get(url, { params });
   },
 
@@ -48,23 +50,37 @@ const postAPI = {
     for (const name in data) {
       formData.append(name, data[name]);
     }
-    const access_token = localStorage.getItem('access_token');
-    // const accept = access_token
-    //   ? {
-    //       Authorization: `Bearer ${access_token}`,
-    //     }
-    //   : null;
-    const response = await fetch(domain + url, {
-      method: 'POST',
-      body: formData,
-      headers: {
-        Authorization: `Bearer ${access_token}`,
-      },
+    // const access_token = localStorage.getItem('access_token');
+    // // const accept = access_token
+    // //   ? {
+    // //       Authorization: `Bearer ${access_token}`,
+    // //     }
+    // //   : null;
+    // const response = await fetch(domain + url, {
+    //   method: 'POST',
+    //   body: formData,
+    //   headers: {
+    //     Authorization: `Bearer ${access_token}`,
+    //   },
+    // });
+    // return response.json();
+
+    return axiosClient.post(url, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
     });
-    return response.json();
   },
   getAllPostsByNameContact(name) {
     const url = `/v1/Post/GetAllPostsByNameContact?NameContact=${name}`;
+    return axiosClient.get(url);
+  },
+  commentPost(data) {
+    console.log('data comment post: ', data);
+    const url = `/v1/Post/CommentPost`;
+    return axiosClient.post(url, data);
+  },
+
+  getAllPostByUser() {
+    const url = `/v1/Post/GetAllPostsByUser`;
     return axiosClient.get(url);
   },
 };

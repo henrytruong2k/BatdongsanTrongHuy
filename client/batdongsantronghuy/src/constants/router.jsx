@@ -5,4 +5,5 @@ export const router = {
   TINTUC: '/tin-tuc',
   LIENHE: '/lien-he',
   TAOBAIVIET: '/bai-dang/tao-bai-viet',
+  QUANLYBAIVIET: '/bai-dang/quan-ly-bai-viet',
 };
