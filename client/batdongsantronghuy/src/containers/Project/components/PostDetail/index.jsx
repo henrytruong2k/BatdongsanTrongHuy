@@ -156,7 +156,7 @@ function PostDetail({ post }) {
                   className="w-100"
                   onChange={handleChange}
                 ></textarea>
-                <input type="submit" id="send" value="Gửi" />
+                <input type="submit" id="send" value="Gửi bình luận" />
               </form>
             </div>
 
