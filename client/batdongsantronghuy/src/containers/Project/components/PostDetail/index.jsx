@@ -160,7 +160,7 @@ function PostDetail({ post }) {
               </form>
             </div>
 
-            <div className="comment mt-5">
+            <div className="comment mt-3">
               <h3>Bình luận</h3>
               <ul>
                 {isLoading && <li>Loading...</li>}
