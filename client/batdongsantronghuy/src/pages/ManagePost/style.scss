@@ -1,0 +1,56 @@
+.post {
+  &__header {
+    border-bottom: 1px solid #000;
+  }
+
+  &__header {
+    p {
+      font-weight: bold;
+      font-size: 20px;
+    }
+  }
+  &__item {
+    padding-bottom: 20px;
+    border-bottom: 1px solid #000;
+    p {
+      margin-bottom: 0;
+    }
+    .image {
+      img {
+        border-radius: 100%;
+        overflow: hidden;
+      }
+    }
+    .time {
+      p {
+        &:first-child {
+          font-weight: 600;
+        }
+      }
+    }
+  }
+  &__header,
+  &__item {
+    .id {
+      flex: 0 0 5%;
+    }
+    .image {
+      flex: 0 0 10%;
+    }
+    .title {
+      flex: 0 0 35%;
+    }
+    .price {
+      flex: 0 0 15%;
+    }
+    .time {
+      flex: 0 0 10%;
+    }
+    .status {
+      flex: 0 0 10%;
+    }
+    .tools {
+      flex: 0 0 15%;
+    }
+  }
+}

@@ -50,21 +50,6 @@ const postAPI = {
     for (const name in data) {
       formData.append(name, data[name]);
     }
-    // const access_token = localStorage.getItem('access_token');
-    // // const accept = access_token
-    // //   ? {
-    // //       Authorization: `Bearer ${access_token}`,
-    // //     }
-    // //   : null;
-    // const response = await fetch(domain + url, {
-    //   method: 'POST',
-    //   body: formData,
-    //   headers: {
-    //     Authorization: `Bearer ${access_token}`,
-    //   },
-    // });
-    // return response.json();
-
     return axiosClient.post(url, formData, {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
@@ -82,6 +67,13 @@ const postAPI = {
   getAllPostByUser() {
     const url = `/v1/Post/GetAllPostsByUser`;
     return axiosClient.get(url);
+  },
+  ratePost(data) {
+    const url = `/v1/Post/RatePost`;
+    return axiosClient.post(url, data);
+  },
+  deletePostByUser(id) {
+    console.log('delete post', id);
   },
 };
 

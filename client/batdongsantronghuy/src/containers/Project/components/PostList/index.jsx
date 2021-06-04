@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Container, Row } from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 import PostItem from '../PostItem';
 import Loading from '../../../../components/Loading';
 import PostSkeletonList from '../PostSkeletonList';
@@ -21,10 +21,17 @@ function PostList(props) {
           return <PostItem key={post.id} post={post} />;
         })
       ) : (
-        <h3>Không có dữ liệu </h3>
+        <NoResultsFound />
       )}
     </Row>
   );
 }
 
 export default PostList;
+const NoResultsFound = () => {
+  return (
+    <Col className="col-12">
+      <h3>Không có dữ liệu </h3>
+    </Col>
+  );
+};

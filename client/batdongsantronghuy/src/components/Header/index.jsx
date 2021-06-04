@@ -24,32 +24,20 @@ import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 
+import useDialog from '../hooks/useDialog';
+import { LoginModal } from '../Modals/LoginModal';
+
+
+
 export const Header = () => {
   const loggedInUser = useSelector((state) => state.user.current.user);
 
   const isLoggedIn = loggedInUser?.id;
 
-  const [open, setOpen] = useState(false);
+  const { isShowing, mode, toggle, navigate } = useDialog();
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-  const useStyles = makeStyles((theme) => ({
-    closeButton: {
-      position: 'absolute',
-      top: theme.spacing(1),
-      right: theme.spacing(1),
-      color: theme.palette.grey[500],
-      zIndex: 1,
-      outline: 'none',
-    },
-  }));
-  const classes = useStyles();
-  const [mode, setMode] = useState(MODE.LOGIN);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-    setMode(MODE.LOGIN);
+  const handleClickToLogin = () => {
+    toggle();
   };
 
   //menu dropdown
@@ -64,8 +52,6 @@ export const Header = () => {
 
   //setting user
   const handleClickSettingUser = () => {
-    setOpen(true);
-    setMode(MODE.SETTING);
     handleCloseMenu();
   };
   //create post
@@ -73,15 +59,11 @@ export const Header = () => {
   const handleClickCreatPost = () => {
     history.push(router.TAOBAIVIET);
     handleCloseMenu();
-    handleClose();
+    // handleClose();
   };
 
-  //manage post
-  const { postList } = usePostsManagement(loggedInUser?.userName);
   const handleClickManagePost = () => {
-    setOpen(true);
-    setMode(MODE.MANAGEMENT);
-    // history.push(router.QUANLYBAIVIET);
+    history.push(router.QUANLYBAIVIET);
     handleCloseMenu();
   };
 
@@ -134,7 +116,7 @@ export const Header = () => {
               <Button
                 variant="contained"
                 color="primary"
-                onClick={handleClickOpen}
+                onClick={handleClickToLogin}
                 className="outline-none"
               >
                 Đăng nhập
@@ -175,71 +157,13 @@ export const Header = () => {
                 Đăng xuất
               </MenuItem>
             </Menu>
-            <Dialog
-              disableBackdropClick
-              // disableEscapeKeyDown
-              open={open}
-              onClose={handleClose}
-              aria-labelledby="form-dialog-title"
-            >
-              <IconButton
-                className={`btn-close ${classes.closeButton}`}
-                onClick={handleClose}
-              >
-                <Close />
-              </IconButton>
-              <DialogContent>
-                {mode === MODE.REGISTER && (
-                  <>
-                    <Register closeDialog={handleClose} />
 
-                    <Box textAlign="center">
-                      <Button
-                        color="primary"
-                        onClick={() => {
-                          setMode(MODE.LOGIN);
-                        }}
-                      >
-                        Đã có tài khoản. Đăng nhập ngay
-                      </Button>
-                    </Box>
-                  </>
-                )}
-
-                {mode === MODE.LOGIN && (
-                  <>
-                    <Login closeDialog={handleClose} />
-                    <Box textAlign="center">
-                      <Button
-                        color="primary"
-                        onClick={() => {
-                          setMode(MODE.REGISTER);
-                        }}
-                      >
-                        Chưa có tài khoản ?
-                      </Button>
-                    </Box>
-                  </>
-                )}
-                {mode === MODE.SETTING && (
-                  <>
-                    <Setting
-                      userInformation={loggedInUser}
-                      closeDialog={handleClose}
-                    />
-                  </>
-                )}
-                {mode === MODE.MANAGEMENT && (
-                  <>
-                    <Management
-                      list={postList}
-                      createPost={handleClickCreatPost}
-                      closeDialog={handleClose}
-                    />
-                  </>
-                )}
-              </DialogContent>
-            </Dialog>
+            <LoginModal
+              open={isShowing}
+              mode={mode}
+              toggle={toggle}
+              navigate={navigate}
+            />
           </Col>
         </Row>
       </Container>

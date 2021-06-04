@@ -18,7 +18,7 @@ import { validationLogin } from '../../../../ults/validationLogin';
 const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
-    paddingTop: theme.spacing(2),
+    padding: theme.spacing(2, 2, 0),
   },
   avatar: {
     margin: '0 auto',

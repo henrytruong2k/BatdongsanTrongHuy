@@ -71,28 +71,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const customStyles = {
-  menu: (provided, state) => ({
-    ...provided,
-    width: state.selectProps.width,
-    borderBottom: '1px dotted pink',
-    color: state.selectProps.menuColor,
-    padding: 20,
-  }),
-
-  control: (_, { selectProps: { width, height } }) => ({
-    width: width,
-    height: height,
-  }),
-
-  singleValue: (provided, state) => {
-    const opacity = state.isDisabled ? 0.5 : 1;
-    const transition = 'opacity 300ms';
-
-    return { ...provided, opacity, transition };
-  },
-};
-
 const now = new Date();
 const today = moment(now).format('YYYY-MM-DD');
 const expPost = moment(now).add(EXPDATE, 'days').format('YYYY-MM-DD');

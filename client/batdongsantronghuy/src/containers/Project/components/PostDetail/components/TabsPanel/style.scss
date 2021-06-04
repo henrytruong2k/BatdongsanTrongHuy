@@ -20,3 +20,10 @@
 .right-table {
   width: 49%;
 }
+.rate {
+  &__item {
+    p {
+      margin-bottom: 0;
+    }
+  }
+}

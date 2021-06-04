@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const PHONE_REGEX = /^[0-9-()+ ]*$/;
-const PASSWORD_REGEX = /^[a-zA-Z0-9_.]$/i;
+
 export const validationRegister = yup.object().shape({
   fullname: yup
     .string()
@@ -20,8 +20,8 @@ export const validationRegister = yup.object().shape({
   password: yup
     .string()
     .required('Vui lòng nhập mật khẩu.')
-    .min(6, 'Vui lòng nhập ít nhất 6 kí tự.')
-    .matches(PASSWORD_REGEX, 'Vui lòng nhập kí tự đầy đủ số và chữ.'),
+    .min(6, 'Vui lòng nhập ít nhất 6 kí tự.'),
+  // .matches(PASSWORD_REGEX, 'Vui lòng nhập kí tự đầy đủ số và chữ.'),
   confirmPassword: yup
     .string()
     .required('Vui lòng nhập mật khẩu xác nhận.')

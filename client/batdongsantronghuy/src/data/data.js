@@ -9,3 +9,10 @@ export const juridicalOptions = [
   { value: 3, label: 'Kệ' },
   { value: 4, label: 'Bộ bàn ghế' },
 ];
+export const labelOptions = {
+  1: 'Tệ',
+  2: 'Tạm ổn',
+  3: 'Được',
+  4: 'Đầy đủ',
+  5: 'Xuất sắc',
+};

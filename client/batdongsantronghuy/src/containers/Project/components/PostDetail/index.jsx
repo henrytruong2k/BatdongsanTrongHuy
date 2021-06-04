@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import './style.scss';
@@ -13,6 +13,11 @@ import MarkersMap from './components/MarkersMap';
 import postAPI from '../../../../api/postAPI';
 import orderBy from 'lodash/orderBy';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
+import RatingPost from './components/RatingPost';
+import { useDispatch, useSelector } from 'react-redux';
+import useDialog from '../../../../components/hooks/useDialog';
+import { LoginModal } from '../../../../components/Modals/LoginModal';
 
 moment.locale('vi');
 
@@ -20,6 +25,7 @@ PostDetail.propTypes = {};
 
 function PostDetail({ post }) {
   const publishDate = post.address.createAt;
+
   const tabProps = {
     price: post.price,
     category: post.category.name,
@@ -34,6 +40,7 @@ function PostDetail({ post }) {
     juridical: post.juridical,
     direction: post.direction,
     frontiSpiece: post.frontiSpiece,
+    rates: post.rates,
   };
 
   const settings = {
@@ -66,27 +73,43 @@ function PostDetail({ post }) {
     ],
     ['desc']
   );
+
   const [commentList, setCommentList] = useState(list);
-  console.log(commentList);
+  //reset after 1 minute
 
   const [isLoading, setIsLoading] = useState(false);
+
+  //handle login required
+  const loggedInUser = useSelector((state) => state.user.current.user);
+  const isLoggedIn = loggedInUser?.id;
+  const [messageLoginRequired, setMessageLoginRequired] = useState('');
+  const { isShowing, mode, toggle, navigate } = useDialog();
   const handleSubmit = async (e) => {
-    setIsLoading(true);
-    e.preventDefault();
+    try {
+      e.preventDefault();
+      if (!isLoggedIn) {
+        setMessageLoginRequired('Vui lòng đăng nhập');
+        toggle();
+      } else {
+        if (comment) {
+          console.log('true');
+          setIsLoading(true);
 
-    const response = await postAPI.commentPost({
-      content: comment,
-      postId: post.id,
-    });
-    // commentList.unshift(response.data);
+          const response = await postAPI.commentPost({
+            content: comment,
+            postId: post.id,
+          });
+          console.log('cmt', response?.succeeded);
 
-    // setCommentList(commentList);
-    // setIsLoading(false);
-
-    const newArr = [...commentList];
-    newArr.unshift(response.data);
-    setCommentList(newArr);
-    setIsLoading(false);
+          const newArr = [...commentList];
+          newArr.unshift(response.data);
+          setCommentList(newArr);
+          setIsLoading(false);
+        }
+      }
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -160,34 +183,53 @@ function PostDetail({ post }) {
               </form>
             </div>
 
-            <div className="comment mt-3">
+            <div className="comment mt-4">
               <h3>Bình luận</h3>
               <ul>
                 {isLoading && <li>Loading...</li>}
                 {commentList.map((item) => {
                   return (
-                    <li key={item.id} className="comment__item d-flex">
+                    <li
+                      key={item.id}
+                      className="comment__item d-flex align-items-center my-3"
+                    >
                       <div>
                         <AccountCircleIcon fontSize="large" className="mr-3" />
                       </div>
                       <div>
                         <div className="comment__author d-flex">
-                          <p className="mr-4">{item.createdBy}</p>
+                          <p>{item.createdBy}</p>
                           <p className="text-capitalize">
-                            {moment(item.createAt).calendar()}
+                            &nbsp;({moment(item.createAt).fromNow()})
                           </p>
                         </div>
-                        <p>{item.content}</p>
+                        <p className="comment__content">{item.content}</p>
+                      </div>
+                      <div className="ml-auto">
+                        <MoreVertIcon fontSize="large" />
                       </div>
                     </li>
                   );
                 })}
               </ul>
             </div>
+
+            <div className="mt-5">
+              <h3>Đánh giá</h3>
+              <RatingPost postId={post.id} />
+            </div>
           </Col>
           <Col className="col-lg-3 bg-dark">
             <p className="text-white">Thông tin bên lề</p>
           </Col>
+
+          <LoginModal
+            open={isShowing}
+            navigate={navigate}
+            toggle={toggle}
+            message={messageLoginRequired}
+            mode={mode}
+          />
         </Row>
       </Container>
     </>

@@ -6,7 +6,11 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import './style.scss';
+import StarIcon from '@material-ui/icons/Star';
+import moment from 'moment';
+import styled from 'styled-components';
 
+moment.locale('vi');
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
 
@@ -44,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TabsPanel({ tabProps }) {
+  console.log('rate for: ', tabProps.rates);
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -154,7 +159,27 @@ export default function TabsPanel({ tabProps }) {
         </div>
       </TabPanel>
       <TabPanel value={value} index={1} className="tab">
-        Item Two
+        <>
+          <div>
+            {tabProps.rates.map((item) => {
+              return (
+                <div className="rate__item d-flex justify-content-between align-items-center my-3">
+                  <div className="d-flex">
+                    <p>{item.rating}</p>
+                    <StarIcon style={{ color: 'yellow' }} />
+                  </div>
+
+                  <div>
+                    <p>{item.createdBy}</p>
+                  </div>
+                  <div>
+                    <p>({moment(item.createAt).fromNow()})</p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </>
       </TabPanel>
       <TabPanel value={value} index={2} className="tab">
         Item Three

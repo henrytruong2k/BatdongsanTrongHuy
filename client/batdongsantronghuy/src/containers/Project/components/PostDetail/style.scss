@@ -79,14 +79,14 @@
   z-index: 1;
 }
 .comment {
-  &__item {
-    padding: 20px 0;
-  }
   &__author {
     font-size: 12px;
     p {
       margin-bottom: 0;
     }
+  }
+  &__content {
+    margin-bottom: 0;
   }
 }
 #send {
