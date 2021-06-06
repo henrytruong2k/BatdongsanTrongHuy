@@ -15,6 +15,7 @@ import 'moment/locale/vi';
 import SelectField from '../../../../components/form-controls/SelectField';
 import AddIcon from '@material-ui/icons/Add';
 import { EXPDATE } from '../../../../constants/config';
+import Select from 'react-select';
 import cityAPI from '../../../../api/cityAPI';
 import { colourOptions, juridicalOptions } from '../../../../data/data';
 import useCityOptions from '../../../../components/hooks/useCityOptions';
@@ -24,6 +25,7 @@ import CKEditor from 'ckeditor4-react';
 import useGeoLocation from '../../../../components/hooks/useGeoLocation';
 import MarkersMap from '../../../Project/components/PostDetail/components/MarkersMap';
 import L from 'leaflet';
+
 import {
   MapContainer,
   useMapEvents,
@@ -31,6 +33,7 @@ import {
   Popup,
   TileLayer,
 } from 'react-leaflet';
+import { validationPost } from '../../../../ults/validationPost';
 
 moment.locale('vi');
 const useStyles = makeStyles((theme) => ({
@@ -53,7 +56,7 @@ const useStyles = makeStyles((theme) => ({
     zIndex: '1',
   },
   select: {
-    margin: theme.spacing(1, 0),
+    marginTop: theme.spacing(1, 0, 0, 0),
     width: '50%',
     zIndex: '99',
     height: '56px',
@@ -77,7 +80,7 @@ const expPost = moment(now).add(EXPDATE, 'days').format('YYYY-MM-DD');
 
 function CreateForm(props) {
   const classes = useStyles();
-  const schema = '';
+  const schema = validationPost;
 
   const form = useForm({
     defaultValues: {
@@ -107,7 +110,7 @@ function CreateForm(props) {
       CategoryId: '',
       getValues: null,
     },
-    // resolver: yupResolver(schema),
+    resolver: yupResolver(schema),
   });
 
   const { isSubmitting } = form.formState;
@@ -234,7 +237,7 @@ function CreateForm(props) {
             label="Đường"
           />
 
-          <SelectField
+          {/* <SelectField
             className={`${classes.select} pr-lg-2`}
             form={form}
             name="CityId"
@@ -244,11 +247,25 @@ function CreateForm(props) {
             loadingMessage={() => 'Đang tìm kiếm...'}
             onChange={(value) => {
               setCity(value);
-
               form.setValue('CityId', value.value);
             }}
+          /> */}
+          <Select
+            className={`${classes.select} pr-lg-2`}
+            onChange={(value) => {
+              setCity(value);
+              form.setValue('CityId', value.value);
+            }}
+            form={form}
+            name="CityId"
+            defaultOptions
+            cacheOptions
+            isClearable
+            options={cityOptions}
+            isLoading={isLoadingCity}
+            placeholder="Chọn thành phố..."
+            loadingMessage={() => 'Đang tìm kiếm...'}
           />
-
           <SelectField
             ref={selectDistrict}
             className={classes.select}

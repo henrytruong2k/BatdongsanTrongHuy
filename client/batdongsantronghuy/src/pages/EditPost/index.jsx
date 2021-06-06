@@ -19,7 +19,7 @@ function EditPost(props) {
       <Container>
         <h1>Đây là edit post số {id}</h1>
 
-        <EditPostFeature post={post} />
+        <EditPostFeature post={post} loading={loading} />
       </Container>
     </Wrapper>
   );

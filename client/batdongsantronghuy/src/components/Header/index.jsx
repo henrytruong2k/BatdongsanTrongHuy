@@ -27,8 +27,6 @@ import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 import useDialog from '../hooks/useDialog';
 import { LoginModal } from '../Modals/LoginModal';
 
-
-
 export const Header = () => {
   const loggedInUser = useSelector((state) => state.user.current.user);
 
@@ -73,7 +71,6 @@ export const Header = () => {
     const action = logout();
     dispatch(action);
     handleCloseMenu();
-    history.push(router.ROOT);
   };
   return (
     <div className="header d-lg-flex align-items-lg-center">

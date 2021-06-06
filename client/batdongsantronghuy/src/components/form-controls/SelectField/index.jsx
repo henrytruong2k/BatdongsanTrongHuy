@@ -7,10 +7,18 @@ import { Controller } from 'react-hook-form';
 SelectField.propTypes = {};
 
 function SelectField(props) {
-  const { form, name, ref, disabled, className, options, value, ...others } =
-    props;
-  console.log('ref component', ref);
-  console.log('value component: ', value);
+  const {
+    form,
+    name,
+    ref,
+    disabled,
+    className,
+    options,
+    defaultValue,
+    value,
+    ...others
+  } = props;
+
   return (
     <Controller
       control={form.control}
@@ -19,12 +27,12 @@ function SelectField(props) {
         <Select
           {...field}
           ref={ref}
-          defaultOptions
+          defaultValue={defaultValue}
+          // defaultOptions
           cacheOptions={true}
           isClearable
           className={className}
           options={options}
-          value={value}
           isDisabled={disabled}
           {...others}
         />

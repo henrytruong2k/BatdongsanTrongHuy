@@ -51,6 +51,9 @@
     }
     .tools {
       flex: 0 0 15%;
+      .delete {
+        cursor: pointer;
+      }
     }
   }
 }

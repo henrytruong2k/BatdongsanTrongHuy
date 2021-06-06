@@ -9,10 +9,11 @@ import './style.scss';
 import postAPI from '../../api/postAPI';
 import PostList from '../Project/components/PostList';
 import { getTrackBackground, Range } from 'react-range';
-
 import RotateLeftIcon from '@material-ui/icons/RotateLeft';
 import useCityOptions from '../../components/hooks/useCityOptions';
 import useGeoLocation from '../../components/hooks/useGeoLocation';
+import Pagination from '@material-ui/lab/Pagination';
+import { deepEqual } from '../../ults/deepEqual';
 
 const HomeWrapper = styled.div`
   display: flex;
@@ -24,6 +25,8 @@ export const HomeContainer = () => {
   useGeoLocation();
   //filter value
   const initialFilter = {
+    PageSize: 9,
+    PageNumber: 1,
     city: '',
     district: '',
     price: [],
@@ -41,19 +44,65 @@ export const HomeContainer = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [postList, setPostList] = useState([]);
+
+  //pagination
+  // const [totalRecords, setTotalRecords] = useState(0);
+  // useEffect(() => {
+  //   (async () => {
+  //     const { totalRecords } = postAPI.getAll();
+  //     setTotalRecords(totalRecords);
+  //   })();
+  // }, []);
+  const [pagination, setPagination] = useState({
+    limit: 9,
+    total: 9,
+    page: 1,
+  });
+
   useEffect(() => {
     try {
       const fetchPosts = async () => {
-        const response = await postAPI.getAll();
+        const response = await postAPI.getAll(filter);
+        console.log('filter đc thực thi tại useEffect', filter);
+        console.log('response effect: ', response);
         setPostList(response?.data);
-        setIsLoading(false);
+        setPagination({
+          ...pagination,
+          limit: response.pageSize,
+          total: response.totalRecords,
+          page: response.pageNumber,
+        });
       };
-      //execute
       fetchPosts();
     } catch (error) {
-      console.log(error.message);
+      console.log('Failed to fetch post list: ', error);
     }
-  }, []);
+
+    setIsLoading(false);
+  }, [filter]);
+
+  //handle page change
+  const handlePageChange = (e, page) => {
+    // setFilter((prevFilter) => ({
+    //   ...prevFilter,
+    //   PageNumber: page,
+    // }));
+    setFilter({
+      ...filter,
+      PageNumber: page,
+    });
+  };
+
+  const renderPostList = useMemo(() => {
+    return (
+      <PostList
+        posts={postList}
+        loading={isLoading}
+        pagination={pagination}
+        changePage={handlePageChange}
+      />
+    );
+  }, [postList, isLoading, pagination]);
 
   const { cityOptions, isLoadingCity } = useCityOptions();
   const handleChangeCity = (value) => {
@@ -110,12 +159,13 @@ export const HomeContainer = () => {
   const [values, setValues] = React.useState([MIN, MAX]);
 
   const [isClicked, setIsClicked] = useState(false);
-
+  const [keyword, setKeyword] = useState('');
   const handleChangeKeyword = (event) => {
-    setFilter({
-      ...filter,
-      keyword: event.target.value,
-    });
+    setKeyword(event.target.value);
+    // setFilter({
+    //   ...filter,
+    //   keyword: event.target.value,
+    // });
   };
   const handleOnFinalChange = (values) => {
     console.log('handleOnFinalChange ', values);
@@ -125,14 +175,22 @@ export const HomeContainer = () => {
     });
   };
 
-  const renderPostList = useMemo(() => {
-    return <PostList posts={postList} loading={isLoading} />;
-  }, [postList, isLoading]);
-
   //handle search
   const handleSearch = async () => {
     setIsClicked(true);
+    //same value
+    if (deepEqual(filter, initialFilter)) {
+      return;
+    }
+    if (keyword) {
+      setFilter({
+        ...filter,
+        keyword,
+      });
+    }
     const request = {
+      PageNumber: 1,
+      PageSize: filter.PageSize,
       CityId: filter?.city?.value,
       DistrictId: filter?.district?.value,
       Keyword: filter?.keyword,
@@ -141,6 +199,13 @@ export const HomeContainer = () => {
     };
     setIsLoading(true);
     const response = await postAPI.getAll(request);
+
+    setPagination({
+      ...pagination,
+      page: 1,
+      limit: response.pageSize,
+      total: response.totalRecords,
+    });
     setPostList(response.data);
     setIsLoading(false);
   };
@@ -150,6 +215,7 @@ export const HomeContainer = () => {
     setFilter(initialFilter);
     setValues([MIN, MAX]);
   };
+
   return (
     <HomeWrapper>
       <Container>
@@ -272,7 +338,7 @@ export const HomeContainer = () => {
             <input
               id="inputSearch"
               className="outline-none"
-              value={filter.keyword}
+              value={keyword}
               onChange={handleChangeKeyword}
               placeholder="Nhập từ khóa bạn muốn tìm kiếm..."
             />

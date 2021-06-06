@@ -29,9 +29,7 @@ function Loading({ length }) {
                 <Skeleton variant="circle" width={80} height={80} />
               </ImageLoading>
               <TitleLoading>
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
-                <Skeleton variant="text" />
+                <Skeleton variant="rect" width="100%" height={30} />
               </TitleLoading>
             </div>
           </Col>
@@ -50,5 +48,5 @@ const ImageLoading = styled.div`
   width: 10%;
 `;
 const TitleLoading = styled.div`
-  width: 35%;
+  width: 85%;
 `;

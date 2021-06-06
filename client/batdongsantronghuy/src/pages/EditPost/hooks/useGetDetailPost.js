@@ -8,6 +8,7 @@ function useGetDetailPost(id) {
     try {
       const fetchAllPostsOfUser = async () => {
         const response = await postAPI.getDetailById(id);
+
         setPost(response?.data);
         setLoading(false);
       };

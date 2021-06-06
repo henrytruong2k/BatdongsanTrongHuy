@@ -92,7 +92,6 @@ function PostDetail({ post }) {
         toggle();
       } else {
         if (comment) {
-          console.log('true');
           setIsLoading(true);
 
           const response = await postAPI.commentPost({
@@ -199,11 +198,18 @@ function PostDetail({ post }) {
                       <div>
                         <div className="comment__author d-flex">
                           <p>{item.createdBy}</p>
-                          <p className="text-capitalize">
+                          <p className="tooltip__time">
                             &nbsp;({moment(item.createAt).fromNow()})
+                            <span className="tooltiptext">
+                              {moment(item.createAt).format('LLLL')}
+                            </span>
                           </p>
                         </div>
                         <p className="comment__content">{item.content}</p>
+                        <div className="d-flex comment__interact">
+                          <p>Thích</p>
+                          <p>Bình luận</p>
+                        </div>
                       </div>
                       <div className="ml-auto">
                         <MoreVertIcon fontSize="large" />

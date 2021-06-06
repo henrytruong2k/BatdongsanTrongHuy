@@ -93,12 +93,12 @@ function ManagePost(props) {
           {loading ? (
             <Loading />
           ) : postList?.length > 0 ? (
-            postList.map((item) => {
+            postList.map((item, index) => {
               return (
                 <Col className="col-12">
                   <div className="post__item d-flex align-items-center mt-4">
                     <div className="id">
-                      <p>{item.id}</p>
+                      <p>{++index}</p>
                     </div>
                     <div className="image">
                       <img
@@ -132,8 +132,10 @@ function ManagePost(props) {
                       <Link to={`/bai-dang/sua-bai-viet/${item.id}`}>
                         <EditIcon className="mx-1" />
                       </Link>
-                      <InfoIcon className="mx-1" />
-                      <div onClick={handleDelete(item.id)}>
+                      <Link to={`/bai-dang/${item.id}`}>
+                        <InfoIcon className="mx-1" />
+                      </Link>
+                      <div className="delete" onClick={handleDelete(item.id)}>
                         <DeleteIcon className="mx-1" />
                       </div>
                     </div>

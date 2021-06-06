@@ -1,0 +1,43 @@
+@mixin toolTip() {
+  .tooltip__time {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  .tooltip__time .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: 150%;
+    left: 50%;
+    margin-left: -60px;
+    &::first-letter {
+      text-transform: capitalize;
+    }
+  }
+
+  .tooltip__time .tooltiptext::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent black transparent;
+  }
+
+  .tooltip__time:hover .tooltiptext {
+    visibility: visible;
+  }
+}
