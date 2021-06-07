@@ -45,14 +45,6 @@ export const HomeContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [postList, setPostList] = useState([]);
 
-  //pagination
-  // const [totalRecords, setTotalRecords] = useState(0);
-  // useEffect(() => {
-  //   (async () => {
-  //     const { totalRecords } = postAPI.getAll();
-  //     setTotalRecords(totalRecords);
-  //   })();
-  // }, []);
   const [pagination, setPagination] = useState({
     limit: 9,
     total: 9,
@@ -62,7 +54,17 @@ export const HomeContainer = () => {
   useEffect(() => {
     try {
       const fetchPosts = async () => {
-        const response = await postAPI.getAll(filter);
+        const request = {
+          PageNumber: pagination.page,
+          PageSize: filter.PageSize,
+          CityId: filter?.city?.value,
+          DistrictId: filter?.district?.value,
+          Keyword: filter?.keyword,
+          MaxPrice: filter?.price[1],
+          MinPrice: filter?.price[0],
+        };
+
+        const response = await postAPI.getAll(request);
         console.log('filter đc thực thi tại useEffect', filter);
         console.log('response effect: ', response);
         setPostList(response?.data);
@@ -83,13 +85,13 @@ export const HomeContainer = () => {
 
   //handle page change
   const handlePageChange = (e, page) => {
-    // setFilter((prevFilter) => ({
-    //   ...prevFilter,
-    //   PageNumber: page,
-    // }));
     setFilter({
       ...filter,
       PageNumber: page,
+    });
+    setPagination({
+      ...pagination,
+      page,
     });
   };
 
@@ -112,8 +114,6 @@ export const HomeContainer = () => {
     });
   };
 
-  //get all districts by city id
-
   //function reset district
   const selectDistrict = useRef();
   const onClear = () => {
@@ -124,11 +124,14 @@ export const HomeContainer = () => {
     try {
       const fetchDistricts = async () => {
         setIsDisabled(true);
+        if (!filter.city) {
+          onClear();
+        }
         if (filter.city) {
           onClear();
           setIsLoadingDistrict(true);
           const response = await cityAPI.getDistrictsByCityId(
-            filter.city.value
+            filter?.city?.value
           );
           setDistricts(response.data);
           setIsLoadingDistrict(false);
@@ -159,13 +162,13 @@ export const HomeContainer = () => {
   const [values, setValues] = React.useState([MIN, MAX]);
 
   const [isClicked, setIsClicked] = useState(false);
-  const [keyword, setKeyword] = useState('');
+  // const [keyword, setKeyword] = useState('');
   const handleChangeKeyword = (event) => {
-    setKeyword(event.target.value);
-    // setFilter({
-    //   ...filter,
-    //   keyword: event.target.value,
-    // });
+    // setKeyword(event.target.value);
+    setFilter({
+      ...filter,
+      keyword: event.target.value,
+    });
   };
   const handleOnFinalChange = (values) => {
     console.log('handleOnFinalChange ', values);
@@ -181,12 +184,6 @@ export const HomeContainer = () => {
     //same value
     if (deepEqual(filter, initialFilter)) {
       return;
-    }
-    if (keyword) {
-      setFilter({
-        ...filter,
-        keyword,
-      });
     }
     const request = {
       PageNumber: 1,
@@ -212,6 +209,10 @@ export const HomeContainer = () => {
 
   //handle Refresh
   const handleRefresh = () => {
+    setPagination({
+      ...pagination,
+      page: 1,
+    });
     setFilter(initialFilter);
     setValues([MIN, MAX]);
   };
@@ -338,7 +339,7 @@ export const HomeContainer = () => {
             <input
               id="inputSearch"
               className="outline-none"
-              value={keyword}
+              value={filter.keyword}
               onChange={handleChangeKeyword}
               placeholder="Nhập từ khóa bạn muốn tìm kiếm..."
             />

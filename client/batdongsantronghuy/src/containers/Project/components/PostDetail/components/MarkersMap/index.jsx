@@ -12,8 +12,8 @@ function MarkersMap({ mapConfig }) {
     lng: mapConfig.locationY,
   };
   useEffect(() => {
-    const showPopUp = async () => {
-      await setTimeout(() => mapRef.current.openPopup(), 1000);
+    const showPopUp = () => {
+      setTimeout(() => mapRef.current.openPopup(), 1000);
     };
     showPopUp();
   }, []);
