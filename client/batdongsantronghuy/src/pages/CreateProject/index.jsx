@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CreatePost from '../../containers/CreatePost';
 
 const CreatePostContainer = styled.div`
-  padding: 100px;
+  padding-top: 100px;
 `;
 
 function CreateProject(props) {
