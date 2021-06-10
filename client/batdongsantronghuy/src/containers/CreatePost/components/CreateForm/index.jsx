@@ -42,7 +42,6 @@ import {
 import { validationPost } from '../../../../ults/validationPost';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
-import { useLocation } from 'react-router';
 
 moment.locale('vi');
 const useStyles = makeStyles((theme) => ({
@@ -219,21 +218,17 @@ function CreateForm(props) {
   };
   //map
   const location = useGeoLocation();
-  console.log('useGeoLocation: ', location.coordinates.lat);
-  const [position, setPosition] = useState({
-    lat: '',
-    lng: '',
-  });
+
+  const [position, setPosition] = useState(null);
 
   useEffect(() => {
     const showPosition = () => {
-      console.log('run effect');
       if (!location.loaded) {
         return;
       }
       setPosition({
-        lat: location?.coordinates.lat,
-        lng: location?.coordinates.lng,
+        lat: location?.coordinates?.lat,
+        lng: location?.coordinates?.lng,
       });
     };
     showPosition();
@@ -265,29 +260,21 @@ function CreateForm(props) {
 
   const DraggableMarker = () => {
     return (
-      <div className="my-5">
-        <MapContainer center={position} zoom={18} scrollWheelZoom={false}>
-          <TileLayer
-            attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <Marker
-            draggable={draggable}
-            eventHandlers={eventHandlers}
-            position={position}
-            ref={markerRef}
-            icon={markerIcon}
-          >
-            <Popup minWidth={90}>
-              <span onClick={toggleDraggable}>
-                {draggable
-                  ? `Tọa độ của bạn ${position}`
-                  : 'Click vào để chọn địa điểm bất động sản của bạn'}
-              </span>
-            </Popup>
-          </Marker>
-        </MapContainer>
-      </div>
+      <Marker
+        draggable={draggable}
+        eventHandlers={eventHandlers}
+        position={position}
+        ref={markerRef}
+        icon={markerIcon}
+      >
+        <Popup minWidth={90}>
+          <span onClick={toggleDraggable}>
+            {draggable
+              ? `Bất động sản của bạn ở đây`
+              : 'Click vào để chọn địa điểm bất động sản của bạn'}
+          </span>
+        </Popup>
+      </Marker>
     );
   };
 
@@ -519,19 +506,18 @@ function CreateForm(props) {
           )}
         </div>
 
-        {/* <div className="my-5">
-          <MapContainer center={position} zoom={18} scrollWheelZoom={false}>
-            <TileLayer
-              attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            <DraggableMarker />
-          </MapContainer>
-        </div> */}
+        {position !== null && (
+          <div className="my-5">
+            <MapContainer center={position} zoom={17} scrollWheelZoom={false}>
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <DraggableMarker />
+            </MapContainer>
+          </div>
+        )}
 
-        <div className="my-5">
-          <DraggableMarker />
-        </div>
         <InputField
           className={classes.inputLeft}
           form={form}
@@ -615,22 +601,3 @@ function CreateForm(props) {
 }
 
 export default CreateForm;
-
-function LocationMarker() {
-  const [position, setPosition] = useState(null);
-  const map = useMapEvents({
-    click() {
-      map.locate();
-    },
-    locationfound(e) {
-      setPosition(e.latlng);
-      map.flyTo(e.latlng, map.getZoom());
-    },
-  });
-
-  return position === null ? null : (
-    <Marker position={position}>
-      <Popup>You are here</Popup>
-    </Marker>
-  );
-}
