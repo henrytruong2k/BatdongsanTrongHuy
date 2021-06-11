@@ -1,22 +1,20 @@
 import React from 'react';
 import { Route, Switch, useRouteMatch } from 'react-router';
-import ProjectsPage from '../../pages/Projects';
-import ProjectDetailPage from '../../pages/ProjectDetail';
+import PostsPage from '../../pages/Posts';
+import PostDetailPage from '../../pages/PostDetail';
 import { NotFoundPage } from '../../pages/NotFound';
 import { router } from '../../constants/router';
 import CreateProject from '../../pages/CreateProject';
 import ManagePost from '../../pages/ManagePost';
 import EditPost from '../../pages/EditPost';
 
-ProjectRouter.propTypes = {};
-
-function ProjectRouter(props) {
+function ProjectRouter() {
   const match = useRouteMatch();
 
   return (
     <div>
       <Switch>
-        <Route exact path={match.path} component={ProjectsPage} />
+        <Route exact path={match.path} component={PostsPage} />
         <Route exact path={router.TAOBAIVIET} component={CreateProject} />
         <Route exact path={router.QUANLYBAIVIET} component={ManagePost} />
         <Route
@@ -25,11 +23,7 @@ function ProjectRouter(props) {
           component={EditPost}
         />
 
-        <Route
-          exact
-          path={`${match.path}/:slug`}
-          component={ProjectDetailPage}
-        />
+        <Route exact path={`${match.path}/:slug`} component={PostDetailPage} />
         <Route component={NotFoundPage} />
       </Switch>
     </div>

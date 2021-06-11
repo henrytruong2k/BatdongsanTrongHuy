@@ -103,10 +103,10 @@ export const Header = () => {
                     src="/home-page/profile-user.svg"
                     width="20"
                     height="20"
-                    alt={loggedInUser.userName}
+                    alt={loggedInUser.fullName}
                   />
                 </IconButton>
-                <p className="mb-0">{loggedInUser.userName}</p>
+                <p className="mb-0">{loggedInUser.fullName}</p>
               </div>
             )}
             {!isLoggedIn && (

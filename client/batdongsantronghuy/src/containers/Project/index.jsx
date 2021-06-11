@@ -8,7 +8,7 @@ const ProjectWrapper = styled.div`
   padding-top: 100px;
 `;
 
-function ProjectContainer(props) {
+function PostContainer(props) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [request, setRequest] = useState({
@@ -60,4 +60,4 @@ function ProjectContainer(props) {
   );
 }
 
-export default ProjectContainer;
+export default PostContainer;

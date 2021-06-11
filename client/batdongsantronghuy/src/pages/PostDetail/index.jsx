@@ -6,11 +6,11 @@ import styled from 'styled-components';
 import PostDetail from '../../containers/Project/components/PostDetail';
 import { CircularProgress, makeStyles } from '@material-ui/core';
 
-const ProjectDetailWrapper = styled.div`
+const Wrapper = styled.div`
   padding-top: 60px;
 `;
 
-const ProjectDetailPage = () => {
+const PostDetailPage = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -35,14 +35,14 @@ const ProjectDetailPage = () => {
   }));
   const classes = useStyles();
   return (
-    <ProjectDetailWrapper>
+    <Wrapper>
       {isLoading ? (
         <CircularProgress size="5rem" className={classes.circular} />
       ) : (
         <PostDetail post={post} />
       )}
-    </ProjectDetailWrapper>
+    </Wrapper>
   );
 };
 
-export default ProjectDetailPage;
+export default PostDetailPage;
