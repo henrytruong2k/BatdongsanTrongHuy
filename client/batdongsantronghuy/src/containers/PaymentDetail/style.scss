@@ -1,0 +1,35 @@
+.description {
+  margin-bottom: 0;
+  p {
+    margin-bottom: 0;
+  }
+}
+.payment {
+  background-color: #6dcdf9;
+  width: 100%;
+
+  height: fit-content;
+  display: block;
+
+  border-radius: 8px;
+  margin-bottom: 20px;
+  &__paypal {
+    img {
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
+    }
+  }
+  &__zalopay {
+    img {
+      width: 100%;
+      height: 60px;
+      object-fit: contain;
+    }
+  }
+}
+.paid {
+  b {
+    font-size: 28px;
+  }
+}

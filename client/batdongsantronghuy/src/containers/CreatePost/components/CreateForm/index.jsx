@@ -137,7 +137,7 @@ function CreateForm(props) {
       ImageFile: '',
       LocationX: '',
       LocationY: '',
-      NameContact: loggedInUser?.userName,
+      NameContact: loggedInUser?.fullName,
       AddressContact: loggedInUser?.address,
       PhoneContact: loggedInUser?.phoneNumber,
       EmailContact: loggedInUser?.email,

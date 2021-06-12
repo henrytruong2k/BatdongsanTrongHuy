@@ -8,6 +8,7 @@ import NewsPage from '../pages/News';
 import { NotFoundPage } from '../pages/NotFound';
 import ProjectRouter from '../router/Project';
 import { router } from '../constants/router';
+import PaymentPage from '../pages/PaymentPage';
 
 Layout.propTypes = {};
 
@@ -23,6 +24,7 @@ function Layout(props) {
         <Route path={router.TRANGCHU} component={HomePage} />
         <Route path={router.TINTUC} component={NewsPage} />
         <Route path={router.BAIDANG} component={ProjectRouter} />
+        <Route path="/thanh-toan/:id" component={PaymentPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />

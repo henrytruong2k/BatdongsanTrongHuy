@@ -75,6 +75,10 @@ const postAPI = {
   deletePostByUser(id) {
     console.log('delete post', id);
   },
+  paymentPost(data) {
+    const url = `/v1/Post/Payment`;
+    return axiosClient.post(url, data);
+  },
 };
 
 export default postAPI;
