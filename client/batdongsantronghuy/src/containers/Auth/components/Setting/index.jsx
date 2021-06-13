@@ -1,35 +1,33 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './style.scss';
+import { Container, Row, Col } from 'react-bootstrap';
 
 Setting.propTypes = {};
 
-function Setting({ userInformation }) {
-  console.log('userInformation: ', userInformation);
+function Setting({ user }) {
   return (
-    <div className="setting-form">
-      <h3>Quản lý tài khoản người dùng</h3>
-      <p>Họ tên: {userInformation.userName}</p>
-      <p>Email: {userInformation.email}</p>
-      <p>Trạng thái: {userInformation.isVerified && 'Đã kích hoạt'}</p>
-      <ul>
-        Quyền:
-        {userInformation.roles.map((role) => {
-          return (
-            <li>
-              <i className="fa fa-key mr-2"></i>
-              {role}
-            </li>
-          );
-        })}
-      </ul>
-      <button
-        className="btn-update"
-        onClick={() => console.log('click cập nhật')}
-      >
-        Cập nhật
-      </button>
-    </div>
+    <Container>
+      <Row>
+        <Col className="col-12">
+          <h4>Quản lý tài khoản</h4>
+        </Col>
+        <Col className="col-3">
+          <div className="avatar">
+            <img src="/assets/1.jpg" alt="Avatar" />
+          </div>
+        </Col>
+        <Col className="col-9">
+          <div>
+            <p>Tên: {user?.fullName}</p>
+            <p>Email: {user?.email}</p>
+            <p>Địa chỉ: {user?.address ? user?.address : 'Chưa cập nhật'}</p>
+            <p>SĐT: {user?.address ? user?.address : 'Chưa cập nhật'}</p>
+            {!user?.isSocial && <button>Đổi mật khẩu</button>}
+          </div>
+        </Col>
+      </Row>
+    </Container>
   );
 }
 

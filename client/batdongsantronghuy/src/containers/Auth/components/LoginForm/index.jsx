@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   progress: {
     position: 'absolute',
-    top: theme.spacing(0.5),
+    top: 0,
     left: 0,
     right: 0,
   },
@@ -83,16 +83,19 @@ function LoginForm(props) {
   const { isSubmitting } = form.formState;
 
   //handle login facebook
+  const [loading, setLoading] = useState(false);
   const responseFacebook = async (response) => {
+    setLoading(true);
     const { onFacebookLogin } = props;
     if (onFacebookLogin) {
       await onFacebookLogin(response);
+      setLoading(false);
     }
   };
   return (
     <div className={classes.root}>
       {isSubmitting && <LinearProgress className={classes.progress} />}
-
+      {loading && <LinearProgress className={classes.progress} />}
       <Avatar className={classes.avatar}>
         <LockOutlined />
       </Avatar>
@@ -113,7 +116,7 @@ function LoginForm(props) {
         />
 
         <Button
-          disabled={isSubmitting}
+          disabled={isSubmitting || loading}
           type="submit"
           variant="contained"
           color="primary"

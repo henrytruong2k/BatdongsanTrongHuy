@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
+
 import { Route, Switch } from 'react-router';
 import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
@@ -9,10 +9,9 @@ import { NotFoundPage } from '../pages/NotFound';
 import ProjectRouter from '../router/Project';
 import { router } from '../constants/router';
 import PaymentPage from '../pages/PaymentPage';
+import SettingPage from '../pages/SettingPage';
 
-Layout.propTypes = {};
-
-function Layout(props) {
+function Layout() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -25,6 +24,7 @@ function Layout(props) {
         <Route path={router.TINTUC} component={NewsPage} />
         <Route path={router.BAIDANG} component={ProjectRouter} />
         <Route path="/thanh-toan/:id" component={PaymentPage} />
+        <Route path={router.CAIDATTAIKHOAN} component={SettingPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />

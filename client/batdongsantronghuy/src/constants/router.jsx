@@ -7,4 +7,5 @@ export const router = {
   TAOBAIVIET: '/bai-dang/tao-bai-viet',
   QUANLYBAIVIET: '/bai-dang/quan-ly-bai-viet',
   SUABAIVIET: '/bai-dang/sua-bai-viet/',
+  CAIDATTAIKHOAN: '/cai-dat-tai-khoan',
 };
