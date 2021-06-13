@@ -10,6 +10,9 @@ const useDialog = () => {
   function navigate(mode) {
     setMode(mode);
   }
+  // function close() {
+  //   setIsShowing(false);
+  // }
 
   return { isShowing, mode, toggle, navigate };
 };

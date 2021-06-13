@@ -6,7 +6,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import InputField from '../../../../components/form-controls/InputField';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -14,6 +14,8 @@ import * as yup from 'yup';
 import { LockOutlined } from '@material-ui/icons';
 import PasswordField from '../../../../components/form-controls/PasswordField';
 import { validationLogin } from '../../../../ults/validationLogin';
+import FacebookLogin from 'react-facebook-login';
+import './style.scss';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,11 +46,20 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
   },
+  facebookBtn: {
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    marginTop: theme.spacing(2),
+  },
 }));
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func,
 };
+
+//config FACEBOOK_ID
+export const FACEBOOK_ID = 177408430989032;
 
 function LoginForm(props) {
   const classes = useStyles();
@@ -71,6 +82,13 @@ function LoginForm(props) {
 
   const { isSubmitting } = form.formState;
 
+  //handle login facebook
+  const responseFacebook = async (response) => {
+    const { onFacebookLogin } = props;
+    if (onFacebookLogin) {
+      await onFacebookLogin(response);
+    }
+  };
   return (
     <div className={classes.root}>
       {isSubmitting && <LinearProgress className={classes.progress} />}
@@ -105,6 +123,15 @@ function LoginForm(props) {
           Đăng nhập
         </Button>
       </form>
+      <div className={classes.facebookBtn}>
+        <FacebookLogin
+          appId={FACEBOOK_ID}
+          fields="name,email,picture"
+          scope="public_profile, email"
+          callback={responseFacebook}
+          icon="fa-facebook"
+        />
+      </div>
     </div>
   );
 }

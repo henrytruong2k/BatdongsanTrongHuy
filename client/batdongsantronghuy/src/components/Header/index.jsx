@@ -32,7 +32,7 @@ export const Header = () => {
 
   const isLoggedIn = loggedInUser?.id;
 
-  const { isShowing, mode, toggle, navigate } = useDialog();
+  const { isShowing, mode, toggle, navigate, close } = useDialog();
 
   const handleClickToLogin = () => {
     toggle();

@@ -55,8 +55,8 @@ export const HomeContainer = () => {
     try {
       const fetchPosts = async () => {
         const request = {
-          PageNumber: pagination.page,
-          PageSize: filter.PageSize,
+          PageNumber: pagination?.page,
+          PageSize: filter?.PageSize,
           CityId: filter?.city?.value,
           DistrictId: filter?.district?.value,
           Keyword: filter?.keyword,
@@ -65,14 +65,13 @@ export const HomeContainer = () => {
         };
 
         const response = await postAPI.getAll(request);
-        console.log('filter đc thực thi tại useEffect', filter);
-        console.log('response effect: ', response);
+
         setPostList(response?.data);
         setPagination({
           ...pagination,
-          limit: response.pageSize,
-          total: response.totalRecords,
-          page: response.pageNumber,
+          limit: response?.pageSize,
+          total: response?.totalRecords,
+          page: response?.pageNumber,
         });
       };
       fetchPosts();

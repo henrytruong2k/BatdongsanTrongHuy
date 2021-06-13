@@ -25,6 +25,19 @@ export const login = createAsyncThunk('user/login', async (payload) => {
   // return user data
   return data.data;
 });
+export const loginFacebook = createAsyncThunk(
+  'user/loginFacebook',
+  async (payload) => {
+    const data = await userAPI.loginFacebook(payload);
+
+    //save data to local storage
+    localStorage.setItem('access_token', data.data.jwToken);
+    localStorage.setItem('user', JSON.stringify(data.data));
+
+    //return user data
+    return data.data;
+  }
+);
 const userSlice = createSlice({
   name: 'user',
   initialState: {
@@ -47,6 +60,11 @@ const userSlice = createSlice({
       };
     },
     [login.fulfilled]: (state, action) => {
+      state.current = {
+        user: action.payload,
+      };
+    },
+    [loginFacebook.fulfilled]: (state, action) => {
       state.current = {
         user: action.payload,
       };

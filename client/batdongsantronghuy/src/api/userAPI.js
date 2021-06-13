@@ -9,6 +9,10 @@ const userAPI = {
     const url = '/Account/authenticate';
     return axiosClient.post(url, data);
   },
+  loginFacebook(data) {
+    const url = '/Account/authenticate-social';
+    return axiosClient.post(url, data);
+  },
 };
 
 export default userAPI;

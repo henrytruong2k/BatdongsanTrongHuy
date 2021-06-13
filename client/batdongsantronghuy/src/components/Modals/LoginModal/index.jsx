@@ -53,6 +53,7 @@ export const LoginModal = ({
                 *{message}
               </p>
             )}
+
             <Box textAlign="center" className="my-2">
               <Button
                 color="primary"
