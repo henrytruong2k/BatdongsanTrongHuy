@@ -25,7 +25,6 @@ function CreatePost(props) {
       console.log('handle Request', request);
 
       const response = await postAPI.createPost(request);
-
       if (response.succeeded) {
         setLoading(false);
         history.push('/thanh-toan');

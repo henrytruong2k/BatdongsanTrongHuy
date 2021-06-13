@@ -321,44 +321,44 @@ function CreateForm(props) {
             label="Đường"
           />
 
-          <Select
-            className={classes.selectLeft}
-            onChange={(value) => {
-              setCity(value);
-              form.setValue('CityId', value?.value);
-            }}
-            styles={customStyles}
-            form={form}
-            name="CityId"
-            defaultOptions
-            cacheOptions
-            isClearable
-            options={cityOptions}
-            isLoading={isLoadingCity}
-            placeholder="Chọn thành phố..."
-            loadingMessage={() => 'Đang tìm kiếm...'}
-            noOptionsMessage={() => 'Không tìm thấy kết quả'}
-          />
+          <div className="d-flex">
+            <Select
+              className={classes.selectLeft}
+              onChange={(value) => {
+                setCity(value);
+                form.setValue('CityId', value?.value);
+              }}
+              styles={customStyles}
+              form={form}
+              name="CityId"
+              defaultOptions
+              cacheOptions
+              options={cityOptions}
+              isLoading={isLoadingCity}
+              placeholder="Chọn thành phố..."
+              loadingMessage={() => 'Đang tìm kiếm...'}
+              noOptionsMessage={() => 'Không tìm thấy kết quả'}
+            />
 
-          <Select
-            className={classes.selectRight}
-            ref={selectDistrict}
-            styles={customStyles}
-            defaultOptions
-            cacheOptions
-            isClearable
-            value={district}
-            onChange={(value) => {
-              setDistrict(value);
-              form.setValue('DistrictId', value?.value);
-            }}
-            options={districtOptions}
-            isLoading={isLoadingDistrict}
-            placeholder="Chọn quận..."
-            loadingMessage={() => 'Đang tìm kiếm...'}
-            noOptionsMessage={() => 'Không tìm thấy kết quả'}
-            isDisabled={isDisabled}
-          />
+            <Select
+              className={classes.selectRight}
+              ref={selectDistrict}
+              styles={customStyles}
+              defaultOptions
+              cacheOptions
+              value={district}
+              onChange={(value) => {
+                setDistrict(value);
+                form.setValue('DistrictId', value?.value);
+              }}
+              options={districtOptions}
+              isLoading={isLoadingDistrict}
+              placeholder="Chọn quận..."
+              loadingMessage={() => 'Đang tìm kiếm...'}
+              noOptionsMessage={() => 'Không tìm thấy kết quả'}
+              isDisabled={isDisabled}
+            />
+          </div>
 
           <div className="w-100">
             <CKEditor data={desc} onChange={onEditorChange} />

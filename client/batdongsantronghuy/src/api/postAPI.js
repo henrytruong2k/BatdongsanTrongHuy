@@ -54,6 +54,16 @@ const postAPI = {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
+  async updatePost(data) {
+    const url = `/v1/Post/UpdatePost/${data.id}`;
+    const formData = new FormData();
+    for (const name in data) {
+      formData.append(name, data[name]);
+    }
+    return axiosClient.put(url, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
+  },
   getAllPostsByNameContact(name) {
     const url = `/v1/Post/GetAllPostsByNameContact?NameContact=${name}`;
     return axiosClient.get(url);

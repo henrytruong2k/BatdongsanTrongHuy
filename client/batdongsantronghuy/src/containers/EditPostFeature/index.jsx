@@ -1,33 +1,65 @@
-import React, { useEffect, useState } from 'react';
-import InputField from '../../components/form-controls/InputField';
-import { useForm } from 'react-hook-form';
-import SelectField from '../../components/form-controls/SelectField';
-import useCityOptions from '../../components/hooks/useCityOptions';
-import Select from 'react-select';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import postAPI from '../../api/postAPI';
 import Loading from '../../components/Loading';
-import { Button } from '@material-ui/core';
+import EditForm from './components/EditForm';
 
 function EditPostFeature({ post, loading }) {
-  const form = useForm({
-    defaultValues: {
-      CityId: post?.address?.cityId,
-    },
-  });
-  const [cityIdValue, setCityIdValue] = useState(post?.address?.cityId);
-  form.setValue('Title', post.title);
-
-  const { cityOptions, isLoadingCity } = useCityOptions();
-  const handleChangeCityId = (value) => {
-    console.log('value', value);
-  };
-
-  const handleSubmit = (values, e) => {
+  const [loadingAPI, setLoadingAPI] = useState(false);
+  const history = useHistory();
+  const handleFormSubmit = async (values, e) => {
     try {
-      e.preventDefault();
-      console.log('handle Submit edit: ', values);
+      setLoadingAPI(true);
+      console.log('handle Submit edit edit feature: ', values);
+      const response = await postAPI.updatePost(values);
+      console.log('response ', response);
+      if (response.succeeded) {
+        setLoadingAPI(false);
+        history.push('/bai-dang/quan-ly-bai-viet');
+        Swal.fire({
+          icon: 'success',
+          title: 'Cập nhật thành công!',
+          text: `Bài viết số ${response.data} đã được cập nhật`,
+        });
+      }
     } catch (err) {
       console.log(err);
     }
+  };
+
+  const defaultCity = () => {
+    return {
+      value: post?.address?.city?.id,
+      label: post?.address?.city?.cityName,
+    };
+  };
+
+  const defaultDistrict = () => {
+    return {
+      value: post?.address?.district?.id,
+      label: post?.address?.district?.districtName,
+    };
+  };
+
+  const defaultCategory = () => {
+    return {
+      value: post?.category?.id,
+      label: post?.category?.name,
+    };
+  };
+  const defaultProject = () => {
+    return {
+      value: post?.project?.id,
+      label: post?.project?.name,
+    };
+  };
+
+  const objDefault = {
+    defaultCity: defaultCity(),
+    defaultDistrict: defaultDistrict(),
+    defaultCategory: defaultCategory(),
+    defaultProject: defaultProject(),
   };
 
   return (
@@ -35,54 +67,12 @@ function EditPostFeature({ post, loading }) {
       {loading ? (
         <Loading />
       ) : (
-        <div>
-          <form onSubmit={form.handleSubmit}>
-            <InputField
-              name="Title"
-              label="Tiêu đề"
-              form={form}
-              InputLabelProps={{ shrink: true, required: true }}
-            />
-            <Select
-              defaultValue={cityOptions.filter(
-                (option) => option.value === post.address.cityId
-              )}
-              onChange={handleChangeCityId}
-              form={form}
-              name="CityId"
-              defaultOptions
-              cacheOptions
-              isClearable
-              options={cityOptions}
-              isLoading={isLoadingCity}
-              placeholder="Chọn thành phố..."
-              loadingMessage={() => 'Đang tìm kiếm...'}
-            />
-            {/* <Select
-              ref={selectDistrict}
-              defaultOptions
-              cacheOptions
-              isClearable
-              value={filter?.district}
-              onChange={handleChangeDistrict}
-              options={districtOptions}
-              isLoading={isLoadingDistrict}
-              placeholder="Chọn quận..."
-              loadingMessage={() => 'Đang tìm kiếm...'}
-              noOptionsMessage={() => 'Không tìm thấy kết quả'}
-              isDisabled={isDisabled}
-            /> */}
-
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              className="btn-submit w-100 text-center mt-3"
-            >
-              Cập nhật
-            </Button>
-          </form>
-        </div>
+        <EditForm
+          post={post}
+          objDefault={objDefault}
+          onSubmit={handleFormSubmit}
+          loading={loadingAPI}
+        />
       )}
     </>
   );
