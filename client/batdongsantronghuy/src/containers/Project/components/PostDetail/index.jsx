@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import PropTypes from 'prop-types';
+
 import { Col, Container, Row } from 'react-bootstrap';
 import './style.scss';
 import moment from 'moment';
@@ -18,13 +18,16 @@ import RatingPost from './components/RatingPost';
 import { useDispatch, useSelector } from 'react-redux';
 import useDialog from '../../../../components/hooks/useDialog';
 import { LoginModal } from '../../../../components/Modals/LoginModal';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import { nFormatter } from '../../../../ults/nFormatter';
+import RelatedPosts from './components/RelatedPosts';
 
 moment.locale('vi');
 
-PostDetail.propTypes = {};
-
 function PostDetail({ post }) {
-  const publishDate = post.address.createAt;
+  console.log('Post detail: ', post);
+  const publishDate = post.createAt;
 
   const tabProps = {
     price: post.price,
@@ -58,6 +61,7 @@ function PostDetail({ post }) {
     slidesToShow: 1,
     slidesToScroll: 1,
   };
+
   const [comment, setComment] = useState('');
 
   const handleChange = (e) => {
@@ -223,6 +227,10 @@ function PostDetail({ post }) {
             <div className="mt-5">
               <h3>Đánh giá</h3>
               <RatingPost postId={post.id} />
+            </div>
+
+            <div className="mt-5">
+              <RelatedPosts post={post} />
             </div>
           </Col>
           <Col className="col-lg-3 bg-dark">

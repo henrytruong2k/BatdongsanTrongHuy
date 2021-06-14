@@ -12,10 +12,14 @@ function MarkersMap({ mapConfig }) {
     lng: mapConfig.locationY,
   };
   useEffect(() => {
-    const showPopUp = () => {
-      setTimeout(() => mapRef.current.openPopup(), 1000);
-    };
-    showPopUp();
+    try {
+      const showPopUp = () => {
+        setTimeout(() => mapRef.current.openPopup(), 100);
+      };
+      showPopUp();
+    } catch (error) {
+      console.log('Fail to show pop up: ', error);
+    }
   }, []);
   const markerIcon = new L.icon({
     iconUrl: '/assets/icons/location.svg',
