@@ -29,12 +29,11 @@ function CreatePost(props) {
         setLoading(false);
         history.push('/thanh-toan');
       }
-
       console.log('response của create post: ', response);
-      setLoading(false);
     } catch (error) {
       console.log('Đăng bài thất bại: ', error);
     }
+    setLoading(false);
   };
   return (
     <div>

@@ -10,7 +10,6 @@ import LoginForm from '../LoginForm';
 function Login(props) {
   const { closeDialog } = props;
   const dispatch = useDispatch();
-  const { enqueueSnackbar } = useSnackbar();
   const [errorMessage, setErrorMessage] = useState(null);
 
   const handleFormSubmit = async (values) => {
@@ -18,17 +17,17 @@ function Login(props) {
       const action = login(values);
       const resultAction = await dispatch(action);
       const user = unwrapResult(resultAction);
-
+      if (!user.succeeded) {
+        setErrorMessage(user.message);
+        return;
+      }
       if (closeDialog) {
-        //close dialog
         closeDialog();
       }
-
       console.log('New user: ', user);
     } catch (error) {
-      console.log('Fail to login: ', error);
+      console.log('Fail to login in login: ', error);
       // enqueueSnackbar(error.message, { variant: 'error' });
-      setErrorMessage(error.message);
     }
   };
 
@@ -41,7 +40,6 @@ function Login(props) {
       const user = unwrapResult(resultAction);
       if (closeDialog) {
         closeDialog();
-        enqueueSnackbar('Đăng nhập FB thành công!', { variant: 'success' });
       }
       console.log('New user from fb: ', user);
     } catch (error) {
@@ -56,9 +54,7 @@ function Login(props) {
         onFacebookLogin={handleLoginFacebook}
       />
       {errorMessage && (
-        <p style={{ color: 'red' }} className="text-center">
-          {errorMessage}
-        </p>
+        <p className="text-center text-danger mt-3 mb-0">*{errorMessage}</p>
       )}
     </div>
   );

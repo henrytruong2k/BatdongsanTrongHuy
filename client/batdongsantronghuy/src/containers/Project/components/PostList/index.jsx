@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import PostItem from '../PostItem';
@@ -31,6 +31,7 @@ function PostList(props) {
     if (!changePage) return;
     changePage(e, page);
   };
+
   return (
     <Row>
       {loading ? (

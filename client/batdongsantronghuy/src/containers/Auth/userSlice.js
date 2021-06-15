@@ -18,6 +18,10 @@ export const login = createAsyncThunk('user/login', async (payload) => {
   // call API to register
   const data = await userAPI.login(payload);
 
+  //handle when API response login failed
+  if (!data.succeeded) {
+    return data;
+  }
   // save data to local storage
   localStorage.setItem('access_token', data.data.jwToken);
   localStorage.setItem('user', JSON.stringify(data.data));
@@ -49,7 +53,7 @@ const userSlice = createSlice({
       //clear local storage
       localStorage.removeItem('access_token');
       localStorage.removeItem('user');
-
+      console.log('logout');
       state.current = {};
     },
   },

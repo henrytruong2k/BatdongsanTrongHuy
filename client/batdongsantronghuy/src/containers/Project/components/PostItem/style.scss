@@ -60,7 +60,8 @@
     }
   }
   &__price {
-    text-align: center;
+    justify-content: space-between;
+    display: flex;
   }
   &__address {
     @include textClamp(1);

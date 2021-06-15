@@ -10,6 +10,7 @@ import ProjectRouter from '../router/Project';
 import { router } from '../constants/router';
 import PaymentPage from '../pages/PaymentPage';
 import SettingPage from '../pages/SettingPage';
+import FavoritePostsPage from '../pages/FavoritePostsPage';
 
 function Layout() {
   useEffect(() => {
@@ -25,6 +26,7 @@ function Layout() {
         <Route path={router.BAIDANG} component={ProjectRouter} />
         <Route path="/thanh-toan/:id" component={PaymentPage} />
         <Route path={router.CAIDATTAIKHOAN} component={SettingPage} />
+        <Route path={router.BAIVIETYEUTHICH} component={FavoritePostsPage} />
         <Route component={NotFoundPage} />
       </Switch>
       <Footer />

@@ -26,13 +26,29 @@ import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
 
 import useDialog from '../hooks/useDialog';
 import { LoginModal } from '../Modals/LoginModal';
+import { PostBadges } from './components/PostBadges';
 
 export const Header = () => {
-  const loggedInUser = useSelector((state) => state.user.current.user);
+  // const loggedInUser = useSelector((state) => state.user.current.user);
+  // const isLoggedIn = loggedInUser?.id;
 
-  const isLoggedIn = loggedInUser?.id;
+  // save token
+  const localSavedParsed = JSON.parse(localStorage.getItem('user'));
+  const loginFromRedux = useSelector((state) => state.user.current.user);
+  const [loggedInUser, setLoggedInUser] = useState(loginFromRedux);
+  console.log('logged', loggedInUser);
+  const [isLoggedIn, setIsLoggedIn] = useState(loggedInUser?.id);
+  console.log('id: ', isLoggedIn);
 
-  const { isShowing, mode, toggle, navigate, close } = useDialog();
+  //a variable to avoid re-render
+  const dependencies = localSavedParsed === null ? true : false;
+  useEffect(() => {
+    console.log('use effect 2');
+    setLoggedInUser(localSavedParsed);
+    setIsLoggedIn(localSavedParsed?.id);
+  }, [dependencies]);
+
+  const { isShowing, mode, toggle, navigate } = useDialog();
 
   const handleClickToLogin = () => {
     toggle();
@@ -70,6 +86,7 @@ export const Header = () => {
   const dispatch = useDispatch();
   const handleLogoutClick = () => {
     const action = logout();
+    setIsLoggedIn(loggedInUser?.id);
     dispatch(action);
     handleCloseMenu();
   };
@@ -86,29 +103,24 @@ export const Header = () => {
             <NavLink to={router.TINTUC}>Tin tức</NavLink>
             <NavLink to={router.LIENHE}>Liên hệ</NavLink>
 
-            <img
-              className="mr-lg-2"
-              src="/home-page/heart.svg"
-              width="20"
-              height="20"
-              alt=""
-            />
-
+            <PostBadges quantity={5} />
             {isLoggedIn && (
-              <div
-                className="d-flex align-items-center user-click"
-                onClick={handleUserClick}
-              >
-                <IconButton color="inherit" className="icon-btn">
-                  <img
-                    src="/home-page/profile-user.svg"
-                    width="20"
-                    height="20"
-                    alt={loggedInUser.fullName}
-                  />
-                </IconButton>
-                <p className="mb-0">{loggedInUser.fullName}</p>
-              </div>
+              <>
+                <div
+                  className="d-flex align-items-center user-click"
+                  onClick={handleUserClick}
+                >
+                  <IconButton color="inherit" className="icon-btn">
+                    <img
+                      src="/home-page/profile-user.svg"
+                      width="20"
+                      height="20"
+                      alt={loggedInUser?.fullName}
+                    />
+                  </IconButton>
+                  <p className="mb-0">{loggedInUser?.fullName}</p>
+                </div>
+              </>
             )}
             {!isLoggedIn && (
               <Button
