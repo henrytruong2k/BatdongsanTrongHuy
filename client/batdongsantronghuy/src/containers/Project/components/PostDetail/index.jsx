@@ -22,6 +22,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import { nFormatter } from '../../../../ults/nFormatter';
 import RelatedPosts from './components/RelatedPosts';
+import Thumbnails from './components/Thumbnails';
 
 moment.locale('vi');
 
@@ -156,11 +157,7 @@ function PostDetail({ post }) {
       <Container>
         <Row>
           <Col className="col-lg-9">
-            <img
-              src={post?.images[0]?.url}
-              alt={post.title}
-              className="post-detail__image"
-            />
+            <Thumbnails postImages={post?.images} />
 
             <h4 className="mt-lg-3">Mô tả</h4>
             <p
