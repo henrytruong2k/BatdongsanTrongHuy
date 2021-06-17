@@ -1,19 +1,17 @@
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import InfoIcon from '@material-ui/icons/Info';
 import moment from 'moment';
 import React from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { Link, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import useManagePost from './hooks/useManagePost';
-import './style.scss';
-import EditIcon from '@material-ui/icons/Edit';
-import DeleteIcon from '@material-ui/icons/Delete';
-import InfoIcon from '@material-ui/icons/Info';
-import AddIcon from '@material-ui/icons/Add';
-import { useHistory } from 'react-router-dom';
-import { router } from '../../constants/router';
-import Loading from './components/Loading';
-import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import postAPI from '../../api/postAPI';
+import { router } from '../../constants/router';
+import Loading from './components/Loading';
+import useManagePost from './hooks/useManagePost';
+import './style.scss';
 
 const Wrapper = styled.div`
   padding-top: 60px;
@@ -95,7 +93,7 @@ function ManagePost(props) {
           ) : postList?.length > 0 ? (
             postList.map((item, index) => {
               return (
-                <Col className="col-12">
+                <Col className="col-12" key={item.id}>
                   <div className="post__item d-flex align-items-center mt-4">
                     <div className="id">
                       <p>{++index}</p>

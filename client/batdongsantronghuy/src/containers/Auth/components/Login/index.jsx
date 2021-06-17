@@ -17,7 +17,7 @@ function Login(props) {
       const action = login(values);
       const resultAction = await dispatch(action);
       const user = unwrapResult(resultAction);
-      if (!user.succeeded) {
+      if (user?.succeeded === false) {
         setErrorMessage(user.message);
         return;
       }

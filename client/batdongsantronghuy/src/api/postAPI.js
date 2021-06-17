@@ -1,5 +1,3 @@
-import QueryString from 'qs';
-import { domain } from '../constants/config';
 import axiosClient from './axiosClient';
 
 const postAPI = {

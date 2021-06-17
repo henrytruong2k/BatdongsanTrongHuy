@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { domain } from '../constants/config';
-import { useSelector } from 'react-redux';
 
 const axiosClient = axios.create({
   baseURL: domain,

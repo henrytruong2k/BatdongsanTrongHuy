@@ -1,32 +1,19 @@
-import { Box, IconButton, makeStyles, Menu, MenuItem } from '@material-ui/core';
+import { IconButton, Menu, MenuItem } from '@material-ui/core';
 import Button from '@material-ui/core/Button';
-import Dialog from '@material-ui/core/Dialog';
-
-import DialogContent from '@material-ui/core/DialogContent';
-import { Close } from '@material-ui/icons';
-import React, { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link, NavLink } from 'react-router-dom';
-import postAPI from '../../api/postAPI';
-import { useHistory } from 'react-router-dom';
-import { MODE } from '../../constants/mode';
-import { router } from '../../constants/router';
-import Login from '../../containers/Auth/components/Login';
-import Register from '../../containers/Auth/components/Register';
-import Setting from '../../containers/Auth/components/Setting';
-import { logout } from '../../containers/Auth/userSlice';
-import usePostsManagement from './components/usePostsManagement';
-import './style.scss';
-import Management from '../../containers/Auth/components/Management';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import PostAddIcon from '@material-ui/icons/PostAdd';
 import WorkOutlineIcon from '@material-ui/icons/WorkOutline';
-
+import React, { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, NavLink, useHistory } from 'react-router-dom';
+import { router } from '../../constants/router';
+import { logout } from '../../containers/Auth/userSlice';
 import useDialog from '../hooks/useDialog';
 import { LoginModal } from '../Modals/LoginModal';
 import { PostBadges } from './components/PostBadges';
+import './style.scss';
 
 export const Header = () => {
   // const loggedInUser = useSelector((state) => state.user.current.user);
