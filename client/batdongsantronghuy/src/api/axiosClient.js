@@ -12,8 +12,7 @@ const axiosClient = axios.create({
 axiosClient.interceptors.request.use(
   function (config) {
     const access_token = localStorage.getItem('access_token');
-    // const access_token = useSelector((state) => state.user.current.user);
-    console.log('access_token: ', access_token);
+
     if (access_token) {
       config.headers.Authorization = `Bearer ${access_token}`;
     }

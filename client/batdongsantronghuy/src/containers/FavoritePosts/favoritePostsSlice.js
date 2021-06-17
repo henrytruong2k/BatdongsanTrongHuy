@@ -1,21 +1,11 @@
 const { createSlice } = require('@reduxjs/toolkit');
 
+const favoriteList = JSON.parse(localStorage.getItem('favoriteList'));
 const favoritePostsSlice = createSlice({
   name: 'favoritePosts',
   initialState: {
     showMiniFavoritePosts: false,
-    favoriteItems: [
-      {
-        id: 1,
-        title: 'test 1',
-        isClicked: true,
-      },
-      {
-        id: 2,
-        title: 'test 2',
-        isClicked: false,
-      },
-    ],
+    favoriteItems: favoriteList || [],
   },
   reducers: {
     showMiniFavoritePosts(state) {
@@ -24,6 +14,7 @@ const favoritePostsSlice = createSlice({
     hideMiniFavoritePosts(state) {
       state.showMiniFavoritePosts = false;
     },
+
     addToFavoritePosts(state, action) {
       const newItem = action.payload;
       const index = state.favoriteItems.findIndex((x) => x.id === newItem.id);
@@ -32,6 +23,11 @@ const favoritePostsSlice = createSlice({
         console.log('from redux: đã tồn tại');
       } else {
         state.favoriteItems.push(newItem);
+        //save to localStorage
+        const favoriteList =
+          JSON.parse(localStorage.getItem('favoriteList')) || [];
+        favoriteList.push(newItem);
+        localStorage.setItem('favoriteList', JSON.stringify(favoriteList));
       }
     },
     removeFromFavoritePosts(state, action) {
@@ -44,5 +40,10 @@ const favoritePostsSlice = createSlice({
 });
 
 const { actions, reducer } = favoritePostsSlice;
-export const { showMiniFavoritePosts, hideMiniFavoritePosts } = actions;
+export const {
+  showMiniFavoritePosts,
+  hideMiniFavoritePosts,
+  addToFavoritePosts,
+  removeFromFavoritePosts,
+} = actions;
 export default reducer;

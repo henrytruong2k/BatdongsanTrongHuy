@@ -16,16 +16,13 @@ import { PostBadges } from './components/PostBadges';
 import './style.scss';
 
 export const Header = () => {
-  // const loggedInUser = useSelector((state) => state.user.current.user);
-  // const isLoggedIn = loggedInUser?.id;
-
+  const favoriteList = useSelector((state) => state.favorite.favoriteItems);
   // save token
   const localSavedParsed = JSON.parse(localStorage.getItem('user'));
   const loginFromRedux = useSelector((state) => state.user.current.user);
   const [loggedInUser, setLoggedInUser] = useState(loginFromRedux);
-  console.log('logged', loggedInUser);
+
   const [isLoggedIn, setIsLoggedIn] = useState(loggedInUser?.id);
-  console.log('id: ', isLoggedIn);
 
   //a variable to avoid re-render
   const dependencies = localSavedParsed === null ? true : false;
@@ -90,7 +87,7 @@ export const Header = () => {
             <NavLink to={router.TINTUC}>Tin tức</NavLink>
             <NavLink to={router.LIENHE}>Liên hệ</NavLink>
 
-            <PostBadges quantity={5} />
+            <PostBadges quantity={favoriteList.length} />
             {isLoggedIn && (
               <>
                 <div

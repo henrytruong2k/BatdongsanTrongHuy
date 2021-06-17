@@ -3,8 +3,9 @@ import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
 import postAPI from '../../api/postAPI';
 import PostList from './components/PostList';
+import { useSelector } from 'react-redux';
 
-const ProjectWrapper = styled.div`
+const Wrapper = styled.div`
   padding-top: 100px;
 `;
 
@@ -20,22 +21,41 @@ function PostContainer(props) {
     total: 9,
     page: 1,
   });
+
+  // const render = useSelector((state) => state.favorite.favoriteItems);
+  const favoriteList = useSelector((state) => state.favorite.favoriteItems);
+
+  // const [favoriteList, setFavoriteList] = useState(
+  //   JSON.parse(localStorage.getItem('favoriteList'))
+  // );
+  // useEffect(() => {
+  //   setFavoriteList(JSON.parse(localStorage.getItem('favoriteList')));
+  // }, [render]);
+  console.log('favoriteList: âss', favoriteList);
   useEffect(() => {
+    console.log('run effect');
     const fetchPosts = async () => {
-      const postList = await postAPI.getAll(request);
-      console.log('run');
-      setPagination({
-        ...pagination,
-        limit: postList.pageSize,
-        total: postList.totalRecords,
-        page: postList.pageNumber,
-      });
-      setPosts(postList.data);
-      setLoading(false);
+      try {
+        const postList = await postAPI.getAll(request);
+        if (!postList) return;
+
+        setPagination({
+          ...pagination,
+          limit: postList.pageSize,
+          total: postList.totalRecords,
+          page: postList.pageNumber,
+        });
+        setPosts(postList?.data);
+        setLoading(false);
+      } catch (error) {
+        console.log('Fail to fetch posts: ', error);
+      }
     };
     fetchPosts();
   }, [request]);
+
   const handlePageChange = (e, page) => {
+    console.log('handlePageCHANGE');
     setRequest({
       ...request,
       PageNumber: page,
@@ -48,14 +68,15 @@ function PostContainer(props) {
 
   return (
     <Container>
-      <ProjectWrapper>
+      <Wrapper>
         <PostList
           posts={posts}
           loading={loading}
           pagination={pagination}
           changePage={handlePageChange}
+          favoriteList={favoriteList}
         />
-      </ProjectWrapper>
+      </Wrapper>
     </Container>
   );
 }

@@ -50,7 +50,8 @@ export const HomeContainer = () => {
     total: 9,
     page: 1,
   });
-
+  //favorite
+  const favoriteList = useSelector((state) => state.favorite.favoriteItems);
   useEffect(() => {
     try {
       const fetchPosts = async () => {
@@ -101,9 +102,10 @@ export const HomeContainer = () => {
         loading={isLoading}
         pagination={pagination}
         changePage={handlePageChange}
+        favoriteList={favoriteList}
       />
     );
-  }, [postList, isLoading, pagination]);
+  }, [postList, isLoading, pagination, favoriteList]);
 
   const { cityOptions, isLoadingCity } = useCityOptions();
   const handleChangeCity = (value) => {

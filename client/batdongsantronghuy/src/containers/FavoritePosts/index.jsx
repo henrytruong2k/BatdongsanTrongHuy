@@ -12,6 +12,11 @@ function FavoritePosts(props) {
         <Row>
           <Col>
             <h1>Favorite</h1>
+            <ul>
+              {list.map((item) => {
+                return <li>{item.title}</li>;
+              })}
+            </ul>
           </Col>
         </Row>
       </Container>

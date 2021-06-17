@@ -42,11 +42,13 @@ export const loginFacebook = createAsyncThunk(
     return data.data;
   }
 );
+
 const userSlice = createSlice({
   name: 'user',
   initialState: {
     current: {},
     settings: {},
+    list: [],
   },
   reducers: {
     logout(state) {

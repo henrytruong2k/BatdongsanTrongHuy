@@ -6,6 +6,8 @@ import { Link } from 'react-router-dom';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { nFormatter } from '../../../../ults/nFormatter';
+import { useDispatch } from 'react-redux';
+import { addToFavoritePosts } from '../../../FavoritePosts/favoritePostsSlice';
 
 PostItem.propTypes = {
   post: PropTypes.shape({
@@ -17,6 +19,13 @@ PostItem.propTypes = {
 };
 
 function PostItem({ post, clicked }) {
+  const dispatch = useDispatch();
+  const handleAddToFavoriteList = (post) => {
+    if (!post) return;
+    const action = addToFavoritePosts(post);
+    console.log('action: ', action);
+    dispatch(action);
+  };
   return (
     <Col className="post col-lg-4">
       <Card>
@@ -51,13 +60,11 @@ function PostItem({ post, clicked }) {
           <div className="post__price">
             <h5>
               Giá:&nbsp;
-              {/* {Intl.NumberFormat('vi-VN', {
-                style: 'currency',
-                currency: 'VND',
-              }).format(post.price)} */}
               {nFormatter(post?.price)}
             </h5>
-            <div></div>
+            <div onClick={() => handleAddToFavoriteList(post)}>
+              {clicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            </div>
           </div>
         </Card.Body>
         <div className="post__footer">

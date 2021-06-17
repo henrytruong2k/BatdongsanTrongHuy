@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'react-bootstrap';
 import PostItem from '../PostItem';
@@ -23,22 +23,53 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function PostList(props) {
-  const { posts, loading, pagination, changePage } = props;
   const classes = useStyles();
+  const { posts, loading, pagination, changePage, favoriteList } = props;
+  console.log('posts ở postlist: ', posts);
+  console.log('favoriteList tại POST LIST: ', favoriteList);
+  const favoriteIDs = favoriteList.map((item) => item.id);
 
-  console.log('post list pagination: ', pagination);
+  // const clickedItems = posts.filter((item) => favoriteList.includes(item));
+  // console.log('clicked list: ', clickedItems);
+
+  //test
+  // const [clickedList, setClickedList] = useState([]);
+  // useEffect(() => {
+  //   console.log('use effect post list');
+  //   if (favoriteList) {
+  //     console.log('favorite post list trong useEffect: ', favoriteList);
+  //     const clickedArr = posts.filter((item) => favoriteList.includes(item));
+  //     console.log('clicked arr: ', clickedArr);
+  //     setClickedList([...clickedArr]);
+  //   }
+  // }, [favoriteList]);
+  // if (!favoriteList) return;
+  // const clickedList = posts.filter((item) => favoriteList.includes(item));
+  // console.log('clicked: ', clickedList);
+
+  // posts.map((post) => {
+  //   if (clickedList.includes(post)) {
+  //     console.log('true');
+  //     return <PostItem key={post.id} post={post} clicked={true} />;
+  //   }
+  //   return <PostItem key={post.id} post={post} clicked={false} />;
+  // });
+
   const handlePageChange = (e, page) => {
     if (!changePage) return;
     changePage(e, page);
   };
-
+  // <PostItem key={post.id} post={post} clicked={true} />;
   return (
     <Row>
       {loading ? (
         <PostSkeletonList />
       ) : posts?.length > 0 ? (
-        posts.map((post) => {
-          return <PostItem key={post.id} post={post} />;
+        posts.map((item) => {
+          if (favoriteIDs.includes(item.id)) {
+            return <PostItem key={item.id} post={item} clicked={true} />;
+          }
+          return <PostItem key={item.id} post={item} clicked={false} />;
         })
       ) : (
         <NoResultsFound />

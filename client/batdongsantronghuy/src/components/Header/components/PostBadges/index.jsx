@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import Badge from '@material-ui/core/Badge';
 import BookIcon from '@material-ui/icons/Book';
 
-export const PostBadges = ({ quantity }) => {
+export const PostBadges = ({ quantity = 0 }) => {
   return (
     <Link to={router.BAIVIETQUANTAM} className="header__menu--badges">
       <IconButton aria-label="cart">
