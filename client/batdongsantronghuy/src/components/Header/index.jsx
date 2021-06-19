@@ -12,8 +12,14 @@ import { router } from '../../constants/router';
 import { logout } from '../../containers/Auth/userSlice';
 import useDialog from '../hooks/useDialog';
 import { LoginModal } from '../Modals/LoginModal';
+import PopupBadges from './components/PopupBadges';
 import { PostBadges } from './components/PostBadges';
 import './style.scss';
+import {
+  showMiniFavoritePosts,
+  hideMiniFavoritePosts,
+} from '../../containers/FavoritePosts/favoritePostsSlice';
+import usePopup from './hooks/usePopup';
 
 export const Header = () => {
   const favoriteList = useSelector((state) => state.favorite.favoriteItems);
@@ -43,6 +49,8 @@ export const Header = () => {
 
   const handleUserClick = (e) => {
     setAnchorEl(e.currentTarget);
+    const action = hideMiniFavoritePosts();
+    dispatch(action);
   };
   const handleCloseMenu = () => {
     setAnchorEl(null);
@@ -74,6 +82,9 @@ export const Header = () => {
     dispatch(action);
     handleCloseMenu();
   };
+  //handle pop up
+  const { open, handleTogglePopUp } = usePopup();
+
   return (
     <div className="header d-lg-flex align-items-lg-center">
       <Container>
@@ -87,7 +98,13 @@ export const Header = () => {
             <NavLink to={router.TINTUC}>Tin tức</NavLink>
             <NavLink to={router.LIENHE}>Liên hệ</NavLink>
 
-            <PostBadges quantity={favoriteList.length} />
+            <PostBadges
+              quantity={favoriteList.length}
+              togglePopUp={handleTogglePopUp}
+            />
+
+            <PopupBadges open={open} favoriteList={favoriteList} />
+
             {isLoggedIn && (
               <>
                 <div

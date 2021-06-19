@@ -21,6 +21,7 @@ const favoritePostsSlice = createSlice({
       if (index >= 0) {
         //handle not to add
         console.log('from redux: đã tồn tại');
+        return;
       } else {
         state.favoriteItems.push(newItem);
         //save to localStorage
@@ -35,6 +36,7 @@ const favoritePostsSlice = createSlice({
       state.favoriteItems = state.favoriteItems.filter(
         (x) => x.id !== idNeedToRemove
       );
+      localStorage.setItem('favoriteList', JSON.stringify(state.favoriteItems));
     },
   },
 });

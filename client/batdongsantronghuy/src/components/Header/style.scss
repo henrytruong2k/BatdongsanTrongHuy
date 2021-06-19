@@ -17,6 +17,11 @@
   &__menu {
     &--badges {
       margin-right: 0 !important;
+      button {
+        &:focus {
+          outline: none;
+        }
+      }
     }
     display: flex;
     justify-content: flex-end;

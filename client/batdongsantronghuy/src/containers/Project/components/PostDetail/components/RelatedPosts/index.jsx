@@ -20,7 +20,7 @@ function RelatedPosts({ post }) {
     <div>
       <h3>Bất động sản cùng khu vực</h3>
       <Slider {...relatedSettings}>
-        {post.related.map((item) => {
+        {post?.related?.map((item) => {
           return <RelatedItem item={item} />;
         })}
       </Slider>

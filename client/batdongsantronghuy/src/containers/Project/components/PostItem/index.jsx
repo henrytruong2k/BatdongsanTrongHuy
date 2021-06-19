@@ -7,7 +7,12 @@ import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import { nFormatter } from '../../../../ults/nFormatter';
 import { useDispatch } from 'react-redux';
-import { addToFavoritePosts } from '../../../FavoritePosts/favoritePostsSlice';
+import {
+  addToFavoritePosts,
+  removeFromFavoritePosts,
+} from '../../../FavoritePosts/favoritePostsSlice';
+import { addDefaultSrc } from '../../../../ults/addDefaultSrc';
+import Tooltip from '@material-ui/core/Tooltip';
 
 PostItem.propTypes = {
   post: PropTypes.shape({
@@ -20,11 +25,19 @@ PostItem.propTypes = {
 
 function PostItem({ post, clicked }) {
   const dispatch = useDispatch();
+  const favoriteList = JSON.parse(localStorage.getItem('favoriteList'));
+
   const handleAddToFavoriteList = (post) => {
     if (!post) return;
-    const action = addToFavoritePosts(post);
-    console.log('action: ', action);
-    dispatch(action);
+    const favoriteIDs = favoriteList.map((item) => item.id);
+
+    if (favoriteIDs.includes(post.id)) {
+      const action = removeFromFavoritePosts(post.id);
+      dispatch(action);
+    } else {
+      const action = addToFavoritePosts(post);
+      dispatch(action);
+    }
   };
   return (
     <Col className="post col-lg-4">
@@ -40,7 +53,7 @@ function PostItem({ post, clicked }) {
         <Link to={`/bai-dang/${post.id}`}>
           <Card.Img
             src={post?.images[0]?.url}
-            // onError={`/project-page/286x180.svg`}
+            onError={addDefaultSrc}
             alt={post.title}
           />
         </Link>
@@ -62,8 +75,19 @@ function PostItem({ post, clicked }) {
               Giá:&nbsp;
               {nFormatter(post?.price)}
             </h5>
-            <div onClick={() => handleAddToFavoriteList(post)}>
-              {clicked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+            <div
+              style={{ cursor: 'pointer' }}
+              onClick={() => handleAddToFavoriteList(post)}
+            >
+              {clicked ? (
+                <Tooltip title="Bấm để bỏ lưu tin" arrow>
+                  <FavoriteIcon />
+                </Tooltip>
+              ) : (
+                <Tooltip title="Bấm để lưu tin" arrow>
+                  <FavoriteBorderIcon />
+                </Tooltip>
+              )}
             </div>
           </div>
         </Card.Body>

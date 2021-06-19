@@ -3,22 +3,26 @@ import { IconButton } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import Badge from '@material-ui/core/Badge';
 import BookIcon from '@material-ui/icons/Book';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Tooltip from '@material-ui/core/Tooltip';
 
-export const PostBadges = ({ quantity = 0 }) => {
+export const PostBadges = ({ quantity = 0, togglePopUp }) => {
   return (
-    <Link to={router.BAIVIETQUANTAM} className="header__menu--badges">
-      <IconButton aria-label="cart">
-        <Badge
-          badgeContent={quantity}
-          color="secondary"
-          anchorOrigin={{
-            vertical: 'top',
-            horizontal: 'right',
-          }}
-        >
-          <BookIcon htmlColor="white" />
-        </Badge>
-      </IconButton>
-    </Link>
+    <Tooltip title="Danh sách tin đã lưu" arrow>
+      <div className="header__menu--badges" onClick={togglePopUp}>
+        <IconButton aria-label="cart">
+          <Badge
+            badgeContent={quantity}
+            color="secondary"
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+          >
+            <FavoriteBorderIcon htmlColor="white" />
+          </Badge>
+        </IconButton>
+      </div>
+    </Tooltip>
   );
 };
