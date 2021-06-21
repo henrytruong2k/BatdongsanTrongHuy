@@ -9,4 +9,6 @@ export const router = {
   SUABAIVIET: '/bai-dang/sua-bai-viet/',
   CAIDATTAIKHOAN: '/cai-dat-tai-khoan',
   BAIVIETQUANTAM: '/bai-viet-quan-tam',
+  THAYDOITHONGTINCANHAN: '/thay-doi-thong-tin-ca-nhan',
+  DOIMATKHAU: '/doi-mat-khau',
 };

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import userAPI from '../../../../api/userAPI';
-import { login, loginFacebook } from '../../userSlice';
+import { login, loginFacebook, loginGoogle } from '../../userSlice';
 import LoginForm from '../LoginForm';
 
 function Login(props) {
@@ -35,7 +35,10 @@ function Login(props) {
     try {
       console.log('handle login facebook: ', values);
 
-      const action = loginFacebook({ token: values?.accessToken });
+      const action = loginFacebook({
+        token: values?.accessToken,
+        avatar: values?.picture.data.url,
+      });
       const resultAction = await dispatch(action);
       const user = unwrapResult(resultAction);
       if (closeDialog) {
@@ -43,7 +46,26 @@ function Login(props) {
       }
       console.log('New user from fb: ', user);
     } catch (error) {
-      console.log('Fal to login facebook: ', error);
+      console.log('Failed to login facebook: ', error);
+    }
+  };
+  const handleLoginGoogle = async (values) => {
+    try {
+      console.log('handle login google: ', values);
+      //handle get images from values.profileObj
+
+      const action = loginGoogle({
+        token: values?.tokenId,
+        avatar: values?.profileObj?.imageUrl,
+      });
+      const resultAction = await dispatch(action);
+      const user = unwrapResult(resultAction);
+      if (closeDialog) {
+        closeDialog();
+      }
+      console.log('New user from google: ', user);
+    } catch (error) {
+      console.log('Failed to login google: ', error);
     }
   };
 
@@ -52,6 +74,7 @@ function Login(props) {
       <LoginForm
         onSubmit={handleFormSubmit}
         onFacebookLogin={handleLoginFacebook}
+        onGoogleLogin={handleLoginGoogle}
       />
       {errorMessage && (
         <p className="text-center text-danger mt-3 mb-0">*{errorMessage}</p>

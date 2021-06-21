@@ -5,7 +5,9 @@ import styled from 'styled-components';
 import Setting from '../../containers/Auth/components/Setting';
 
 function SettingPage(props) {
-  const loggedInUser = useSelector((state) => state.user.current.user);
+  const loggedInUser =
+    useSelector((state) => state.user.current.user) ||
+    JSON.parse(localStorage.getItem('user'));
   console.log('setting page: ', loggedInUser);
   return (
     <Wrapper>

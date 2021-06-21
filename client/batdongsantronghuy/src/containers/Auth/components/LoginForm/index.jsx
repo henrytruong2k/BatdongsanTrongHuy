@@ -15,7 +15,9 @@ import { LockOutlined } from '@material-ui/icons';
 import PasswordField from '../../../../components/form-controls/PasswordField';
 import { validationLogin } from '../../../../ults/validationLogin';
 import FacebookLogin from 'react-facebook-login';
+import GoogleLogin from 'react-google-login';
 import './style.scss';
+import { FACEBOOK_ID, GOOGLE_ID } from '../../../../constants/config';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -46,20 +48,15 @@ const useStyles = makeStyles((theme) => ({
     left: 0,
     right: 0,
   },
-  facebookBtn: {
+  socialLoginBtn: {
     width: '100%',
-    display: 'flex',
-    justifyContent: 'center',
-    marginTop: theme.spacing(2),
+    marginTop: theme.spacing(1),
   },
 }));
 
 LoginForm.propTypes = {
   onSubmit: PropTypes.func,
 };
-
-//config FACEBOOK_ID
-export const FACEBOOK_ID = 177408430989032;
 
 function LoginForm(props) {
   const classes = useStyles();
@@ -91,6 +88,16 @@ function LoginForm(props) {
       await onFacebookLogin(response);
       setLoading(false);
     }
+  };
+
+  //handle login google
+  const responseGoogle = async (response) => {
+    setLoading(true);
+    const { onGoogleLogin } = props;
+    if (onGoogleLogin) {
+      await onGoogleLogin(response);
+    }
+    setLoading(false);
   };
   return (
     <div className={classes.root}>
@@ -126,13 +133,33 @@ function LoginForm(props) {
           Đăng nhập
         </Button>
       </form>
-      <div className={classes.facebookBtn}>
+      <hr />
+      <div className={classes.socialLoginBtn}>
         <FacebookLogin
           appId={FACEBOOK_ID}
           fields="name,email,picture"
           scope="public_profile, email"
           callback={responseFacebook}
           icon="fa-facebook"
+        />
+      </div>
+      <div className={classes.socialLoginBtn}>
+        <GoogleLogin
+          clientId={GOOGLE_ID}
+          render={(renderProps) => (
+            <button
+              onClick={renderProps.onClick}
+              disabled={renderProps.disabled}
+              className="loginGoogleBtn"
+            >
+              <i className="fa fa-google" />
+              <span>LOGIN WITH GOOGLE</span>
+            </button>
+          )}
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={'single_host_origin'}
         />
       </div>
     </div>

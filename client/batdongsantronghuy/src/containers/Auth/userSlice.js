@@ -32,14 +32,28 @@ export const login = createAsyncThunk('user/login', async (payload) => {
 export const loginFacebook = createAsyncThunk(
   'user/loginFacebook',
   async (payload) => {
-    const data = await userAPI.loginFacebook(payload);
+    const data = await userAPI.loginFacebook({ token: payload.token });
+    const avatar = payload?.avatar;
+    //save data to local storage
+    localStorage.setItem('access_token', data.data.jwToken);
+    localStorage.setItem('user', JSON.stringify({ ...data.data, avatar }));
+
+    //return user data
+    return { ...data.data, avatar };
+  }
+);
+export const loginGoogle = createAsyncThunk(
+  'user/loginGoogle',
+  async (payload) => {
+    const data = await userAPI.loginGoogle({ token: payload.token });
+    const avatar = payload?.avatar;
 
     //save data to local storage
     localStorage.setItem('access_token', data.data.jwToken);
-    localStorage.setItem('user', JSON.stringify(data.data));
+    localStorage.setItem('user', JSON.stringify({ ...data.data, avatar }));
 
     //return user data
-    return data.data;
+    return { ...data.data, avatar };
   }
 );
 

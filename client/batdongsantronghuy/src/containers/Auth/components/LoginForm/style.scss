@@ -1,3 +1,26 @@
 .kep-login-facebook {
   padding: 12px 20px !important;
+  width: 100%;
+}
+.loginGoogleBtn {
+  width: 100%;
+  padding: 12px 20px;
+  font-family: Helvetica, sans-serif !important;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: calc(0.27548vw + 12.71074px);
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: background-color 0.3s, border-color 0.3s;
+  background-color: red;
+  border: calc(0.06887vw + 0.67769px) solid red;
+  i {
+    margin-right: calc(0.34435vw + 3.38843px);
+  }
+  span {
+    font-family: Helvetica, sans-serif !important;
+  }
 }

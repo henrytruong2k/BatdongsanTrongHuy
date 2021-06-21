@@ -9,7 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 export const PostBadges = ({ quantity = 0, togglePopUp }) => {
   return (
     <Tooltip title="Danh sách tin đã lưu" arrow>
-      <div className="header__menu--badges" onClick={togglePopUp}>
+      <div className="header__menu header__menu--badges" onClick={togglePopUp}>
         <IconButton aria-label="cart">
           <Badge
             badgeContent={quantity}

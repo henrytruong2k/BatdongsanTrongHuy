@@ -10,7 +10,12 @@ const userAPI = {
     return axiosClient.post(url, data);
   },
   loginFacebook(data) {
-    const url = '/Account/authenticate-social';
+    const url = '/Account/authenticate-facebook';
+    return axiosClient.post(url, data);
+  },
+  loginGoogle(data) {
+    console.log('data userAPI loginGoogle: ', data);
+    const url = '/Account/authenticate-google';
     return axiosClient.post(url, data);
   },
 };

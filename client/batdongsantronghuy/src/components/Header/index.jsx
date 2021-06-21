@@ -81,6 +81,7 @@ export const Header = () => {
     setIsLoggedIn(loggedInUser?.id);
     dispatch(action);
     handleCloseMenu();
+    history.push(router.ROOT);
   };
   //handle pop up
   const { open, handleTogglePopUp } = usePopup();
@@ -111,14 +112,17 @@ export const Header = () => {
                   className="d-flex align-items-center user-click"
                   onClick={handleUserClick}
                 >
-                  <IconButton color="inherit" className="icon-btn">
+                  {loggedInUser?.avatar ? (
                     <img
-                      src="/home-page/profile-user.svg"
-                      width="20"
-                      height="20"
-                      alt={loggedInUser?.fullName}
+                      src={loggedInUser?.avatar}
+                      alt="Avatar"
+                      className="avatar-image"
                     />
-                  </IconButton>
+                  ) : (
+                    <IconButton color="inherit" className="icon-btn">
+                      <AccountCircleIcon />
+                    </IconButton>
+                  )}
                   <p className="mb-0">{loggedInUser?.fullName}</p>
                 </div>
               </>
