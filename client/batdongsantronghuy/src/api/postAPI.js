@@ -46,6 +46,13 @@ const postAPI = {
 
     const formData = new FormData();
     for (const name in data) {
+      if (name === 'ImageFile') {
+        if (data[name].length > 0) {
+          data[name]?.forEach((item) => {
+            formData.append('ImageFile', item);
+          });
+        }
+      }
       formData.append(name, data[name]);
     }
     return axiosClient.post(url, formData, {
@@ -54,8 +61,16 @@ const postAPI = {
   },
   async updatePost(data) {
     const url = `/v1/Post/UpdatePost/${data.id}`;
+
     const formData = new FormData();
     for (const name in data) {
+      if (name === 'ImageFile') {
+        if (data[name].length > 0) {
+          data[name]?.forEach((item) => {
+            formData.append('ImageFile', item);
+          });
+        }
+      }
       formData.append(name, data[name]);
     }
     return axiosClient.put(url, formData, {

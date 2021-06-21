@@ -42,6 +42,7 @@ import {
 import { validationPost } from '../../../../ults/validationPost';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
+import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
 moment.locale('vi');
 const useStyles = makeStyles((theme) => ({
@@ -281,22 +282,23 @@ function CreateForm(props) {
   // images
   const [imgs, setImgs] = useState([]);
   const handleImages = (e) => {
-    console.log('ảnh khi handleImages: ', e.target.files);
-    setImgs(e.target.files);
-
-    //submit form
-    // form.setValue('ImageFile', e.target.files[0]);
-    // form.setValue('ImageFile', imgs);
-
-    form.setValue('ImageFile', e.target.files[0]);
+    const newImages = [...imgs, ...e.target.files];
+    setImgs(newImages);
+    form.setValue('ImageFile', newImages);
   };
   const addImage = async (e) => {
-    console.log('add image', e.target.files);
-    const temp = { ...e.target.files };
-    console.log('temp: ', temp);
-    const list = [...imgs];
-    list.push(...e.target.files);
-    await setImgs([...list]);
+    const temp = e.target.files;
+    const list = [...imgs, temp[0]];
+    setImgs(list);
+    form.setValue('ImageFile', list);
+  };
+  const deleteImage = (index) => {
+    const imageNeedToDelete = imgs[index];
+    const newImages = [...imgs].filter(
+      (x) => x.name !== imageNeedToDelete.name
+    );
+    setImgs(newImages);
+    form.setValue('ImageFile', newImages);
   };
   return (
     <div className="mt-3">
@@ -484,12 +486,21 @@ function CreateForm(props) {
 
           {imgs.length > 0 && (
             <div className="d-flex flex-wrap">
-              {[...imgs].map((file) => (
-                <img
-                  src={URL.createObjectURL(file)}
-                  alt={file.name}
-                  className="image-preview"
-                />
+              {[...imgs].map((file, index) => (
+                <div className="screen-show-image">
+                  <img
+                    key={index}
+                    src={URL.createObjectURL(file)}
+                    alt={file.name}
+                    className="image-preview"
+                  />
+                  <HighlightOffIcon
+                    className="delete-btn"
+                    onClick={() => {
+                      deleteImage(index);
+                    }}
+                  />
+                </div>
               ))}
               <label className="add-image">
                 <input
@@ -563,6 +574,7 @@ function CreateForm(props) {
 
         <div className="d-flex">
           <SelectField
+            isClearable={false}
             styles={customStyles}
             form={form}
             name="ProjectId"
@@ -574,6 +586,7 @@ function CreateForm(props) {
             noOptionsMessage={() => 'Không tìm thấy kết quả'}
           />
           <SelectField
+            isClearable={false}
             styles={customStyles}
             form={form}
             name="CategoryId"

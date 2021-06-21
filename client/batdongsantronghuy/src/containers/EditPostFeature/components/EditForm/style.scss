@@ -3,3 +3,36 @@
     margin-left: 20px;
   }
 }
+.image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin: 10px 20px 10px 0;
+}
+.add-image {
+  width: 100px;
+  height: 100px;
+  margin: 10px 20px 10px 0;
+  cursor: pointer;
+  border-color: #ccc;
+  border-style: dotted;
+  position: relative;
+  svg {
+    width: 60px;
+    height: 60px;
+    fill: #ccc;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+.screen-show-image {
+  position: relative;
+  .delete-btn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+  }
+}

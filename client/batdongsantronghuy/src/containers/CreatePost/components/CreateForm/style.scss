@@ -25,3 +25,12 @@
     transform: translate(-50%, -50%);
   }
 }
+.screen-show-image {
+  position: relative;
+  .delete-btn {
+    position: absolute;
+    top: 0;
+    right: 10px;
+    cursor: pointer;
+  }
+}

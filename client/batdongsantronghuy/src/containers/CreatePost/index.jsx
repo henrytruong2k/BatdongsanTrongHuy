@@ -15,6 +15,7 @@ function CreatePost(props) {
       const reqJuridical = juridical.join(',');
       const furniture = values['Furniture'].map((item) => item.label);
       const reqFurniture = furniture.join(',');
+      console.log('value handleFormSubmit: ', values);
       const request = {
         ...values,
         Juridical: reqJuridical,
@@ -27,7 +28,7 @@ function CreatePost(props) {
       const response = await postAPI.createPost(request);
       if (response.succeeded) {
         setLoading(false);
-        history.push('/thanh-toan');
+        history.push(`/thanh-toan/${response.data.post.id}`);
       }
       console.log('response của create post: ', response);
     } catch (error) {

@@ -46,7 +46,9 @@ export const loginFacebook = createAsyncThunk(
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    current: {},
+    current: {
+      user: JSON.parse(localStorage.getItem('user')),
+    },
     settings: {},
     list: [],
   },
