@@ -12,5 +12,7 @@ export const emptyPostSaved = '/assets/EmptyState.svg';
 
 //login
 export const FACEBOOK_ID = 177408430989032;
+// export const GOOGLE_ID =
+//   '70663065631-g50d4a2rgkdrakth1rrvoiafb96r46h2.apps.googleusercontent.com';
 export const GOOGLE_ID =
-  '70663065631-g50d4a2rgkdrakth1rrvoiafb96r46h2.apps.googleusercontent.com';
+  '70663065631-5nq9f91jvcj6m11h49r2t9qiho0ucdim.apps.googleusercontent.com';

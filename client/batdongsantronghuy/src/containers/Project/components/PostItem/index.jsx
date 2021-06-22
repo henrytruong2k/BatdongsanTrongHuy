@@ -29,9 +29,9 @@ function PostItem({ post, clicked }) {
 
   const handleAddToFavoriteList = (post) => {
     if (!post) return;
-    const favoriteIDs = favoriteList.map((item) => item.id);
+    const favoriteIDs = favoriteList?.map((item) => item.id);
 
-    if (favoriteIDs.includes(post.id)) {
+    if (favoriteIDs?.includes(post.id)) {
       const action = removeFromFavoritePosts(post.id);
       dispatch(action);
     } else {
