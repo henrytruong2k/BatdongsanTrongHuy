@@ -4,9 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import './style.scss';
 import moment from 'moment';
 import 'moment/locale/vi';
-
 import 'leaflet/dist/leaflet.css';
-
 import TabsPanel from './components/TabsPanel';
 import Slider from 'react-slick';
 import MarkersMap from './components/MarkersMap';
@@ -23,11 +21,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import { nFormatter } from '../../../../ults/nFormatter';
 import RelatedPosts from './components/RelatedPosts';
 import Thumbnails from './components/Thumbnails';
+import Comment from './components/Comment';
 
 moment.locale('vi');
 
 function PostDetail({ post }) {
-  console.log('Post detail: ', post);
   const publishDate = post.createAt;
 
   const tabProps = {
@@ -47,73 +45,74 @@ function PostDetail({ post }) {
     rates: post.rates,
   };
 
-  const settings = {
-    customPaging: function (i) {
-      return (
-        <a>
-          <img src={`/assets/${i}.jpg`} alt="i" />
-        </a>
-      );
-    },
-    dots: true,
-    dotsClass: 'slick-dots slick-thumb',
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-  };
-
-  const [comment, setComment] = useState('');
-
-  const handleChange = (e) => {
-    setComment(e.target.value);
-  };
-
-  const list = orderBy(
-    post.comments,
-    [
-      function (obj) {
-        return moment(obj.createAt);
-      },
-    ],
-    ['desc']
-  );
-
-  const [commentList, setCommentList] = useState(list);
-  //reset after 1 minute
-
-  const [isLoading, setIsLoading] = useState(false);
-
   //handle login required
   const loggedInUser = useSelector((state) => state.user.current.user);
   const isLoggedIn = loggedInUser?.id;
   const [messageLoginRequired, setMessageLoginRequired] = useState('');
   const { isShowing, mode, toggle, navigate } = useDialog();
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      if (!isLoggedIn) {
-        setMessageLoginRequired('Vui lòng đăng nhập');
-        toggle();
-      } else {
-        if (comment) {
-          setIsLoading(true);
 
-          const response = await postAPI.commentPost({
-            content: comment,
-            postId: post.id,
-          });
-          console.log('cmt', response?.succeeded);
+  //handle comment
+  const list = orderBy(
+    post?.comments,
+    [
+      function (obj) {
+        return moment(obj?.createAt);
+      },
+    ],
+    ['desc']
+  );
+  const [commentList, setCommentList] = useState(list);
 
-          const newArr = [...commentList];
-          newArr.unshift(response.data);
-          setCommentList(newArr);
-          setIsLoading(false);
-        }
-      }
-    } catch (err) {
-      console.log(err);
-    }
+  const handleSubmitComment = async (values) => {
+    console.log('values handle Submit Comment: ', values);
+    const newArr = [...commentList];
+    newArr?.unshift(values.data);
+    setCommentList(newArr);
+
+    // try {
+    //   if (!isLoggedIn) {
+    //     setMessageLoginRequired('Vui lòng đăng nhập');
+    //     toggle();
+    //   } else {
+    //     if (values) {
+    //       setIsLoading(true);
+    //       const response = await postAPI.commentPost({
+    //         content: values.comment,
+    //         postId: post.id,
+    //         parentId: values.parentId || 0,
+    //       });
+    //       console.log('response data: ', response);
+    //       const { data } = response;
+
+    //       // if (response.succeeded && data.parentId) {
+    //       //   const getComment = commentList.filter(
+    //       //     (item) => item.id === data.parentId
+    //       //   );
+    //       //   const getReplies = getComment[0].replies;
+    //       //   const newArr = [...getReplies].push({
+    //       //     content: data.content,
+    //       //     createAt: data.createAt,
+    //       //     createdBy: data.createdBy,
+    //       //     id: data.id,
+    //       //     parentId: data.parentId,
+    //       //     postId: data.postId,
+    //       //     replies: [],
+    //       //     status: data.status,
+    //       //   });
+
+    //       //   console.log('getReplies', newArr);
+    //       // } else {
+    //       //   console.log('run else');
+    //       //   const newArr = [...commentList];
+    //       //   newArr.unshift(response.data);
+    //       //   setCommentList(newArr);
+    //       // }
+    //       setIsLoading(false);
+    //     }
+    //   }
+    // } catch (err) {
+    //   console.log(err);
+    // }
   };
 
   return (
@@ -165,60 +164,16 @@ function PostDetail({ post }) {
               className="mb-lg-3"
             ></p>
             <TabsPanel tabProps={tabProps} />
-            <div className="mt-lg-5 mb-lg-5">
+            <div className="mt-5">
               <MarkersMap mapConfig={post} />
             </div>
 
-            <div>
-              <form onSubmit={handleSubmit}>
-                <h3>Gửi bình luận</h3>
-                <textarea
-                  placeholder="Nhập bình luận..."
-                  name="comment"
-                  rows="8"
-                  className="w-100"
-                  onChange={handleChange}
-                ></textarea>
-                <input type="submit" id="send" value="Gửi bình luận" />
-              </form>
-            </div>
-
-            <div className="comment mt-4">
-              <h3>Bình luận</h3>
-              <ul>
-                {isLoading && <li>Loading...</li>}
-                {commentList.map((item) => {
-                  return (
-                    <li
-                      key={item.id}
-                      className="comment__item d-flex align-items-center my-3"
-                    >
-                      <div>
-                        <AccountCircleIcon fontSize="large" className="mr-3" />
-                      </div>
-                      <div>
-                        <div className="comment__author d-flex">
-                          <p>{item.createdBy}</p>
-                          <p className="tooltip__time">
-                            &nbsp;({moment(item.createAt).fromNow()})
-                            <span className="tooltiptext">
-                              {moment(item.createAt).format('LLLL')}
-                            </span>
-                          </p>
-                        </div>
-                        <p className="comment__content">{item.content}</p>
-                        <div className="d-flex comment__interact">
-                          <p>Thích</p>
-                          <p>Bình luận</p>
-                        </div>
-                      </div>
-                      <div className="ml-auto">
-                        <MoreVertIcon fontSize="large" />
-                      </div>
-                    </li>
-                  );
-                })}
-              </ul>
+            <div className="mt-5">
+              <Comment
+                postId={post.id}
+                commentList={commentList}
+                onSubmit={handleSubmitComment}
+              />
             </div>
 
             <div className="mt-5">

@@ -44,10 +44,10 @@ axiosClient.interceptors.response.use(
         const message = 'Token hết hạn. Vui lòng đăng nhập';
         throw new Error(message);
       }
-      if (config.url === '/v1/Post/CreatePost' && status === 401) {
+      if (config.url === '/v1/Post/CreatePost' && status === 400) {
         console.log('run');
-        const { message } = data;
-        throw new Error(message);
+        const { errors } = data;
+        throw new Error(errors);
       }
       return Promise.reject(error);
     } catch (error) {

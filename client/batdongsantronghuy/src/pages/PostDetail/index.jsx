@@ -11,9 +11,6 @@ const Wrapper = styled.div`
 `;
 
 const PostDetailPage = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   const { slug } = useParams();
   const [isLoading, setIsLoading] = useState(true);
   const [post, setPost] = useState(null);

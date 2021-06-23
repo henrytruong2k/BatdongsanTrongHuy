@@ -6,9 +6,11 @@ function Thumbnails({ postImages }) {
   const images = { ...postImages };
 
   //handle more images...
+  //add ? to handle no image received
+
   const imagesToUnshift = {
-    id: images[0].id,
-    image: images[0].url,
+    id: images[0]?.id,
+    image: images[0]?.url,
   };
   //handle thumbnails display
   const [nav1, setNav1] = useState(null);
@@ -25,7 +27,7 @@ function Thumbnails({ postImages }) {
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
-    
+
     arrows: true,
     fade: true,
     asNavFor: '.slider-nav',

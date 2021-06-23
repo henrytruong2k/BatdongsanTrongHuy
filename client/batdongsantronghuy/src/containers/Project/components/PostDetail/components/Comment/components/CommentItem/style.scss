@@ -1,0 +1,14 @@
+.sub-comment {
+  border-left: 2px solid #ccc;
+  padding-left: 10px;
+}
+.show-more-replies {
+  padding-left: 15px;
+  margin-bottom: 0;
+  color: #076db6;
+  font-size: 14px;
+  cursor: pointer;
+  &:hover {
+    text-decoration: underline;
+  }
+}

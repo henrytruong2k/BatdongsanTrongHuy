@@ -81,25 +81,40 @@
   z-index: 1;
 }
 .comment {
+  &__item {
+    width: 100%;
+  }
   &__author {
-    font-size: 12px;
+    font-size: 14px;
+    word-break: break-word;
     p {
-      margin-bottom: 0;
+      margin-bottom: 8px;
+      span {
+        margin-right: 10px;
+        font-weight: 600;
+      }
     }
   }
-  &__content {
-    margin-bottom: 0;
-  }
+
   &__interact {
     font-size: 12px;
 
     p {
       cursor: pointer;
-      margin-bottom: 0;
-      &:first-child {
-        margin-right: 10px;
+      margin-bottom: 8px;
+      margin-right: 20px;
+      &:hover {
+        color: #004f8b;
       }
     }
+  }
+}
+.reply {
+  font-size: 13px;
+  cursor: pointer;
+  color: #004f8b;
+  i {
+    margin-right: 5px;
   }
 }
 #send {
@@ -164,4 +179,24 @@
 }
 .slick-disabled {
   opacity: 0 !important;
+}
+
+//form reply
+.reply__form {
+  width: 100%;
+  .form-reply {
+    textarea {
+      width: 100%;
+      resize: vertical;
+      min-height: 48px;
+      margin-bottom: 8px;
+    }
+    .send-reply {
+      margin-left: 10px;
+      padding: 8px 12px;
+      font-weight: 600;
+      font-size: 14px;
+      max-height: 48px;
+    }
+  }
 }

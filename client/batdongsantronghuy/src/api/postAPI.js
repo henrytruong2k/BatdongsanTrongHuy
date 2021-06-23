@@ -82,7 +82,6 @@ const postAPI = {
     return axiosClient.get(url);
   },
   commentPost(data) {
-    console.log('data comment post: ', data);
     const url = `/v1/Post/CommentPost`;
     return axiosClient.post(url, data);
   },
