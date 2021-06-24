@@ -1,0 +1,15 @@
+.box-card {
+  &--other {
+    img {
+      width: 220px;
+      height: 144px;
+    }
+    display: flex;
+    width: 100%;
+  }
+  &__content {
+    &--other {
+      padding: 10px 20px;
+    }
+  }
+}

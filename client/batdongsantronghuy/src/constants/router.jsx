@@ -11,4 +11,5 @@ export const router = {
   BAIVIETQUANTAM: '/bai-viet-quan-tam',
   THAYDOITHONGTINCANHAN: '/thay-doi-thong-tin-ca-nhan',
   DOIMATKHAU: '/doi-mat-khau',
+  DUAN: '/du-an',
 };

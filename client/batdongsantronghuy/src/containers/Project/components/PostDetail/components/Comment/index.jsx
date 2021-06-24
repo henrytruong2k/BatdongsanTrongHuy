@@ -22,13 +22,12 @@ function Comment(props) {
     },
   });
 
-  // const reducer = commentList.reduce(
+  // const totalComments = commentList?.reduce(
   //   (acc, item) =>
-  //     item.replies.length > 0 ? acc + item.replies.length : acc + 1,
+  //     item.replies.length > 0 ? acc + item.replies.length + 1 : acc + 1,
   //   0
   // );
 
-  // console.log('count comment: ', reducer);
   const handleSubmit = (values) => {
     const { onSubmit } = props;
     if (onSubmit) {

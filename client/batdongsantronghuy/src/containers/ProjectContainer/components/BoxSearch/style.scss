@@ -1,0 +1,37 @@
+.box {
+  width: 100%;
+  border: 1px solid #ccc;
+  padding: 15px 15px 30px;
+  &__search {
+    display: flex;
+    align-items: center;
+    h5 {
+      font-size: 14px;
+      text-transform: uppercase;
+      margin-right: 10px;
+      margin-bottom: 0;
+    }
+    input[type='text'] {
+      width: 78%;
+      margin-right: 10px;
+      padding: 2px 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 12px;
+      &::placeholder {
+        font-style: italic;
+      }
+    }
+    input[type='submit'] {
+      background: url(https://file4.batdongsan.com.vn/images/project/tim-kiem-du-an.jpg)
+        no-repeat;
+      width: 101px;
+      height: 25px;
+      color: #ffffff;
+      padding-left: 35px;
+      border: none;
+      margin: 0;
+      font-size: 12px;
+    }
+  }
+}
