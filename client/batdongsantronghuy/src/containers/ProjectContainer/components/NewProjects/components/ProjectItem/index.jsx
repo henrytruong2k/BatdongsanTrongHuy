@@ -13,7 +13,7 @@ function ProjectItem({ project }) {
         <Link to={`/du-an/${project.id}`}>
           <h3>{project.name}</h3>
         </Link>
-        <p>{project.address}</p>
+        <p className="box-card__content--address">{project.address}</p>
         <p>
           Giá từ:&nbsp;
           <b>

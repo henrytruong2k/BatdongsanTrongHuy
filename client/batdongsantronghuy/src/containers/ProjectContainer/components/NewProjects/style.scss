@@ -1,6 +1,7 @@
 .box-header {
   display: flex;
   align-items: center;
+
   &__line {
     border-bottom: 1px solid #ccc;
     width: 100%;
@@ -22,5 +23,12 @@
     margin-top: 20px;
     display: flex;
     flex-wrap: wrap;
+    min-height: 303px;
+  }
+}
+.wrap-height {
+  min-height: 303px;
+  .loading {
+    margin-top: 20px;
   }
 }

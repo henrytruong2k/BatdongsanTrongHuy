@@ -1,0 +1,14 @@
+.project {
+  &__item {
+    border: 1px solid #ccc;
+    width: 255.5px;
+
+    margin-right: 20px;
+  }
+  &__content {
+    padding: 10px;
+    &--title {
+      height: 36px;
+    }
+  }
+}
