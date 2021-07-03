@@ -16,3 +16,8 @@ export const FACEBOOK_ID = 177408430989032;
 //   '70663065631-g50d4a2rgkdrakth1rrvoiafb96r46h2.apps.googleusercontent.com';
 export const GOOGLE_ID =
   '70663065631-5nq9f91jvcj6m11h49r2t9qiho0ucdim.apps.googleusercontent.com';
+
+export const VIEW_REQUIRED = 5;
+
+export const shareURL =
+  'https://www.facebook.com/B%E1%BA%A5t-%C4%91%E1%BB%99ng-s%E1%BA%A3n-Tr%E1%BB%8Dng-Huy-104818301848458';

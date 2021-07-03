@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
-import { Button, Card, Col } from 'react-bootstrap';
-import './style.scss';
-import { Link } from 'react-router-dom';
-import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import Tooltip from '@material-ui/core/Tooltip';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import { nFormatter } from '../../../../ults/nFormatter';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Card, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { addDefaultSrc } from '../../../../ults/addDefaultSrc';
+import { nFormatter } from '../../../../ults/nFormatter';
 import {
   addToFavoritePosts,
   removeFromFavoritePosts,
 } from '../../../FavoritePosts/favoritePostsSlice';
-import { addDefaultSrc } from '../../../../ults/addDefaultSrc';
-import Tooltip from '@material-ui/core/Tooltip';
+import './style.scss';
 
 PostItem.propTypes = {
   post: PropTypes.shape({

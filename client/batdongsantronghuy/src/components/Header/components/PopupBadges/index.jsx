@@ -21,7 +21,9 @@ function PopupBadges(props) {
   };
   return (
     <div className={clsx('pop-up', open ? 'd-block' : 'd-none')}>
-      <div className="pop-up__header">Tin đăng đã lưu</div>
+      <div className="pop-up__header">
+        Tin đăng đã lưu {favoriteList.length > 0 && `(${favoriteList.length})`}
+      </div>
       <div className="content">
         {favoriteList.length > 0 ? (
           favoriteList
@@ -29,7 +31,11 @@ function PopupBadges(props) {
             .reverse()
             .map((item) => {
               return (
-                <PostItemUI post={item} handleDelete={handleClickDeleteItem} />
+                <PostItemUI
+                  key={item.id}
+                  post={item}
+                  handleDelete={handleClickDeleteItem}
+                />
               );
             })
         ) : (

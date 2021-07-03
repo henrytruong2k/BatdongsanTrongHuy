@@ -1,7 +1,13 @@
 import React from 'react';
+import Wrapper from '../../components/Wrapper';
+import NewsContainer from '../../containers/NewsContainer';
 
 const NewsPage = () => {
-  return <>This is news page</>;
+  return (
+    <Wrapper>
+      <NewsContainer />
+    </Wrapper>
+  );
 };
 
 export default NewsPage;

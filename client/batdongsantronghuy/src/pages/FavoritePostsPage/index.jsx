@@ -1,10 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
+import Wrapper from '../../components/Wrapper';
 import FavoritePosts from '../../containers/FavoritePosts';
-
-const Wrapper = styled.div`
-  padding-top: 100px;
-`;
 
 function FavoritePostsPage(props) {
   return (

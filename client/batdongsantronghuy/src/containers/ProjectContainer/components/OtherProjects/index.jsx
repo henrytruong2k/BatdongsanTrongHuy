@@ -42,8 +42,8 @@ function OtherProjects({ projectList, projectTypeList }) {
               <div
                 key={item.id}
                 className={clsx(
-                  'content',
-                  toggleState === item.id && 'content--active'
+                  'other__content',
+                  toggleState === item.id && 'other__content--active'
                 )}
               >
                 {projectList.map((project) => {

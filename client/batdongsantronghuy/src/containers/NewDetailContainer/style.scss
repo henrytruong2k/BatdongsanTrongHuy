@@ -1,0 +1,27 @@
+.new {
+  &__title {
+    font-weight: bold;
+    color: #055699;
+    word-wrap: break-word;
+  }
+  &__info {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: #8f8f8f;
+    p {
+      &:not(:first-child) {
+        margin-left: 20px;
+      }
+    }
+  }
+  &__content {
+    img {
+      width: 100% !important;
+    }
+  }
+}
+.react-share__ShareCount {
+  font-size: 50px;
+  color: red;
+}

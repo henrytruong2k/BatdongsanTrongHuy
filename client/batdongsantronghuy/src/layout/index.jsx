@@ -13,6 +13,7 @@ import SettingPage from '../pages/SettingPage';
 import FavoritePostsPage from '../pages/FavoritePostsPage';
 import ProjectPage from '../pages/ProjectPage';
 import ProjectDetailPage from '../pages/ProjectDetailPage';
+import NewDetailPage from '../pages/NewDetailPage';
 
 function Layout() {
   return (
@@ -24,7 +25,12 @@ function Layout() {
         <Route path={router.BAIDANG} component={ProjectRouter} />
         <Route exact path={router.DUAN} component={ProjectPage} />
         <Route path="/du-an/:slug" component={ProjectDetailPage} />
-        <Route path={router.TINTUC} component={NewsPage} />
+        <Route exact path={router.TINTUC} component={NewsPage} />
+        <Route
+          exact
+          path={`${router.TINTUC}/:slug`}
+          component={NewDetailPage}
+        />
         <Route path="/thanh-toan/:id" component={PaymentPage} />
         <Route path={router.CAIDATTAIKHOAN} component={SettingPage} />
         <Route path={router.BAIVIETYEUTHICH} component={FavoritePostsPage} />

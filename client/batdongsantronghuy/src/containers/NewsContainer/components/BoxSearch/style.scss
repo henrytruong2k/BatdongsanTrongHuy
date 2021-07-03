@@ -1,0 +1,40 @@
+.input-search {
+  border: 1px solid #ccc;
+  padding: 5px 15px;
+  color: #2c2c2c;
+  width: 260px;
+
+  line-height: 20px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.select-text {
+  margin-left: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  height: 32px;
+  max-height: 32px;
+  min-width: 140px;
+}
+.btn-submit {
+  height: 32px;
+  max-height: 32px;
+  background: #055699;
+  font-size: 14px;
+  color: #fff;
+  text-align: center;
+  line-height: 20px;
+  padding: 5px 11px;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.icon-refresh {
+  margin-left: 16px;
+  cursor: pointer;
+  .fa {
+    &-refresh {
+      font-size: 32px !important;
+    }
+  }
+}

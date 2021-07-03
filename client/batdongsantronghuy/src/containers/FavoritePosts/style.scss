@@ -1,3 +1,5 @@
+@import '../../ults/scss/mixins';
+
 .post-card {
   display: flex;
   border-radius: 4px;
@@ -32,6 +34,9 @@
     .description,
     .time {
       color: #747c87;
+    }
+    .description {
+      @include textClamp(2);
     }
   }
 }
