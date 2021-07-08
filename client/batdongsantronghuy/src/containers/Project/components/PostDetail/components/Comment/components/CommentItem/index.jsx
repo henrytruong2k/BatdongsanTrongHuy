@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import orderBy from 'lodash/orderBy';
 import moment from 'moment';
 import 'moment/locale/vi';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import React, { useState } from 'react';
 import { FormReply } from '../FormReply';
-import orderBy from 'lodash/orderBy';
-import './style.scss';
 import CommentsReplied from './components/CommentReplied';
+import FormReport from './components/FormReport';
+import './style.scss';
 
 moment.locale('vi');
 
@@ -33,6 +34,16 @@ function CommentItem({ item, form, postId }) {
     setOpenReply(true);
   };
 
+  //handle report
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
   return (
     <div className="comment__item d-flex align-items-start my-3">
       <div>
@@ -46,7 +57,7 @@ function CommentItem({ item, form, postId }) {
         </div>
         <div className="d-flex comment__interact">
           <p onClick={() => setOpen(true)}>Bình luận</p>
-          <p>Báo cáo</p>
+          <p onClick={handleClick}>Báo cáo</p>
           <p className="tooltip__time">
             {moment(item.createAt).fromNow()}
             <span className="tooltiptext">
@@ -54,6 +65,8 @@ function CommentItem({ item, form, postId }) {
             </span>
           </p>
         </div>
+        <FormReport item={item} anchorEl={anchorEl} handleClose={handleClose} />
+
         <FormReply
           open={open}
           form={form}
@@ -76,7 +89,15 @@ function CommentItem({ item, form, postId }) {
         {repliesArr.length > 0 &&
           openReply &&
           repliesArr.slice(0, visible).map((item) => {
-            return <CommentsReplied reply={item} />;
+            return (
+              <CommentsReplied
+                key={item.id}
+                reply={item}
+                anchorEl={anchorEl}
+                handleClick={handleClick}
+                handleClose={handleClose}
+              />
+            );
           })}
 
         {repliesArr.length > 0 && openReply && visible < repliesArr.length && (

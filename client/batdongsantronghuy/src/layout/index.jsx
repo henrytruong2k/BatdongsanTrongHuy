@@ -32,8 +32,12 @@ function Layout() {
           component={NewDetailPage}
         />
         <Route path="/thanh-toan/:id" component={PaymentPage} />
-        <Route path={router.CAIDATTAIKHOAN} component={SettingPage} />
-        <Route path={router.BAIVIETYEUTHICH} component={FavoritePostsPage} />
+        <Route exact path={router.CAIDATTAIKHOAN} component={SettingPage} />
+        <Route
+          exact
+          path={router.BAIVIETYEUTHICH}
+          component={FavoritePostsPage}
+        />
 
         <Route component={NotFoundPage} />
       </Switch>

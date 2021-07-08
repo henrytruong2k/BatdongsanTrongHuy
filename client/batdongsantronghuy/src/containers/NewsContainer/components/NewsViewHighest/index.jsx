@@ -10,7 +10,7 @@ const NewsViewHighest = ({ list, loading }) => {
         <NewListLoading />
       ) : (
         <>
-          {list.slice(0, 3).map((item) => {
+          {list.slice(0, 5).map((item) => {
             return <NewItem key={item.id} newItem={item} />;
           })}
         </>

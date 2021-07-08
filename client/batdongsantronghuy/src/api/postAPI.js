@@ -101,6 +101,10 @@ const postAPI = {
     const url = `/v1/Post/Payment`;
     return axiosClient.post(url, data);
   },
+  reportComment(data) {
+    const url = `v1/Post/ReportComment`;
+    return axiosClient.post(url, data);
+  },
 };
 
 export default postAPI;

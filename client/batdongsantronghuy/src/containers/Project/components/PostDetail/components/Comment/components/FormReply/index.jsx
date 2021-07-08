@@ -1,9 +1,9 @@
 import { Controller, setValue } from 'react-hook-form';
 import postAPI from '../../../../../../../../api/postAPI';
+import Tooltip from '@material-ui/core/Tooltip';
 
 export const FormReply = ({ open, form, parentId, postId, onSubmit }) => {
   const handleSubmit = async (values) => {
-    console.log('data handle Form Reply: ', values);
     if (!values.comment) {
       return;
     }
@@ -13,7 +13,7 @@ export const FormReply = ({ open, form, parentId, postId, onSubmit }) => {
       postId: postId,
       parentId: values.parentId || 0,
     });
-    console.log('response form reply: ', response);
+
     if (response) {
       onSubmit(response);
       form.reset();
@@ -31,14 +31,18 @@ export const FormReply = ({ open, form, parentId, postId, onSubmit }) => {
                 <textarea {...field} placeholder="Nhập bình luận..." rows="2" />
               )}
             />
-            <input
-              type="submit"
-              className="send-reply"
-              value="Gửi"
-              onClick={() => {
-                form.setValue('parentId', parentId);
-              }}
-            />
+            <Tooltip title="Gửi">
+              <button
+                type="submit"
+                className="send-reply"
+                value="Gửi"
+                onClick={() => {
+                  form.setValue('parentId', parentId);
+                }}
+              >
+                <i className="fa fa-paper-plane" aria-hidden="true"></i>
+              </button>
+            </Tooltip>
           </div>
         </form>
       </div>
