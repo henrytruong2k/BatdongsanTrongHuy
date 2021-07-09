@@ -1,14 +1,11 @@
 import React from 'react';
-
 import { useSelector } from 'react-redux';
-import styled from 'styled-components';
+import Wrapper from '../../components/Wrapper';
 import Setting from '../../containers/Auth/components/Setting';
 
 function SettingPage(props) {
-  const loggedInUser =
-    useSelector((state) => state.user.current.user) ||
-    JSON.parse(localStorage.getItem('user'));
-  console.log('setting page: ', loggedInUser);
+  const loggedInUser = useSelector((state) => state.user.current.user);
+
   return (
     <Wrapper>
       <Setting user={loggedInUser}></Setting>
@@ -17,7 +14,3 @@ function SettingPage(props) {
 }
 
 export default SettingPage;
-
-const Wrapper = styled.div`
-  padding-top: 100px;
-`;

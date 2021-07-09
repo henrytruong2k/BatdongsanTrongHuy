@@ -6,8 +6,8 @@ import { noAvatar } from '../../../../constants/config';
 import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
 import { router } from '../../../../constants/router';
 import { NotFoundPage } from '../../../../pages/NotFound';
-
-Setting.propTypes = {};
+import ChangePassword from './components/ChangePassword';
+import ChangeUserInfo from './components/ChangeUserInfo';
 
 function Setting({ user }) {
   if (!user) return <NotFoundPage />;
@@ -66,6 +66,23 @@ function Setting({ user }) {
                 )}
               </ul>
             </div>
+            <div className="box__header">
+              <h3>Quản lý bài viết</h3>
+            </div>
+            <div className="box__manage-account">
+              <ul>
+                <li>
+                  <Link to={router.QUANLYBAIVIET} title="Quản lý bài viết">
+                    Quản lý bài viết
+                  </Link>
+                </li>
+                <li>
+                  <Link to={router.TAOBAIVIET} title="Tạo bài viết">
+                    Đăng bài
+                  </Link>
+                </li>
+              </ul>
+            </div>
           </Col>
           <Col className="col-9 manage-post">
             <Switch>
@@ -74,11 +91,15 @@ function Setting({ user }) {
                 path={router.CAIDATTAIKHOAN}
                 component={ComponentManagePost}
               />
-              <Route exact path={router.DOIMATKHAU} component={ComponentDMK} />
+              <Route
+                exact
+                path={router.DOIMATKHAU}
+                component={ChangePassword}
+              />
               <Route
                 exact
                 path={router.THAYDOITHONGTINCANHAN}
-                component={ComponentTDTTCN}
+                component={ChangeUserInfo}
               />
             </Switch>
           </Col>
@@ -89,13 +110,6 @@ function Setting({ user }) {
 }
 
 export default Setting;
-
-const ComponentDMK = () => {
-  return <p>Đổi mật khẩu</p>;
-};
-const ComponentTDTTCN = () => {
-  return <p>Thay đổi tt cá nhân</p>;
-};
 
 const ComponentManagePost = () => {
   return <p>Quản lý bài</p>;

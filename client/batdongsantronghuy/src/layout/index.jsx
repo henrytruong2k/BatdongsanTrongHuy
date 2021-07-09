@@ -14,6 +14,7 @@ import FavoritePostsPage from '../pages/FavoritePostsPage';
 import ProjectPage from '../pages/ProjectPage';
 import ProjectDetailPage from '../pages/ProjectDetailPage';
 import NewDetailPage from '../pages/NewDetailPage';
+import ChangePassword from '../containers/Auth/components/Setting/components/ChangePassword';
 
 function Layout() {
   return (
@@ -33,6 +34,13 @@ function Layout() {
         />
         <Route path="/thanh-toan/:id" component={PaymentPage} />
         <Route exact path={router.CAIDATTAIKHOAN} component={SettingPage} />
+        <Route exact path={router.DOIMATKHAU} component={SettingPage} />
+        <Route
+          exact
+          path={router.THAYDOITHONGTINCANHAN}
+          component={SettingPage}
+        />
+        <Route exact path={router.QUANLYBAIVIET} component={SettingPage} />
         <Route
           exact
           path={router.BAIVIETYEUTHICH}
