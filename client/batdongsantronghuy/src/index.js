@@ -8,7 +8,17 @@ import { Provider } from 'react-redux';
 import store from './app/store';
 import { SnackbarProvider } from 'notistack';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
-import { Button } from '@material-ui/core';
+import styled from 'styled-components';
+
+//style for button
+const CloseBtn = styled.div`
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  text-align: center;
+  border: 1px solid #fff;
+`;
 
 // add action to all snackbars
 const notistackRef = React.createRef();
@@ -22,7 +32,7 @@ ReactDOM.render(
         <SnackbarProvider
           ref={notistackRef}
           anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-          action={(key) => <Button onClick={onClickDismiss(key)}>x</Button>}
+          action={(key) => <CloseBtn onClick={onClickDismiss(key)}>x</CloseBtn>}
         >
           <App />
         </SnackbarProvider>

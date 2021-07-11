@@ -1,20 +1,62 @@
-import React from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { Button } from '@material-ui/core';
+import { stringify } from 'qs';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
+import userAPI from '../../../../../../api/userAPI';
+import { validationUpdateInfo } from '../../../../../../ults/validationUpdateInfo';
 import './style.scss';
 
 const ChangeUserInfo = () => {
+  const schema = validationUpdateInfo;
+
+  const userInfo = useSelector((state) => state.user.current.user);
+
   const {
     register,
     handleSubmit,
+    setValue,
+    formState: { errors, isDirty, isValid },
+  } = useForm({
+    defaultValues: {
+      FullName: userInfo.fullName,
+      Address: userInfo.address,
+      PhoneNumber: userInfo.phoneNumber,
+      ImageFile: null,
+    },
+    resolver: yupResolver(schema),
+  });
 
-    formState: { errors },
-  } = useForm();
+  const [avatar, setAvatar] = useState(null);
+  const handleChangeImage = (e) => {
+    setAvatar(e.target.files[0]);
+    setValue('ImageFile', e.target.files, { shouldDirty: true });
+  };
 
-  const onSubmit = (data) => console.log('form: ', data);
+  const onSubmit = async (data) => {
+    const response = await userAPI.updateUser({
+      ...data,
+      ImageFile: data.ImageFile[0],
+      Id: userInfo.id,
+    });
 
-  const userInfo = useSelector((state) => state.user.current.user);
-  console.log('userInfo: ', userInfo);
+    if (response) {
+      const { fullName, address, phoneNumber, image } = response.data;
+      localStorage.setItem(
+        'user',
+        JSON.stringify({
+          ...userInfo,
+          fullName,
+          address,
+          phoneNumber,
+          image,
+        })
+      );
+      window.location.reload();
+    }
+  };
+
   return (
     <>
       <div className="box__header box__header--textLeft">
@@ -30,28 +72,10 @@ const ChangeUserInfo = () => {
                 </label>
               </td>
               <td>
-                <input
-                  className="keycode"
-                  defaultValue={userInfo.fullName}
-                  {...register('FullName', { required: true })}
-                />
+                <input className="keycode" {...register('FullName')} />
                 {errors.FullName && (
-                  <p className="err-msg">Vui lòng nhập họ tên.</p>
+                  <p className="err-msg">{errors.FullName.message}</p>
                 )}
-              </td>
-            </tr>
-            <tr>
-              <td style={{ width: '130px' }}>
-                <label>
-                  Email <span style={{ color: 'red' }}>(*)</span>
-                </label>
-              </td>
-              <td>
-                <input
-                  className="keycode"
-                  defaultValue={userInfo.email}
-                  disabled
-                />
               </td>
             </tr>
             <tr>
@@ -61,13 +85,9 @@ const ChangeUserInfo = () => {
                 </label>
               </td>
               <td>
-                <input
-                  className="keycode"
-                  defaultValue={userInfo.address}
-                  {...register('Address', { required: true })}
-                />
+                <input className="keycode" {...register('Address')} />
                 {errors.Address && (
-                  <p className="err-msg">Vui lòng nhập địa chỉ.</p>
+                  <p className="err-msg">{errors.Address.message}</p>
                 )}
               </td>
             </tr>
@@ -78,13 +98,9 @@ const ChangeUserInfo = () => {
                 </label>
               </td>
               <td>
-                <input
-                  className="keycode"
-                  defaultValue={userInfo.phoneNumber}
-                  {...register('PhoneNumber', { required: true })}
-                />
+                <input className="keycode" {...register('PhoneNumber')} />
                 {errors.PhoneNumber && (
-                  <p className="err-msg">Vui lòng nhập số điện thoại.</p>
+                  <p className="err-msg">{errors.PhoneNumber.message}</p>
                 )}
               </td>
             </tr>
@@ -98,14 +114,33 @@ const ChangeUserInfo = () => {
                     className="d-none keycode"
                     type="file"
                     id="upload-photo"
+                    {...register('ImageFile')}
+                    onChange={handleChangeImage}
                   />
                   <div className="fileBtn">Chọn file</div>
                 </label>
               </td>
             </tr>
+            {avatar && (
+              <tr>
+                <td style={{ width: '130px' }}></td>
+                <td>
+                  <img
+                    className="avatar-image"
+                    src={URL.createObjectURL(avatar)}
+                    alt="Your avatar"
+                  />
+                </td>
+              </tr>
+            )}
             <tr>
               <td>
-                <input type="submit" className="saveBtn" value="Lưu" />
+                <input
+                  disabled={!isDirty || !isValid}
+                  type="submit"
+                  className="saveBtn"
+                  value="Lưu"
+                />
               </td>
             </tr>
           </table>

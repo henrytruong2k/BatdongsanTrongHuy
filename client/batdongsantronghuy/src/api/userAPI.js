@@ -14,9 +14,20 @@ const userAPI = {
     return axiosClient.post(url, data);
   },
   loginGoogle(data) {
-    console.log('data userAPI loginGoogle: ', data);
     const url = '/Account/authenticate-google';
     return axiosClient.post(url, data);
+  },
+
+  updateUser(data) {
+    const url = '/Account/update-user';
+
+    const formData = new FormData();
+    for (const name in data) {
+      formData.append(name, data[name]);
+    }
+    return axiosClient.put(url, formData, {
+      headers: { 'Content-Type': 'multipart/form-data' },
+    });
   },
 };
 

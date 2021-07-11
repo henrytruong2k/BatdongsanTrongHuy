@@ -113,10 +113,10 @@ export const Header = () => {
                   className="d-flex align-items-center user-click"
                   onClick={handleUserClick}
                 >
-                  {loggedInUser?.avatar ? (
+                  {loggedInUser?.image ? (
                     <img
-                      src={loggedInUser?.avatar}
-                      alt="Avatar"
+                      src={loggedInUser?.image}
+                      alt="Your Avatar"
                       className="avatar-image"
                     />
                   ) : (

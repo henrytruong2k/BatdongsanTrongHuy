@@ -11,6 +11,7 @@ import ChangeUserInfo from './components/ChangeUserInfo';
 
 function Setting({ user }) {
   if (!user) return <NotFoundPage />;
+
   return (
     <BrowserRouter>
       <Container>
@@ -20,10 +21,14 @@ function Setting({ user }) {
               <h3>Trang cá nhân</h3>
             </div>
             <div className="box__avatar">
-              {user?.avatar ? (
-                <img src={user.avatar} alt="Avatar" onError={addDefaultSrc} />
+              {user.image ? (
+                <img
+                  src={user.image}
+                  alt="Your avatar"
+                  onError={addDefaultSrc}
+                />
               ) : (
-                <img src={noAvatar} alt="Avatar" onError={addDefaultSrc} />
+                <img src={noAvatar} alt="Your avatar" onError={addDefaultSrc} />
               )}
             </div>
             <div className="box__info">
