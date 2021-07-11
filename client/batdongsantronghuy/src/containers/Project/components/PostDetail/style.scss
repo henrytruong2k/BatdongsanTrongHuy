@@ -83,6 +83,10 @@
 .comment {
   &__item {
     width: 100%;
+    .avatar-image {
+      margin-right: 17px;
+      margin-left: 3px;
+    }
   }
   &__author {
     font-size: 14px;

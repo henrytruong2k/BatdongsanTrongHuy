@@ -9,7 +9,15 @@ function CommentsReplied({ reply, anchorEl, handleClick, handleClose }) {
   return (
     <>
       <div className="sub-comment d-flex">
-        <AccountCircleIcon fontSize="large" className="mr-3" />
+        {reply?.userImage ? (
+          <img
+            src={reply?.userImage}
+            alt={`Ảnh đại diện của ${reply.createdBy}`}
+            className="avatar-image"
+          />
+        ) : (
+          <AccountCircleIcon fontSize="large" className="mr-3" />
+        )}
         <div className="w-100">
           <div className="comment__author d-flex">
             <p>

@@ -47,7 +47,15 @@ function CommentItem({ item, form, postId }) {
   return (
     <div className="comment__item d-flex align-items-start my-3">
       <div>
-        <AccountCircleIcon fontSize="large" className="mr-3" />
+        {item?.userImage ? (
+          <img
+            src={item?.userImage}
+            alt={`Ảnh đại diện của ${item.createdBy}`}
+            className="avatar-image"
+          />
+        ) : (
+          <AccountCircleIcon fontSize="large" className="mr-3" />
+        )}
       </div>
       <div className="w-100">
         <div className="comment__author d-flex">
