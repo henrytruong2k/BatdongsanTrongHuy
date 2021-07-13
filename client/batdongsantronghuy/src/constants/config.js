@@ -1,5 +1,4 @@
-// export const domain = 'https://batdongsanth.azurewebsites.net/api';
-export const domain = 'https://localhost:44353/api';
+export const domain = process.env.REACT_APP_DOMAIN_API;
 export const EXPDATE = 7;
 // export const failedImages = '/assets/NoImage.svg';
 export const failedImages =
@@ -10,12 +9,9 @@ export const noAvatar =
 
 export const emptyPostSaved = '/assets/EmptyState.svg';
 
-//login
-export const FACEBOOK_ID = 177408430989032;
-// export const GOOGLE_ID =
-//   '70663065631-g50d4a2rgkdrakth1rrvoiafb96r46h2.apps.googleusercontent.com';
-export const GOOGLE_ID =
-  '70663065631-5nq9f91jvcj6m11h49r2t9qiho0ucdim.apps.googleusercontent.com';
+//login social keys
+export const FACEBOOK_ID = process.env.REACT_APP_FACEBOOK_ID;
+export const GOOGLE_ID = process.env.REACT_APP_GOOGLE_ID;
 
 export const VIEW_REQUIRED = 5;
 

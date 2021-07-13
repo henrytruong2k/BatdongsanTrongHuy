@@ -3,13 +3,20 @@ import './style.scss';
 import { Container, Row, Col } from 'react-bootstrap';
 import { addDefaultSrc } from '../../../../ults/addDefaultSrc';
 import { noAvatar } from '../../../../constants/config';
-import { BrowserRouter, Route, Link, Switch } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Route,
+  Link,
+  Switch,
+  useHistory,
+} from 'react-router-dom';
 import { router } from '../../../../constants/router';
 import { NotFoundPage } from '../../../../pages/NotFound';
 import ChangePassword from './components/ChangePassword';
 import ChangeUserInfo from './components/ChangeUserInfo';
 
 function Setting({ user }) {
+  const history = useHistory();
   if (!user) return <NotFoundPage />;
 
   return (
@@ -82,7 +89,13 @@ function Setting({ user }) {
                   </Link>
                 </li>
                 <li>
-                  <Link to={router.TAOBAIVIET} title="Tạo bài viết">
+                  <Link
+                    onClick={() => {
+                      history.push(router.TAOBAIVIET);
+                    }}
+                    to={router.TAOBAIVIET}
+                    title="Tạo bài viết"
+                  >
                     Đăng bài
                   </Link>
                 </li>
@@ -93,6 +106,11 @@ function Setting({ user }) {
             <Switch>
               <Route
                 exact
+                path={router.THAYDOITHONGTINCANHAN}
+                component={ChangeUserInfo}
+              />
+              <Route
+                exact
                 path={router.CAIDATTAIKHOAN}
                 component={ComponentManagePost}
               />
@@ -100,11 +118,6 @@ function Setting({ user }) {
                 exact
                 path={router.DOIMATKHAU}
                 component={ChangePassword}
-              />
-              <Route
-                exact
-                path={router.THAYDOITHONGTINCANHAN}
-                component={ChangeUserInfo}
               />
             </Switch>
           </Col>

@@ -37,7 +37,7 @@ function Login(props) {
 
       const action = loginFacebook({
         token: values?.accessToken,
-        avatar: values?.picture.data.url,
+        image: values?.picture.data.url,
       });
       const resultAction = await dispatch(action);
       const user = unwrapResult(resultAction);
@@ -56,7 +56,7 @@ function Login(props) {
 
       const action = loginGoogle({
         token: values?.tokenId,
-        avatar: values?.profileObj?.imageUrl,
+        image: values?.profileObj?.imageUrl,
       });
       const resultAction = await dispatch(action);
       const user = unwrapResult(resultAction);

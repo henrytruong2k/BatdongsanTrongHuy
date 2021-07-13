@@ -58,7 +58,7 @@ export const Header = () => {
 
   //setting user
   const handleClickSettingUser = () => {
-    history.push(router.CAIDATTAIKHOAN);
+    history.push(router.THAYDOITHONGTINCANHAN);
     handleCloseMenu();
   };
   //create post

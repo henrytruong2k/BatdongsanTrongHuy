@@ -86,8 +86,8 @@ function LoginForm(props) {
     const { onFacebookLogin } = props;
     if (onFacebookLogin) {
       await onFacebookLogin(response);
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   //handle login google
