@@ -11,19 +11,17 @@ const ProjectSection = ({ projects }) => {
     dots: false,
     infinite: false,
     speed: 500,
-    slidesToShow: 4.2,
+    slidesToShow: 3.9,
     slidesToScroll: 1,
     autoPlay: true,
   };
   return (
     <StyledProjectSection>
-      <div className="d-flex justify-content-between">
-        <h2>Dự án nổi bật</h2>
+      <div className="d-flex justify-content-between align-items-center">
+        <h2 className="home__title">Dự án nổi bật</h2>
         <Link to={router.DUAN}>
-          <p>
-            Xem thêm&nbsp;
-            <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
-          </p>
+          Xem thêm&nbsp;
+          <i className="fa fa-long-arrow-right" aria-hidden="true"></i>
         </Link>
       </div>
 

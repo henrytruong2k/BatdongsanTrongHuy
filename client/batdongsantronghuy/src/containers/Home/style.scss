@@ -29,3 +29,12 @@ button[type='submit'] {
   right: -10%;
   font-size: 2.8rem !important;
 }
+
+.home {
+  &__title {
+    font-size: 28px;
+    line-height: 38px;
+    text-transform: none;
+    color: #2d373f;
+  }
+}

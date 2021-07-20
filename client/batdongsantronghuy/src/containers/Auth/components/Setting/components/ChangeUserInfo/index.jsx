@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Button } from '@material-ui/core';
-import { stringify } from 'qs';
+
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
@@ -65,84 +64,86 @@ const ChangeUserInfo = () => {
       <div className="mt-4">
         <form onSubmit={handleSubmit(onSubmit)}>
           <table className="tblInfo">
-            <tr>
-              <td style={{ width: '130px' }}>
-                <label>
-                  Họ và tên <span style={{ color: 'red' }}>(*)</span>
-                </label>
-              </td>
-              <td>
-                <input className="keycode" {...register('FullName')} />
-                {errors.FullName && (
-                  <p className="err-msg">{errors.FullName.message}</p>
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td style={{ width: '130px' }}>
-                <label>
-                  Địa chỉ <span style={{ color: 'red' }}>(*)</span>
-                </label>
-              </td>
-              <td>
-                <input className="keycode" {...register('Address')} />
-                {errors.Address && (
-                  <p className="err-msg">{errors.Address.message}</p>
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td style={{ width: '130px' }}>
-                <label>
-                  Số điện thoại <span style={{ color: 'red' }}>(*)</span>
-                </label>
-              </td>
-              <td>
-                <input className="keycode" {...register('PhoneNumber')} />
-                {errors.PhoneNumber && (
-                  <p className="err-msg">{errors.PhoneNumber.message}</p>
-                )}
-              </td>
-            </tr>
-            <tr>
-              <td style={{ width: '130px' }}>
-                <label>Ảnh đại diện</label>
-              </td>
-              <td>
-                <label htmlFor="upload-photo">
-                  <input
-                    className="d-none keycode"
-                    type="file"
-                    id="upload-photo"
-                    {...register('ImageFile')}
-                    onChange={handleChangeImage}
-                  />
-                  <div className="fileBtn">Chọn file</div>
-                </label>
-              </td>
-            </tr>
-            {avatar && (
+            <tbody>
               <tr>
-                <td style={{ width: '130px' }}></td>
+                <td style={{ width: '130px' }}>
+                  <label>
+                    Họ và tên <span style={{ color: 'red' }}>(*)</span>
+                  </label>
+                </td>
                 <td>
-                  <img
-                    className="avatar-image"
-                    src={URL.createObjectURL(avatar)}
-                    alt="Your avatar"
+                  <input className="keycode" {...register('FullName')} />
+                  {errors.FullName && (
+                    <p className="err-msg">{errors.FullName.message}</p>
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td style={{ width: '130px' }}>
+                  <label>
+                    Địa chỉ <span style={{ color: 'red' }}>(*)</span>
+                  </label>
+                </td>
+                <td>
+                  <input className="keycode" {...register('Address')} />
+                  {errors.Address && (
+                    <p className="err-msg">{errors.Address.message}</p>
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td style={{ width: '130px' }}>
+                  <label>
+                    Số điện thoại <span style={{ color: 'red' }}>(*)</span>
+                  </label>
+                </td>
+                <td>
+                  <input className="keycode" {...register('PhoneNumber')} />
+                  {errors.PhoneNumber && (
+                    <p className="err-msg">{errors.PhoneNumber.message}</p>
+                  )}
+                </td>
+              </tr>
+              <tr>
+                <td style={{ width: '130px' }}>
+                  <label>Ảnh đại diện</label>
+                </td>
+                <td>
+                  <label htmlFor="upload-photo">
+                    <input
+                      className="d-none keycode"
+                      type="file"
+                      id="upload-photo"
+                      {...register('ImageFile')}
+                      onChange={handleChangeImage}
+                    />
+                    <div className="fileBtn">Chọn file</div>
+                  </label>
+                </td>
+              </tr>
+              {avatar && (
+                <tr>
+                  <td style={{ width: '130px' }}></td>
+                  <td>
+                    <img
+                      className="avatar-image"
+                      src={URL.createObjectURL(avatar)}
+                      alt="Your avatar"
+                    />
+                  </td>
+                </tr>
+              )}
+              <tr>
+                <td>
+                  <input
+                    disabled={!isDirty || !isValid}
+                    type="submit"
+                    className="saveBtn"
+                    value="Lưu"
                   />
                 </td>
               </tr>
-            )}
-            <tr>
-              <td>
-                <input
-                  disabled={!isDirty || !isValid}
-                  type="submit"
-                  className="saveBtn"
-                  value="Lưu"
-                />
-              </td>
-            </tr>
+            </tbody>
           </table>
         </form>
       </div>

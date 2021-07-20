@@ -29,6 +29,10 @@ const userAPI = {
       headers: { 'Content-Type': 'multipart/form-data' },
     });
   },
+  changePassword(data) {
+    const url = '/Account/change-password';
+    return axiosClient.post(url, data);
+  },
 };
 
 export default userAPI;

@@ -11,7 +11,7 @@ const AdsBanner = () => {
     fade: true,
   };
   return (
-    <div>
+    <div className="mt-4 mb-4">
       <Slider {...settings}>
         <img
           src="https://file4.batdongsan.com.vn/2021/06/28/UVSXfqBy/20210628170821-3838.jpg"

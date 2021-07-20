@@ -15,7 +15,7 @@ import AdsBanner from './components/AdsBanner';
 import AreaSection from './components/AreaSection';
 import NewSection from './components/NewSection';
 import ProjectSection from './components/ProjectSection';
-import useProjectHome from './hooks/useProjectHome';
+import useGetHomeContent from './hooks/useGetHomeContent';
 import './style.scss';
 
 const HomeWrapper = styled.div`
@@ -221,7 +221,7 @@ export const HomeContainer = () => {
   };
 
   //projects
-  const { projects, loadingProjects } = useProjectHome();
+  const { projects, news, contentBanners, loading } = useGetHomeContent();
 
   return (
     <HomeWrapper>
@@ -398,17 +398,17 @@ export const HomeContainer = () => {
         </Container>
 
         <Container>
-          <ProjectSection projects={projects} loading={loadingProjects} />
+          <ProjectSection projects={projects} loading={loading} />
         </Container>
 
         <Container>
-          <AreaSection />
-        </Container>
-        <Container>
-          <NewSection />
+          <AreaSection contentBanners={contentBanners} loading={loading} />
         </Container>
         <Container>
           <AdsBanner />
+        </Container>
+        <Container>
+          <NewSection news={news} loading={loading} />
         </Container>
       </Container>
     </HomeWrapper>
