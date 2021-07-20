@@ -42,15 +42,22 @@ const NewItem = ({ newItem }) => {
         ></p>
         <div className="new-item__info">
           <p>
-            Ngày đăng:&nbsp;
+            <i className="fa fa-calendar" aria-hidden="true"></i>&nbsp;:&nbsp;
             <Tooltip title={moment(newItem.createAt).format('DD/MM/YYYY h:mm')}>
               <span>{moment(newItem.createAt).calendar()}</span>
             </Tooltip>
           </p>
-          <p>Loại tin tức: {newItem.type.name}</p>
-          <p>Tác giả: {newItem.user.fullName}</p>
           <p>
-            <i className="fa fa-eye" aria-hidden="true"></i>: {newItem.access}
+            <i className="fa fa-book" aria-hidden="true"></i>&nbsp;:&nbsp;
+            {newItem.type.name}
+          </p>
+          <p>
+            <i class="fa fa-user" aria-hidden="true"></i>&nbsp;:&nbsp;
+            {newItem.user.fullName}
+          </p>
+          <p>
+            <i className="fa fa-eye" aria-hidden="true"></i>&nbsp;:&nbsp;
+            {newItem.access}
           </p>
         </div>
       </div>
