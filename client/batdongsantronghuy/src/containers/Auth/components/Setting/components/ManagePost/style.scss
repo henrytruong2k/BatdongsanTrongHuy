@@ -1,0 +1,28 @@
+.table-manage {
+  margin-top: 24px;
+
+  td,
+  th {
+    font-size: 14px;
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+  }
+  th {
+    background-color: #ccc;
+  }
+  td {
+    img {
+      object-fit: cover;
+    }
+  }
+
+  .tool-items {
+    svg {
+      cursor: pointer;
+      &:hover {
+        color: #055699;
+      }
+    }
+  }
+}

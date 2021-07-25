@@ -15,7 +15,7 @@ function CreatePost(props) {
       const reqJuridical = juridical.join(',');
       const furniture = values['Furniture'].map((item) => item.label);
       const reqFurniture = furniture.join(',');
-      console.log('value handleFormSubmit: ', values);
+
       const request = {
         ...values,
         Juridical: reqJuridical,
@@ -23,12 +23,14 @@ function CreatePost(props) {
         ProjectId: values['ProjectId'].value,
         CategoryId: values['CategoryId'].value,
       };
-      console.log('handle Request', request);
 
       const response = await postAPI.createPost(request);
       if (response.succeeded) {
         setLoading(false);
         history.push(`/thanh-toan/${response.data.post.id}`);
+      } else {
+        setLoading(false);
+        setErrorMessage(response.message);
       }
       console.log('response của create post: ', response);
     } catch (error) {
@@ -41,8 +43,11 @@ function CreatePost(props) {
       <h1>Tạo bài viết mới</h1>
       <CreateForm onSubmit={handleFormSubmit} loading={loading} />
       {errorMessage && (
-        <p style={{ color: 'red' }} className="text-center">
-          {errorMessage}
+        <p
+          style={{ color: 'red', fontSize: '14px' }}
+          className="mt-4 text-center"
+        >
+          *{errorMessage}
         </p>
       )}
     </div>

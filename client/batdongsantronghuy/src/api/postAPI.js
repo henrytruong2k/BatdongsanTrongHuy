@@ -95,7 +95,8 @@ const postAPI = {
     return axiosClient.post(url, data);
   },
   deletePostByUser(id) {
-    console.log('delete post', id);
+    const url = `/v1/Post/DeletePostById/${id}`;
+    return axiosClient.delete(url);
   },
   paymentPost(data) {
     const url = `/v1/Post/Payment`;

@@ -14,11 +14,22 @@ import { router } from '../../../../constants/router';
 import { NotFoundPage } from '../../../../pages/NotFound';
 import ChangePassword from './components/ChangePassword';
 import ChangeUserInfo from './components/ChangeUserInfo';
+import ManagePost from './components/ManagePost';
+import useGetManagePost from './hooks/useGetManagePost';
+import { POSTTYPE } from '../../../../constants/postType';
 
 function Setting({ user }) {
+  const { postList, setPostList, loading } = useGetManagePost();
   const history = useHistory();
   if (!user) return <NotFoundPage />;
+  const posted = postList.filter((x) => x.status === POSTTYPE.POSTED);
+  const waiting = postList.filter((x) => x.status === POSTTYPE.WAITING);
+  const needToPay = postList.filter((x) => x.status === POSTTYPE.NEEDTOPAY);
 
+  const handleDelete = (id) => {
+    const listAfterDelete = postList.filter((x) => x.id !== id);
+    setPostList(listAfterDelete);
+  };
   return (
     <BrowserRouter>
       <Container>
@@ -47,13 +58,13 @@ function Setting({ user }) {
 
             <div className="box__post-status">
               <p>
-                Bài viết đang đã đăng: <b>0</b>
+                Bài viết đang đã đăng: <b>{posted.length}</b>
               </p>
               <p>
-                Bài viết đang chờ phê duyệt: <b>0</b>
+                Bài viết đang chờ phê duyệt: <b>{waiting.length}</b>
               </p>
               <p>
-                Bài viết đang chưa thanh toán: <b>0</b>
+                Bài viết đang chưa thanh toán: <b>{needToPay.length}</b>
               </p>
             </div>
             <div className="box__header">
@@ -111,8 +122,15 @@ function Setting({ user }) {
               />
               <Route
                 exact
-                path={router.CAIDATTAIKHOAN}
-                component={ComponentManagePost}
+                path={router.QUANLYBAIVIET}
+                render={() => (
+                  <ManagePost
+                    list={postList}
+                    loading={loading}
+                    onDelete={handleDelete}
+                    x
+                  />
+                )}
               />
               <Route
                 exact
@@ -128,7 +146,3 @@ function Setting({ user }) {
 }
 
 export default Setting;
-
-const ComponentManagePost = () => {
-  return <p>Quản lý bài</p>;
-};
