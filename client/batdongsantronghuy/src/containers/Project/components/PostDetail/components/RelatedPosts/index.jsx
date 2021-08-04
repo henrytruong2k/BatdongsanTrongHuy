@@ -9,6 +9,7 @@ import 'moment/locale/vi';
 moment.locale('vi');
 
 function RelatedPosts({ post }) {
+  if (post.related.length <= 0) return null;
   const relatedSettings = {
     dots: false,
     infinite: false,
@@ -18,7 +19,7 @@ function RelatedPosts({ post }) {
   };
   return (
     <div>
-      <h3>Bất động sản cùng khu vực</h3>
+      <h3>Bất động sản liên quan</h3>
       <Slider {...relatedSettings}>
         {post?.related?.map((item) => {
           return <RelatedItem item={item} />;

@@ -6,6 +6,7 @@ const useGetHomeContent = () => {
   const [projects, setProjects] = React.useState([]);
   const [news, setNews] = React.useState([]);
   const [contentBanners, setContentBanners] = React.useState([]);
+  const [postsHighlight, setPostsHighlight] = React.useState([]);
 
   React.useEffect(() => {
     try {
@@ -15,7 +16,7 @@ const useGetHomeContent = () => {
         setProjects(data?.projectsHighlight);
         setNews(data?.newsHighlight);
         setContentBanners(data?.contentBanners);
-
+        setPostsHighlight(data?.postsHighlight);
         //loading done of all parts
         setLoading(false);
       };
@@ -24,7 +25,7 @@ const useGetHomeContent = () => {
       console.log('Failed to fetch data of home page: ', error);
     }
   }, []);
-  return { projects, news, contentBanners, loading };
+  return { projects, news, contentBanners, postsHighlight, loading };
 };
 
 export default useGetHomeContent;

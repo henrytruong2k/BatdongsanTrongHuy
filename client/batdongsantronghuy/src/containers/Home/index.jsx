@@ -4,24 +4,27 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { getTrackBackground, Range } from 'react-range';
 import { useSelector } from 'react-redux';
 import Select from 'react-select';
+import Slider from 'react-slick';
 import styled from 'styled-components';
 import cityAPI from '../../api/cityAPI';
 import postAPI from '../../api/postAPI';
 import useCityOptions from '../../components/hooks/useCityOptions';
 import useGeoLocation from '../../components/hooks/useGeoLocation';
 import { deepEqual } from '../../ults/deepEqual';
+import { nFormatter } from '../../ults/nFormatter';
 import PostList from '../Project/components/PostList';
 import AdsBanner from './components/AdsBanner';
 import AreaSection from './components/AreaSection';
 import NewSection from './components/NewSection';
 import ProjectSection from './components/ProjectSection';
+import RecommendPost from './components/RecommendPost';
 import useGetHomeContent from './hooks/useGetHomeContent';
 import './style.scss';
 
 const HomeWrapper = styled.div`
   display: flex;
   align-items: center;
-  padding-top: 100px;
+  padding-top: 60px;
 `;
 
 export const HomeContainer = () => {
@@ -162,7 +165,7 @@ export const HomeContainer = () => {
   //react-range
   const STEP = 1000000;
   const MIN = 0;
-  const MAX = 100000000000;
+  const MAX = 10000000000;
   const [values, setValues] = React.useState([MIN, MAX]);
 
   const [isClicked, setIsClicked] = useState(false);
@@ -221,182 +224,208 @@ export const HomeContainer = () => {
   };
 
   //projects
-  const { projects, news, contentBanners, loading } = useGetHomeContent();
-
+  const { projects, news, postsHighlight, contentBanners, loading } =
+    useGetHomeContent();
+  const settings = {
+    infinite: true,
+    arrows: false,
+    dots: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true,
+    fade: true,
+  };
   return (
     <HomeWrapper>
-      <Container fluid>
-        <Container>
-          <Row>
-            <Col className="col-lg-4">
-              <Select
-                defaultOptions
-                cacheOptions
-                isClearable
-                value={filter?.city}
-                onChange={handleChangeCity}
-                options={cityOptions}
-                isLoading={isLoadingCity}
-                placeholder="Chọn thành phố..."
-                loadingMessage={() => 'Đang tìm kiếm...'}
-              />
-            </Col>
-            <Col className="col-lg-4">
-              <Select
-                ref={selectDistrict}
-                defaultOptions
-                cacheOptions
-                isClearable
-                value={filter?.district}
-                onChange={handleChangeDistrict}
-                options={districtOptions}
-                isLoading={isLoadingDistrict}
-                placeholder="Chọn quận..."
-                loadingMessage={() => 'Đang tìm kiếm...'}
-                noOptionsMessage={() => 'Không tìm thấy kết quả'}
-                isDisabled={isDisabled}
-              />
-            </Col>
-            <Col className="col-lg-4 range">
-              <Range
-                values={values}
-                step={STEP}
-                min={MIN}
-                max={MAX}
-                rtl={false}
-                onChange={(values) => {
-                  setValues(values);
-                }}
-                onFinalChange={handleOnFinalChange}
-                renderTrack={({ props, children }) => (
-                  <>
-                    <output
-                      style={{ fontSize: '14px', marginTop: '-14px' }}
-                      id="output"
-                    >
-                      Từ&nbsp;
-                      {Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND',
-                      }).format(values[0])}
-                      &nbsp;đến&nbsp;
-                      {Intl.NumberFormat('vi-VN', {
-                        style: 'currency',
-                        currency: 'VND',
-                      }).format(values[1])}
-                    </output>
-                    <div
-                      onMouseDown={props.onMouseDown}
-                      onTouchStart={props.onTouchStart}
-                      style={{
-                        ...props.style,
-                        height: '36px',
-                        display: 'flex',
-                        width: '100%',
-                      }}
-                    >
+      <Container fluid className="pl-0 pr-0">
+        <div className="slider-homepage">
+          <Slider {...settings}>
+            <img
+              src="https://file4.batdongsan.com.vn/Banners/HieuNM/HuyenNTD/1920x560/20210726-1127/images/bg1.jpg?1627273543079"
+              alt="Ads banner"
+            />
+            <img
+              src="https://file4.batdongsan.com.vn/Banners/HieuNM/HuyenNTD/1920x560/20210726-1127/images/bg2.jpg?1627273543079"
+              alt="Ads banner"
+            />
+          </Slider>
+
+          <div className="search-bar">
+            <Container>
+              <Row>
+                <Col className="col-lg-4">
+                  <Select
+                    defaultOptions
+                    cacheOptions
+                    isClearable
+                    value={filter?.city}
+                    onChange={handleChangeCity}
+                    options={cityOptions}
+                    isLoading={isLoadingCity}
+                    placeholder="Chọn thành phố..."
+                    loadingMessage={() => 'Đang tìm kiếm...'}
+                  />
+                </Col>
+                <Col className="col-lg-4">
+                  <Select
+                    ref={selectDistrict}
+                    defaultOptions
+                    cacheOptions
+                    isClearable
+                    value={filter?.district}
+                    onChange={handleChangeDistrict}
+                    options={districtOptions}
+                    isLoading={isLoadingDistrict}
+                    placeholder="Chọn quận..."
+                    loadingMessage={() => 'Đang tìm kiếm...'}
+                    noOptionsMessage={() => 'Không tìm thấy kết quả'}
+                    isDisabled={isDisabled}
+                  />
+                </Col>
+                <Col className="col-lg-4 range">
+                  <Range
+                    values={values}
+                    step={STEP}
+                    min={MIN}
+                    max={MAX}
+                    rtl={false}
+                    onChange={(values) => {
+                      setValues(values);
+                    }}
+                    onFinalChange={handleOnFinalChange}
+                    renderTrack={({ props, children }) => (
+                      <>
+                        <output
+                          style={{
+                            fontSize: '14px',
+                            marginTop: '-14px',
+                            color: '#fff',
+                          }}
+                          id="output"
+                        >
+                          Từ&nbsp;
+                          {nFormatter(values[0], 1)}
+                          &nbsp;đến&nbsp;
+                          {nFormatter(values[1], 1)}
+                        </output>
+                        <div
+                          onMouseDown={props.onMouseDown}
+                          onTouchStart={props.onTouchStart}
+                          style={{
+                            ...props.style,
+                            height: '32px',
+                            display: 'flex',
+                            width: '100%',
+                          }}
+                        >
+                          <div
+                            ref={props.ref}
+                            style={{
+                              height: '5px',
+                              width: '100%',
+                              borderRadius: '4px',
+                              background: getTrackBackground({
+                                values,
+                                colors: ['#ccc', '#548BF4', '#ccc'],
+                                min: MIN,
+                                max: MAX,
+                              }),
+                              alignSelf: 'center',
+                            }}
+                          >
+                            {children}
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    renderThumb={({ props, isDragged }) => (
                       <div
-                        ref={props.ref}
+                        {...props}
                         style={{
-                          height: '5px',
-                          width: '100%',
-                          borderRadius: '4px',
-                          background: getTrackBackground({
-                            values,
-                            colors: ['#ccc', '#548BF4', '#ccc'],
-                            min: MIN,
-                            max: MAX,
-                          }),
-                          alignSelf: 'center',
+                          ...props.style,
+                          height: '20px',
+                          width: '15px',
+                          borderRadius: '100%',
+                          backgroundColor: '#FFF',
+                          display: 'flex',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          boxShadow: '0px 2px 6px #AAA',
                         }}
                       >
-                        {children}
+                        <div
+                          style={{
+                            height: '16px',
+                            width: '5px',
+                            backgroundColor: isDragged ? '#548BF4' : '#CCC',
+                          }}
+                        />
                       </div>
-                    </div>
-                  </>
-                )}
-                renderThumb={({ props, isDragged }) => (
-                  <div
-                    {...props}
-                    style={{
-                      ...props.style,
-                      height: '20px',
-                      width: '15px',
-                      borderRadius: '100%',
-                      backgroundColor: '#FFF',
-                      display: 'flex',
-                      justifyContent: 'center',
-                      alignItems: 'center',
-                      boxShadow: '0px 2px 6px #AAA',
-                    }}
+                    )}
+                  />
+                </Col>
+
+                <Col className="col-lg-8 mt-3 mb-3">
+                  <input
+                    id="inputSearch"
+                    className="outline-none"
+                    value={filter.keyword}
+                    onChange={handleChangeKeyword}
+                    placeholder="Nhập từ khóa bạn muốn tìm kiếm..."
+                  />
+                </Col>
+                <Col className="col-lg-4 mt-3 mb-3">
+                  <button
+                    type="submit"
+                    onClick={handleSearch}
+                    className="btn-search"
                   >
-                    <div
-                      style={{
-                        height: '16px',
-                        width: '5px',
-                        backgroundColor: isDragged ? '#548BF4' : '#CCC',
-                      }}
-                    />
-                  </div>
-                )}
-              />
-            </Col>
+                    Tìm kiếm
+                  </button>
 
-            <Col className="col-lg-8 mt-3 mb-3">
-              <input
-                id="inputSearch"
-                className="outline-none"
-                value={filter.keyword}
-                onChange={handleChangeKeyword}
-                placeholder="Nhập từ khóa bạn muốn tìm kiếm..."
-              />
-            </Col>
-            <Col className="col-lg-4 mt-3 mb-3">
-              <button
-                type="submit"
-                onClick={handleSearch}
-                className="btn-search"
-              >
-                Tìm kiếm
-              </button>
+                  {/* <RotateLeftIcon
+                    fontSize="large"
+                    color="primary"
+                    className="btn-refresh"
+                    onClick={handleRefresh}
+                  /> */}
+                </Col>
+              </Row>
 
-              <RotateLeftIcon
-                fontSize="large"
-                color="primary"
-                className="btn-refresh"
-                onClick={handleRefresh}
-              />
-            </Col>
-          </Row>
+              {isClicked && (
+                <>
+                  <ul>
+                    Tìm kiếm theo các tiêu chí:
+                    {filter.city && <li>Thành phố: {filter.city.label}</li>}
+                    {filter.district && <li>Quận: {filter.district.label}</li>}
+                    {filter.price.length > 0 && (
+                      <li>
+                        Trong khoảng &nbsp;
+                        {Intl.NumberFormat('vi-VN', {
+                          style: 'currency',
+                          currency: 'VND',
+                        }).format(filter.price[0])}
+                        &nbsp;đến&nbsp;
+                        {Intl.NumberFormat('vi-VN', {
+                          style: 'currency',
+                          currency: 'VND',
+                        }).format(filter.price[1])}
+                      </li>
+                    )}
+                    {filter.keyword && <li>Từ khóa: {filter.keyword}</li>}
+                  </ul>
+                </>
+              )}
+            </Container>
+          </div>
+        </div>
+        <Container>{renderPostList}</Container>
 
-          {isClicked && (
-            <>
-              <ul>
-                Tìm kiếm theo các tiêu chí:
-                {filter.city && <li>Thành phố: {filter.city.label}</li>}
-                {filter.district && <li>Quận: {filter.district.label}</li>}
-                {filter.price.length > 0 && (
-                  <li>
-                    Trong khoảng &nbsp;
-                    {Intl.NumberFormat('vi-VN', {
-                      style: 'currency',
-                      currency: 'VND',
-                    }).format(filter.price[0])}
-                    &nbsp;đến&nbsp;
-                    {Intl.NumberFormat('vi-VN', {
-                      style: 'currency',
-                      currency: 'VND',
-                    }).format(filter.price[1])}
-                  </li>
-                )}
-                {filter.keyword && <li>Từ khóa: {filter.keyword}</li>}
-              </ul>
-            </>
-          )}
-
-          {renderPostList}
+        <Container fluid className="bg-grey">
+          <Container>
+            <RecommendPost list={postsHighlight} favoriteList={favoriteList} />
+          </Container>
         </Container>
-
         <Container>
           <ProjectSection projects={projects} loading={loading} />
         </Container>

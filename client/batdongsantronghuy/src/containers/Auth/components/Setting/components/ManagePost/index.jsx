@@ -25,11 +25,14 @@ const useStyles = makeStyles(() =>
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
+      '& div': {
+        zIndex: '1000',
+      },
     },
   })
 );
 
-const ManagePost = ({ list, loading, onDelete }) => {
+const ManagePost = ({ list, setList, loading, onDelete }) => {
   const [loadingToDelete, setLoadingToDelete] = React.useState(false);
   const history = useHistory();
   const classes = useStyles();
@@ -38,16 +41,16 @@ const ManagePost = ({ list, loading, onDelete }) => {
     let message = '';
     switch (status) {
       case POSTTYPE.POSTED:
-        message = 'Đã đăng';
+        message = 'Đã đăng.';
         break;
       case POSTTYPE.WAITING:
-        message = 'Chờ duyệt';
+        message = 'Chờ duyệt.';
         break;
       case POSTTYPE.NEEDTOPAY:
-        message = 'Chưa thanh toán';
+        message = 'Chưa thanh toán.';
         break;
       default:
-        message = 'Không tìm thấy';
+        message = 'Không tìm thấy.';
         break;
     }
     return message;
@@ -84,6 +87,15 @@ const ManagePost = ({ list, loading, onDelete }) => {
       }
     });
   };
+  const [search, setSearch] = React.useState('');
+  const postList = React.useMemo(() => {
+    if (!search) return list;
+
+    return list.filter((item) => {
+      return item.title.toLowerCase().includes(search.toLowerCase());
+    });
+  }, [search, list]);
+
   return (
     <>
       <div className="box__header box__header--textLeft">
@@ -92,7 +104,7 @@ const ManagePost = ({ list, loading, onDelete }) => {
 
       {loadingToDelete && (
         <div className={classes.backdrop}>
-          <Backdrop open={loadingToDelete} invisible={true}>
+          <Backdrop open={loadingToDelete}>
             <CircularProgress />
           </Backdrop>
         </div>
@@ -103,15 +115,21 @@ const ManagePost = ({ list, loading, onDelete }) => {
         </div>
       ) : (
         <>
+          <input
+            type="text"
+            className="form-search form-control"
+            placeholder="Tìm kiếm theo tiêu đề"
+            aria-label="Search"
+            aria-describedby="basic-addon1"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+          />
           {list.length === 0 ? (
             <div className="mt-4">
               <p>Hiện chưa có bài viết nào.</p>
             </div>
           ) : (
             <>
-              {/* <form>
-                <input placeholder="Nhập tiêu đề cần tìm kiếm..." />
-              </form> */}
               <div className="table-manage">
                 <table>
                   <thead>
@@ -127,7 +145,7 @@ const ManagePost = ({ list, loading, onDelete }) => {
                     </tr>
                   </thead>
                   <tbody>
-                    {list.map((item, index) => {
+                    {postList.map((item, index) => {
                       return (
                         <tr key={item.id}>
                           <td>{++index}</td>
@@ -142,10 +160,23 @@ const ManagePost = ({ list, loading, onDelete }) => {
                               height="50"
                             />
                           </td>
-                          <td>{item.title}</td>
+                          <td>
+                            <span>{item.title}</span>
+                          </td>
                           <td>{moment(item.startDate).format('DD/MM/YYYY')}</td>
                           <td>{moment(item.endDate).format('DD/MM/YYYY')}</td>
-                          <td>{showStatusMethod(item.status)}</td>
+                          <td>
+                            {showStatusMethod(item.status)}
+                            {item.status === POSTTYPE.NEEDTOPAY && (
+                              <a
+                                href={`/thanh-toan/${item.id}`}
+                                target="_blank"
+                                rel="noreferrer"
+                              >
+                                Thanh toán ngay!
+                              </a>
+                            )}
+                          </td>
                           <td>
                             <div className="tool-items d-flex">
                               <EditIcon

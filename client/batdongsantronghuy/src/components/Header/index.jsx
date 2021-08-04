@@ -9,7 +9,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, NavLink, useHistory } from 'react-router-dom';
 import { router } from '../../constants/router';
-import { logout } from '../../containers/Auth/userSlice';
+import { logout, showLogin } from '../../containers/Auth/userSlice';
 import useDialog from '../hooks/useDialog';
 import { LoginModal } from '../Modals/LoginModal';
 import PopupBadges from './components/PopupBadges';
@@ -22,6 +22,7 @@ import {
 import usePopup from './hooks/usePopup';
 
 export const Header = () => {
+  const dispatch = useDispatch();
   const favoriteList = useSelector((state) => state.favorite.favoriteItems);
   // save token
   const localSavedParsed = JSON.parse(localStorage.getItem('user'));
@@ -38,10 +39,11 @@ export const Header = () => {
     setIsLoggedIn(localSavedParsed?.id);
   }, [dependencies]);
 
-  const { isShowing, mode, toggle, navigate } = useDialog();
-
+  const { mode, navigate } = useDialog();
+  const mustLogin = useSelector((state) => state.user.mustLogin);
   const handleClickToLogin = () => {
-    toggle();
+    const action = showLogin();
+    dispatch(action);
   };
 
   //menu dropdown
@@ -75,7 +77,7 @@ export const Header = () => {
   };
 
   //logout
-  const dispatch = useDispatch();
+
   const handleLogoutClick = () => {
     const action = logout();
     setIsLoggedIn(loggedInUser?.id);
@@ -175,9 +177,8 @@ export const Header = () => {
             </Menu>
 
             <LoginModal
-              open={isShowing}
+              open={mustLogin.isRequired}
               mode={mode}
-              toggle={toggle}
               navigate={navigate}
             />
           </Col>

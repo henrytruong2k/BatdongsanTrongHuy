@@ -205,3 +205,47 @@
     }
   }
 }
+.main-right {
+  .box-contact {
+    border: 1px solid #ebedf0;
+    border-radius: 4px;
+    padding: 16px;
+    text-align: center;
+    .phone {
+      cursor: pointer;
+      width: 100%;
+      color: #fff;
+      padding: 13px 15px;
+      font-size: 14px;
+      line-height: 20px;
+      border-radius: 8px;
+      background: #42ba84;
+      border: 1px solid #42ba84;
+      font-weight: bold;
+      margin-bottom: 8px;
+      &:hover {
+        background-color: #2ca853;
+      }
+    }
+    .mail {
+      width: 100%;
+      text-align: center;
+      border: 1px solid #ccc;
+      font-size: 14px;
+      line-height: 20px;
+      padding: 13px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+      color: #2c2c2c;
+
+      &:hover {
+        background: #f2f2f2;
+      }
+      &:active {
+        background: #505050;
+        border: 1px solid #505050;
+        color: #fff;
+      }
+    }
+  }
+}

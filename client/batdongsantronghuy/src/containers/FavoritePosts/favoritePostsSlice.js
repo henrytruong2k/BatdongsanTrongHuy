@@ -20,9 +20,9 @@ const favoritePostsSlice = createSlice({
       const index = state.favoriteItems.findIndex((x) => x.id === newItem.id);
       if (index >= 0) {
         //handle not to add
-        console.log('from redux: đã tồn tại');
         return;
       } else {
+        state.showMiniFavoritePosts = true;
         state.favoriteItems.push(newItem);
         //save to localStorage
         const favoriteList =

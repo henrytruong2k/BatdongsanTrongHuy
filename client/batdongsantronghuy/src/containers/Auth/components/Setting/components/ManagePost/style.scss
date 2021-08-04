@@ -1,6 +1,14 @@
+@import '../../../../../../ults/scss/_mixins.scss';
+.form-search {
+  width: 250px;
+  margin-left: auto;
+  margin-top: 20px;
+}
 .table-manage {
   margin-top: 24px;
-
+  table {
+    min-width: 100%;
+  }
   td,
   th {
     font-size: 14px;
@@ -14,6 +22,9 @@
   td {
     img {
       object-fit: cover;
+    }
+    span {
+      @include textClamp(2);
     }
   }
 

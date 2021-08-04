@@ -32,11 +32,11 @@ function RatingPost({ postId }) {
         name="hover-feedback"
         value={value}
         precision={1}
-        onChange={(event, newValue) => {
+        onChange={(newValue) => {
           setValue(newValue);
           handleChange(newValue);
         }}
-        onChangeActive={(event, newHover) => {
+        onChangeActive={(newHover) => {
           setHover(newHover);
         }}
       />

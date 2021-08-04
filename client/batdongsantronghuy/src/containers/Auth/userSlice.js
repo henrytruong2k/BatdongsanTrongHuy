@@ -64,8 +64,26 @@ const userSlice = createSlice({
     },
     settings: {},
     list: [],
+
+    mustLogin: {
+      isRequired: false,
+      message: '',
+    },
   },
   reducers: {
+    showLogin(state) {
+      state.mustLogin = {
+        isRequired: true,
+        message: 'Vui lòng đăng nhập',
+      };
+    },
+    hideLogin(state) {
+      state.mustLogin = {
+        isRequired: false,
+        message: '',
+      };
+    },
+
     logout(state) {
       //clear local storage
       localStorage.removeItem('access_token');
@@ -94,5 +112,5 @@ const userSlice = createSlice({
 });
 
 const { actions, reducer } = userSlice;
-export const { logout } = actions;
+export const { logout, showLogin, hideLogin } = actions;
 export default reducer;

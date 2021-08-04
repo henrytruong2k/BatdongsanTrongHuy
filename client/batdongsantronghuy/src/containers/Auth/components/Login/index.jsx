@@ -1,9 +1,6 @@
 import { unwrapResult } from '@reduxjs/toolkit';
-import { useSnackbar } from 'notistack';
-import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import userAPI from '../../../../api/userAPI';
 import { login, loginFacebook, loginGoogle } from '../../userSlice';
 import LoginForm from '../LoginForm';
 
@@ -24,7 +21,6 @@ function Login(props) {
       if (closeDialog) {
         closeDialog();
       }
-      console.log('New user: ', user);
     } catch (error) {
       console.log('Fail to login in login: ', error);
       // enqueueSnackbar(error.message, { variant: 'error' });
@@ -33,8 +29,6 @@ function Login(props) {
 
   const handleLoginFacebook = async (values) => {
     try {
-      console.log('handle login facebook: ', values);
-
       const action = loginFacebook({
         token: values?.accessToken,
         image: values?.picture.data.url,
@@ -51,7 +45,6 @@ function Login(props) {
   };
   const handleLoginGoogle = async (values) => {
     try {
-      console.log('handle login google: ', values);
       //handle get images from values.profileObj
 
       const action = loginGoogle({
@@ -82,9 +75,5 @@ function Login(props) {
     </div>
   );
 }
-
-Login.propTypes = {
-  onSubmit: PropTypes.func,
-};
 
 export default Login;

@@ -34,11 +34,18 @@ const ChangeUserInfo = () => {
   };
 
   const onSubmit = async (data) => {
-    const response = await userAPI.updateUser({
-      ...data,
-      ImageFile: data.ImageFile[0],
-      Id: userInfo.id,
-    });
+    let request;
+    if (data?.ImageFile[0]) {
+      request = { ...data, ImageFile: data.ImageFile[0], Id: userInfo.id };
+    } else {
+      request = { ...data, Id: userInfo.id };
+    }
+    // const response = await userAPI.updateUser({
+    //   ...data,
+    //   // ImageFile: data?.ImageFile[0],
+    //   Id: userInfo.id,
+    // });
+    const response = await userAPI.updateUser(request);
 
     if (response) {
       const { fullName, address, phoneNumber, image } = response.data;

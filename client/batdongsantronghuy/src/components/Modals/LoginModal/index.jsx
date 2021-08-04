@@ -1,13 +1,14 @@
 import { Box, Dialog, IconButton, makeStyles, Button } from '@material-ui/core';
 import { Close } from '@material-ui/icons';
+import { useDispatch } from 'react-redux';
 import { MODE } from '../../../constants/mode';
 import Login from '../../../containers/Auth/components/Login';
 import Register from '../../../containers/Auth/components/Register';
+import { hideLogin } from '../../../containers/Auth/userSlice';
 
 export const LoginModal = ({
   open,
   mode = MODE.LOGIN,
-  toggle,
   navigate,
   message = null,
 }) => {
@@ -22,8 +23,10 @@ export const LoginModal = ({
     },
   }));
   const classes = useStyles();
+  const dispatch = useDispatch();
   const handleClose = () => {
-    toggle();
+    const action = hideLogin();
+    dispatch(action);
     navigate(MODE.LOGIN);
   };
 
@@ -48,7 +51,7 @@ export const LoginModal = ({
             {message && (
               <p
                 style={{ padding: '12px 16px 0' }}
-                className="text-center text-danger"
+                className="text-center text-danger mb-0"
               >
                 *{message}
               </p>

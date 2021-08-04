@@ -2,19 +2,13 @@ import { useState } from 'react';
 import { MODE } from '../../constants/mode';
 
 const useDialog = () => {
-  const [isShowing, setIsShowing] = useState(false);
   const [mode, setMode] = useState(MODE.LOGIN);
-  function toggle() {
-    setIsShowing(!isShowing);
-  }
+
   function navigate(mode) {
     setMode(mode);
   }
-  // function close() {
-  //   setIsShowing(false);
-  // }
 
-  return { isShowing, mode, toggle, navigate };
+  return { mode, navigate };
 };
 
 export default useDialog;

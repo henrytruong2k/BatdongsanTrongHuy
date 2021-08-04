@@ -25,8 +25,7 @@ const useStyles = makeStyles((theme) => ({
 function PostList(props) {
   const classes = useStyles();
   const { posts, loading, pagination, changePage, favoriteList } = props;
-  console.log('posts ở postlist: ', posts);
-  console.log('favoriteList tại POST LIST: ', favoriteList);
+
   const favoriteIDs = favoriteList.map((item) => item.id);
 
   // const clickedItems = posts.filter((item) => favoriteList.includes(item));

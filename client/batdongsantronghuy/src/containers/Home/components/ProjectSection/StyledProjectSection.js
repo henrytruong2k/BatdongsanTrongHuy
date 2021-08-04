@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledProjectSection = styled.div`
+  margin-top: 30px;
   .title--truncate {
     font-size: 16px;
     font-weight: 600;

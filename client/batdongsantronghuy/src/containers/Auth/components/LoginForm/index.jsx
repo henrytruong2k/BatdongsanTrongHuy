@@ -1,23 +1,21 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import {
   Avatar,
   Button,
   LinearProgress,
   makeStyles,
-  Typography,
+  Typography
 } from '@material-ui/core';
-import PropTypes from 'prop-types';
-import React, { useState } from 'react';
-import { useForm } from 'react-hook-form';
-import InputField from '../../../../components/form-controls/InputField';
-import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 import { LockOutlined } from '@material-ui/icons';
-import PasswordField from '../../../../components/form-controls/PasswordField';
-import { validationLogin } from '../../../../ults/validationLogin';
+import React, { useState } from 'react';
 import FacebookLogin from 'react-facebook-login';
 import GoogleLogin from 'react-google-login';
-import './style.scss';
+import { useForm } from 'react-hook-form';
+import InputField from '../../../../components/form-controls/InputField';
+import PasswordField from '../../../../components/form-controls/PasswordField';
 import { FACEBOOK_ID, GOOGLE_ID } from '../../../../constants/config';
+import { validationLogin } from '../../../../ults/validationLogin';
+import './style.scss';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,10 +51,6 @@ const useStyles = makeStyles((theme) => ({
     marginTop: theme.spacing(1),
   },
 }));
-
-LoginForm.propTypes = {
-  onSubmit: PropTypes.func,
-};
 
 function LoginForm(props) {
   const classes = useStyles();

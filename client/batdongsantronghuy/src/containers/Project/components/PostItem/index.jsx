@@ -1,7 +1,6 @@
 import Tooltip from '@material-ui/core/Tooltip';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
-import PropTypes from 'prop-types';
 import React from 'react';
 import { Card, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
@@ -13,15 +12,16 @@ import {
   removeFromFavoritePosts,
 } from '../../../FavoritePosts/favoritePostsSlice';
 import './style.scss';
-
-PostItem.propTypes = {
-  post: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    title: PropTypes.string.isRequired,
-    image: PropTypes.string,
-    description: PropTypes.string,
-  }),
-};
+import moment from 'moment';
+import 'moment/locale/vi';
+moment.locale('vi');
+moment.updateLocale('vi', {
+  calendar: {
+    lastDay: '[Hôm qua]',
+    sameDay: '[Hôm nay]',
+    nextDay: '[Ngày mai]',
+  },
+});
 
 function PostItem({ post, clicked }) {
   const dispatch = useDispatch();
@@ -40,16 +40,8 @@ function PostItem({ post, clicked }) {
     }
   };
   return (
-    <Col className="post col-lg-4">
+    <Col className="post col-lg-3">
       <Card>
-        <div className="d-flex justify-content-space-between">
-          <div className="post__tag post__tag--category">
-            {post.category.name}
-          </div>
-          <div className="post__tag post__tag--city">
-            {post?.address?.city.cityName}
-          </div>
-        </div>
         <Link to={`/bai-dang/${post.id}`}>
           <Card.Img
             src={post?.images[0]?.url}
@@ -61,53 +53,33 @@ function PostItem({ post, clicked }) {
           <Link to={`/bai-dang/${post.id}`}>
             <Card.Title>{post.title}</Card.Title>
           </Link>
+          <p className="post__price">{nFormatter(post.price)}</p>
           <p className="post__address">
             <i className="fa fa-map-marker mr-2 color-blue"></i>
-            {post.address.street},&nbsp;
             {post.address.district.districtName}
             ,&nbsp;{post.address.city.cityName}
           </p>
-          <Card.Text
-            dangerouslySetInnerHTML={{ __html: post.description }}
-          ></Card.Text>
-          <div className="post__price">
-            <h5>
-              Giá:&nbsp;
-              {nFormatter(post?.price)}
-            </h5>
-            <div
-              style={{ cursor: 'pointer' }}
-              onClick={() => handleAddToFavoriteList(post)}
-            >
-              {clicked ? (
+
+          <div
+            className="post__info"
+            onClick={() => handleAddToFavoriteList(post)}
+          >
+            <span>{moment(post.startDate).calendar()}</span>
+            {clicked ? (
+              <div style={{ cursor: 'pointer' }}>
                 <Tooltip title="Bấm để bỏ lưu tin" arrow>
                   <FavoriteIcon />
                 </Tooltip>
-              ) : (
+              </div>
+            ) : (
+              <div style={{ cursor: 'pointer' }}>
                 <Tooltip title="Bấm để lưu tin" arrow>
                   <FavoriteBorderIcon />
                 </Tooltip>
-              )}
-            </div>
+              </div>
+            )}
           </div>
         </Card.Body>
-        <div className="post__footer">
-          <ul>
-            <li>
-              <i className="fa fa-arrows mr-2 color-blue"></i>
-              {post.direction}
-            </li>
-            <li>
-              <i className="fa fa-bed mr-2 color-blue"></i>
-              {post.bedroom}
-            </li>
-            <li>
-              <i className="fa fa-home mr-2 color-blue"></i>
-              {post.numberofFloor} tầng
-            </li>
-            <li></li>
-          </ul>
-        </div>
       </Card>
     </Col>
   );

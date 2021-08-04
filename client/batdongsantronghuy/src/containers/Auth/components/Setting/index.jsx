@@ -125,6 +125,7 @@ function Setting({ user }) {
                 path={router.QUANLYBAIVIET}
                 render={() => (
                   <ManagePost
+                    setList={setPostList}
                     list={postList}
                     loading={loading}
                     onDelete={handleDelete}
