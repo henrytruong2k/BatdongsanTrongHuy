@@ -202,7 +202,11 @@ const ManagePost = ({ list, setList, loading, onDelete }) => {
                             <InfoIcon
                               className="mx-1"
                               onClick={() => {
-                                history.push(`/bai-dang/${item.id}`);
+                                history.push(
+                                  item.status === 3
+                                    ? `/bai-dang/${item.id}?type=demo`
+                                    : `/bai-dang/${item.id}`
+                                );
                                 window.location.reload();
                               }}
                             />

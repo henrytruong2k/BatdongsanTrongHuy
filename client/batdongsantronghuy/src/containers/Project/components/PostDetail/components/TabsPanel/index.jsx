@@ -163,7 +163,7 @@ export default function TabsPanel({ tabProps }) {
           <div>
             {tabProps.rates.map((item) => {
               return (
-                <div className="rate__item d-flex justify-content-between align-items-center my-3">
+                <div key={item.id} className="rate__item d-flex justify-content-between align-items-center my-3">
                   <div className="d-flex">
                     <p>{item.rating}</p>
                     <StarIcon style={{ color: 'yellow' }} />

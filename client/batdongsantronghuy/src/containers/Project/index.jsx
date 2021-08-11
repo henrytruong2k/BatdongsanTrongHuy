@@ -31,7 +31,7 @@ function PostContainer(props) {
   // useEffect(() => {
   //   setFavoriteList(JSON.parse(localStorage.getItem('favoriteList')));
   // }, [render]);
-  console.log('favoriteList: âss', favoriteList);
+
   useEffect(() => {
     console.log('run effect');
     const fetchPosts = async () => {

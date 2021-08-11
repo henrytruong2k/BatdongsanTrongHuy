@@ -24,6 +24,8 @@ moment.updateLocale('vi', {
 });
 
 function PostItem({ post, clicked }) {
+  const now = new Date();
+
   const dispatch = useDispatch();
   const favoriteList = JSON.parse(localStorage.getItem('favoriteList'));
 
@@ -35,7 +37,10 @@ function PostItem({ post, clicked }) {
       const action = removeFromFavoritePosts(post.id);
       dispatch(action);
     } else {
-      const action = addToFavoritePosts({ ...post, savedAt: new Date() });
+      const action = addToFavoritePosts({
+        ...post,
+        savedAt: now.toISOString(),
+      });
       dispatch(action);
     }
   };

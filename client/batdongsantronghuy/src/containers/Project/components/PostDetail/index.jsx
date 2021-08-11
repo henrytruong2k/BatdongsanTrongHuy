@@ -19,7 +19,7 @@ import './style.scss';
 
 moment.locale('vi');
 
-function PostDetail({ post }) {
+function PostDetail({ post, type = null }) {
   const dispatch = useDispatch();
   const loggedInUser = useSelector((state) => state.user.current.user);
   const isLoggedIn = loggedInUser?.id;
@@ -73,6 +73,14 @@ function PostDetail({ post }) {
     <>
       <Container>
         <Row>
+          <Col className="col-12">
+            {type !== null && (
+              <p className="text-primary">
+                <i className="fa fa-info-circle" aria-hidden="true"></i> Bạn
+                đang thực hiện hành động xem bài viết chưa thanh toán.
+              </p>
+            )}
+          </Col>
           <Col className="col-lg-9">
             <Thumbnails postImages={post?.images} />
             <PostInfo post={post} />
@@ -81,22 +89,25 @@ function PostDetail({ post }) {
               <MarkersMap mapConfig={post} />
             </div>
 
-            <div className="mt-5">
-              <Comment
-                postId={post.id}
-                commentList={commentList}
-                onSubmit={handleSubmitComment}
-              />
-            </div>
+            {type === null && (
+              <>
+                <div className="mt-5">
+                  <Comment
+                    postId={post.id}
+                    commentList={commentList}
+                    onSubmit={handleSubmitComment}
+                  />
+                </div>
 
-            <div className="mt-5">
-              <h3>Đánh giá</h3>
-              <RatingPost postId={post.id} />
-            </div>
-
-            <div className="mt-5">
-              <RelatedPosts post={post} />
-            </div>
+                <div className="mt-5">
+                  <h3>Đánh giá</h3>
+                  <RatingPost postId={post.id} />
+                </div>
+                <div className="mt-5">
+                  <RelatedPosts post={post} />
+                </div>
+              </>
+            )}
           </Col>
           <Col className="col-lg-3">
             <div className="main-right">

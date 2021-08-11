@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { nFormatter } from '../../../../../../ults/nFormatter';
 import moment from 'moment';
 import 'moment/locale/vi';
+import './style.scss';
 
 moment.locale('vi');
 
@@ -17,14 +18,17 @@ function RelatedPosts({ post }) {
     slidesToShow: 3.7,
     slidesToScroll: 1,
   };
+
   return (
     <div>
       <h3>Bất động sản liên quan</h3>
-      <Slider {...relatedSettings}>
-        {post?.related?.map((item) => {
-          return <RelatedItem item={item} />;
-        })}
-      </Slider>
+      <div className="slider-related">
+        <Slider {...relatedSettings}>
+          {post?.related?.map((item) => {
+            return <RelatedItem key={item.id} item={item} />;
+          })}
+        </Slider>
+      </div>
     </div>
   );
 }
@@ -34,16 +38,17 @@ export default RelatedPosts;
 const RelatedItem = ({ item }) => {
   return (
     <div className="product">
-      <img
-        src={item.images[0].url}
-        className="product__image"
-        alt={item.title}
-      />
+      <Link to={`/bai-dang/${item.id}`}>
+        <img
+          src={item.images[0].url}
+          className="product__image"
+          alt={item.title}
+        />
+      </Link>
+
       <div className="product__info">
         <h3>
-          <Link to={`/bai-dang/${item.images[0].post.id}`}>
-            {item.images[0].post.title}
-          </Link>
+          <Link to={`/bai-dang/${item.id}`}>{item.title}</Link>
         </h3>
         <p className="product__info--bold">
           {nFormatter(item.price, 1)}&nbsp;-&nbsp;
