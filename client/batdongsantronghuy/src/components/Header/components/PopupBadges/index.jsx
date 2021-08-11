@@ -1,24 +1,28 @@
-import React from 'react';
-import './style.scss';
-import clsx from 'clsx';
-import { Link } from 'react-router-dom';
-import { router } from '../../../../constants/router';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import clsx from 'clsx';
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import {
-  removeFromFavoritePosts,
-  hideMiniFavoritePosts,
-} from '../../../../containers/FavoritePosts/favoritePostsSlice';
-import { addDefaultSrc } from '../../../../ults/addDefaultSrc';
+import { Link } from 'react-router-dom';
 import { emptyPostSaved } from '../../../../constants/config';
+import { router } from '../../../../constants/router';
+import { removeFromFavoritePosts } from '../../../../containers/FavoritePosts/favoritePostsSlice';
+import { addDefaultSrc } from '../../../../ults/addDefaultSrc';
+import './style.scss';
+import moment from 'moment';
+import 'moment/locale/vi';
+import { Tooltip } from '@material-ui/core';
+moment.locale('vi');
+moment.updateLocale('vi', {
+  calendar: {
+    lastDay: '[Hôm qua]',
+    sameDay: '[Hôm nay]',
+    nextDay: '[Ngày mai]',
+  },
+});
 
 function PopupBadges(props) {
   const { open, favoriteList } = props;
-  const dispatch = useDispatch();
-  const handleClickDeleteItem = (postID) => {
-    const action = removeFromFavoritePosts(postID);
-    dispatch(action);
-  };
+
   return (
     <div className={clsx('pop-up', open ? 'd-block' : 'd-none')}>
       <div className="pop-up__header">
@@ -30,13 +34,7 @@ function PopupBadges(props) {
             .slice(0, 3)
             .reverse()
             .map((item) => {
-              return (
-                <PostItemUI
-                  key={item.id}
-                  post={item}
-                  handleDelete={handleClickDeleteItem}
-                />
-              );
+              return <PostItemUI key={item.id} post={item} />;
             })
         ) : (
           <NoData />
@@ -53,20 +51,16 @@ function PopupBadges(props) {
 
 export default PopupBadges;
 
-function PostItemUI({ post, handleDelete }) {
+function PostItemUI({ post }) {
   const dispatch = useDispatch();
-  const handleClickDeleteItem = () => {
-    if (!handleDelete) return;
-    handleDelete(post.id);
-  };
-
-  const closePopUp = () => {
-    const action = hideMiniFavoritePosts();
+  const handleDeleteItem = (id) => {
+    const action = removeFromFavoritePosts(id);
     dispatch(action);
   };
+
   return (
     <div className="content__item">
-      <Link to={`/bai-dang/${post.id}`} title={post.title} onClick={closePopUp}>
+      <Link to={`/bai-dang/${post.id}`} title={post.title}>
         <img
           src={post?.images[0]?.url}
           width="64"
@@ -74,14 +68,21 @@ function PostItemUI({ post, handleDelete }) {
           alt={post.title}
           onError={addDefaultSrc}
         />
-        <div className="content__text">
-          <div className="title">{post.title}</div>
-          <div className="time">Lưu 3 ngày trước</div>
-        </div>
-        <div className="delete-btn" onClick={handleClickDeleteItem}>
-          <HighlightOffIcon htmlColor="black" />
-        </div>
       </Link>
+      <div className="content__text">
+        <Link to={`/bai-dang/${post.id}`} title={post.title}>
+          <p className="title">{post.title}</p>
+        </Link>
+        <Tooltip
+          title={moment(post.savedAt).format('DD/MM/YYYY')}
+          placement="right"
+        >
+          <div className="time">{moment(post.savedAt).calendar()}</div>
+        </Tooltip>
+      </div>
+      <div className="delete-btn" onClick={() => handleDeleteItem(post.id)}>
+        <HighlightOffIcon htmlColor="black" />
+      </div>
     </div>
   );
 }

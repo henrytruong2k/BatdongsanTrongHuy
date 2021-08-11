@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import postAPI from '../../../../../../api/postAPI';
 import { POSTTYPE } from '../../../../../../constants/postType';
+import Pagination from './components/PaginationComponent';
 import './style.scss';
 
 const useStyles = makeStyles(() =>
@@ -64,8 +65,8 @@ const ManagePost = ({ list, setList, loading, onDelete }) => {
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Xóa!',
-      cancelButtonText: 'Hủy!',
+      confirmButtonText: 'Xóa',
+      cancelButtonText: 'Hủy',
     }).then((result) => {
       if (result.isConfirmed) {
         (async () => {
@@ -88,13 +89,23 @@ const ManagePost = ({ list, setList, loading, onDelete }) => {
     });
   };
   const [search, setSearch] = React.useState('');
-  const postList = React.useMemo(() => {
-    if (!search) return list;
+  const [currentPage, setCurrentPage] = React.useState(1);
+  const [totalItems, setTotalItems] = React.useState(0);
+  const ITEMS_PER_PAGE = 3;
 
-    return list.filter((item) => {
-      return item.title.toLowerCase().includes(search.toLowerCase());
-    });
-  }, [search, list]);
+  const postList = React.useMemo(() => {
+    let computedList = list;
+    if (search) {
+      computedList = computedList.filter((item) =>
+        item.title.toLowerCase().includes(search.toLowerCase())
+      );
+    }
+    setTotalItems(computedList.length);
+    return computedList.slice(
+      (currentPage - 1) * ITEMS_PER_PAGE,
+      (currentPage - 1) * ITEMS_PER_PAGE + ITEMS_PER_PAGE
+    );
+  }, [search, list, currentPage]);
 
   return (
     <>
@@ -124,93 +135,99 @@ const ManagePost = ({ list, setList, loading, onDelete }) => {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
           />
-          {list.length === 0 ? (
-            <div className="mt-4">
-              <p>Hiện chưa có bài viết nào.</p>
-            </div>
-          ) : (
-            <>
-              <div className="table-manage">
-                <table>
-                  <thead>
-                    <tr>
-                      <th>STT</th>
-                      <th>Mã tin</th>
-                      <th>Ảnh</th>
-                      <th>Tiêu đề</th>
-                      <th>Ngày bắt đầu</th>
-                      <th>Ngày hết hạn</th>
-                      <th>Trạng thái</th>
-                      <th>Công cụ</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {postList.map((item, index) => {
-                      return (
-                        <tr key={item.id}>
-                          <td>{++index}</td>
-                          <td>
-                            <b>#{item.id}</b>
-                          </td>
-                          <td>
-                            <img
-                              src={item?.images[0]?.url}
-                              alt={item.title}
-                              width="50"
-                              height="50"
+          <div className="table-manage">
+            <table>
+              <thead>
+                <tr>
+                  <th>STT</th>
+                  <th>Mã tin</th>
+                  <th>Ảnh</th>
+                  <th>Tiêu đề</th>
+                  <th>Ngày bắt đầu</th>
+                  <th>Ngày hết hạn</th>
+                  <th>Trạng thái</th>
+                  <th>Công cụ</th>
+                </tr>
+              </thead>
+              <tbody>
+                {postList.length === 0 ? (
+                  <tr>
+                    <td colSpan="8">Không tìm thấy bài đăng phù hợp.</td>
+                  </tr>
+                ) : (
+                  postList.map((item, index) => {
+                    return (
+                      <tr key={item.id}>
+                        <td>{++index}</td>
+                        <td>
+                          <b>#{item.id}</b>
+                        </td>
+                        <td>
+                          <img
+                            src={item?.images[0]?.url}
+                            alt={item.title}
+                            width="50"
+                            height="50"
+                          />
+                        </td>
+                        <td>
+                          <span>{item.title}</span>
+                        </td>
+                        <td>{moment(item.startDate).format('DD/MM/YYYY')}</td>
+                        <td>{moment(item.endDate).format('DD/MM/YYYY')}</td>
+                        <td>
+                          {showStatusMethod(item.status)}
+                          {item.status === POSTTYPE.NEEDTOPAY && (
+                            <a
+                              href={`/thanh-toan/${item.id}`}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              Thanh toán ngay!
+                            </a>
+                          )}
+                        </td>
+                        <td>
+                          <div className="tool-items d-flex">
+                            <EditIcon
+                              className="mx-1"
+                              onClick={() => {
+                                history.push(
+                                  `/bai-dang/sua-bai-viet/${item.id}`
+                                );
+                                window.location.reload();
+                              }}
                             />
-                          </td>
-                          <td>
-                            <span>{item.title}</span>
-                          </td>
-                          <td>{moment(item.startDate).format('DD/MM/YYYY')}</td>
-                          <td>{moment(item.endDate).format('DD/MM/YYYY')}</td>
-                          <td>
-                            {showStatusMethod(item.status)}
-                            {item.status === POSTTYPE.NEEDTOPAY && (
-                              <a
-                                href={`/thanh-toan/${item.id}`}
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                Thanh toán ngay!
-                              </a>
-                            )}
-                          </td>
-                          <td>
-                            <div className="tool-items d-flex">
-                              <EditIcon
-                                className="mx-1"
-                                onClick={() => {
-                                  history.push(
-                                    `/bai-dang/sua-bai-viet/${item.id}`
-                                  );
-                                  window.location.reload();
-                                }}
-                              />
 
-                              <InfoIcon
-                                className="mx-1"
-                                onClick={() => {
-                                  history.push(`/bai-dang/${item.id}`);
-                                  window.location.reload();
-                                }}
-                              />
+                            <InfoIcon
+                              className="mx-1"
+                              onClick={() => {
+                                history.push(`/bai-dang/${item.id}`);
+                                window.location.reload();
+                              }}
+                            />
 
-                              <DeleteIcon
-                                className="mx-1"
-                                onClick={() => handleDelete(item.id)}
-                              />
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-            </>
-          )}
+                            <DeleteIcon
+                              className="mx-1"
+                              onClick={() => handleDelete(item.id)}
+                            />
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })
+                )}
+              </tbody>
+            </table>
+          </div>
+          <div className="table-pagination">
+            <Pagination
+              total={totalItems}
+              itemsPerPage={ITEMS_PER_PAGE}
+              currentPage={currentPage}
+              onPageChange={(page) => setCurrentPage(page)}
+            />
+          </div>
         </>
       )}
     </>

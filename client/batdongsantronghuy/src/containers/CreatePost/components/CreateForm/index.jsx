@@ -146,6 +146,7 @@ function CreateForm(props) {
       EndDate: expPost,
       ProjectId: '',
       CategoryId: '',
+      PromotionCode: '',
     },
     resolver: yupResolver(schema),
   });
@@ -598,6 +599,12 @@ function CreateForm(props) {
             noOptionsMessage={() => 'Không tìm thấy kết quả'}
           />
         </div>
+        <InputField
+          className={classes.inputLeft}
+          form={form}
+          name="PromotionCode"
+          label="Mã khuyến mãi"
+        />
 
         <Button
           variant="contained"

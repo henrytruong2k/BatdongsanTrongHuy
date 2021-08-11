@@ -35,7 +35,7 @@ function PostItem({ post, clicked }) {
       const action = removeFromFavoritePosts(post.id);
       dispatch(action);
     } else {
-      const action = addToFavoritePosts(post);
+      const action = addToFavoritePosts({ ...post, savedAt: new Date() });
       dispatch(action);
     }
   };

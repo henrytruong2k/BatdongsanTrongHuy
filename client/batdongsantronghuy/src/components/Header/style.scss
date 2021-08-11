@@ -30,19 +30,23 @@
     img {
       fill: #fff;
     }
-    a {
-      text-decoration: none;
-      color: #fff;
-      margin-right: 16px;
-      font-size: 14px;
-      text-transform: uppercase;
-      font-weight: 600;
-      &:last-child {
-        margin-right: 0px;
-      }
-    }
+
     .active {
       color: #2cbdb8;
+    }
+  }
+  &__link {
+    text-decoration: none;
+    color: #fff;
+    margin-right: 16px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 600;
+    &:hover {
+      color: #2cbdb8;
+    }
+    &:last-child {
+      margin-right: 0px;
     }
   }
 }

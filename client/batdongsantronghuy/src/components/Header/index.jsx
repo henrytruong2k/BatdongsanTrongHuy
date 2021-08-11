@@ -96,11 +96,21 @@ export const Header = () => {
             <Link to={router.ROOT}>bất động sản trọng huy</Link>
           </Col>
           <Col className="header__menu col-lg-9">
-            <NavLink to={router.TRANGCHU}>Trang chủ</NavLink>
-            <NavLink to={router.BAIDANG}>Bài đăng</NavLink>
-            <NavLink to={router.DUAN}>Dự án</NavLink>
-            <NavLink to={router.TINTUC}>Tin tức</NavLink>
-            <NavLink to={router.LIENHE}>Liên hệ</NavLink>
+            <NavLink className="header__link" to={router.TRANGCHU}>
+              Trang chủ
+            </NavLink>
+            <NavLink className="header__link" to={router.BAIDANG}>
+              Bài đăng
+            </NavLink>
+            <NavLink className="header__link" to={router.DUAN}>
+              Dự án
+            </NavLink>
+            <NavLink className="header__link" to={router.TINTUC}>
+              Tin tức
+            </NavLink>
+            <NavLink className="header__link" to={router.LIENHE}>
+              Liên hệ
+            </NavLink>
 
             <PostBadges
               quantity={favoriteList.length}

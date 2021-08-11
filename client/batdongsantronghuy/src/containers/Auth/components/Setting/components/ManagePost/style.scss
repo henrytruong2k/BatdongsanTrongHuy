@@ -6,6 +6,7 @@
 }
 .table-manage {
   margin-top: 24px;
+  min-height: 261px;
   table {
     min-width: 100%;
   }
@@ -36,4 +37,9 @@
       }
     }
   }
+}
+.table-pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
 }

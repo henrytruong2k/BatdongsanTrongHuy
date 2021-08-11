@@ -20,12 +20,15 @@
     padding: 12px 0;
   }
   &__footer {
+    border-top: 1px solid #ebedf0;
     text-align: center;
-    padding: 8px 0;
+
     color: #2c2f36;
     text-transform: none;
   }
   .read-more {
+    display: block;
+    padding: 8px 0;
     width: 100%;
     font-size: 14px;
     color: #2c2f36;
@@ -36,13 +39,16 @@
   }
 }
 .content {
-  &__item a {
+  &__item {
     display: flex;
     padding: 8px 16px;
     border-bottom: 1px solid #ebedf0;
     overflow: hidden;
     text-transform: none !important;
     margin-right: 0 !important;
+    &:last-child {
+      border-bottom: none;
+    }
     .delete-btn {
       opacity: 0;
     }
@@ -65,6 +71,7 @@
         overflow: hidden;
       }
       .time {
+        display: inline-block;
         font-size: 14px;
         color: #747c87;
         font-weight: 400;
