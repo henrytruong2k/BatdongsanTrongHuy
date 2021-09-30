@@ -1,8 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import cityAPI from '../../api/cityAPI';
 
-function useDistrictOption(props) {
-  const { city } = props;
+function useDistrictOption(city) {
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLoadingDistrict, setIsLoadingDistrict] = useState(false);
   const [districts, setDistricts] = useState([]);

@@ -7,10 +7,8 @@ import { CircularProgress, makeStyles } from '@material-ui/core';
 import PaymentDetail from '../../containers/PaymentDetail';
 import usePostDetail from './hooks/usePostDetail';
 import { NotFound } from '../../components/NotFound';
+import Wrapper from '../../components/Wrapper';
 
-const Wrapper = styled.div`
-  padding-top: 100px;
-`;
 function PaymentPage(props) {
   const { id } = useParams();
   const { post, loading } = usePostDetail(id);

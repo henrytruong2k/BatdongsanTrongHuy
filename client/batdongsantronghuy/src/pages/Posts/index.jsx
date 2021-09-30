@@ -1,9 +1,16 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
+import queryString from 'query-string';
+import { useLocation } from 'react-router-dom';
 import PostContainer from '../../containers/Project';
 
 const PostsPage = (props) => {
-  return <PostContainer />;
+  const location = useLocation();
+  const [filter] = React.useState(() => {
+    const params = queryString.parse(location.search);
+    return params || null;
+  });
+
+  return <PostContainer filterURL={filter} />;
 };
 
 export default PostsPage;

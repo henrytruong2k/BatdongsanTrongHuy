@@ -98,7 +98,7 @@ function EditForm(props) {
   const classes = useStyles();
 
   const { post, objDefault, loading } = props;
-  console.log('post:', post);
+
   const [position, setPosition] = useState({
     lat: post?.locationX,
     lng: post?.locationY,
@@ -252,6 +252,7 @@ function EditForm(props) {
       </Backdrop>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="Title"
@@ -260,6 +261,7 @@ function EditForm(props) {
         />
 
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="Street"
@@ -304,6 +306,7 @@ function EditForm(props) {
         </div>
 
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="Price"
@@ -315,6 +318,7 @@ function EditForm(props) {
           }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="FrontiSpiece"
@@ -331,6 +335,7 @@ function EditForm(props) {
         />
 
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="Wayin"
@@ -346,12 +351,14 @@ function EditForm(props) {
           }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="Direction"
           label="Hướng nhà"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="NumberofFloor"
@@ -360,6 +367,7 @@ function EditForm(props) {
           inputProps={{ min: '0', step: '1' }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="Bedroom"
@@ -368,12 +376,14 @@ function EditForm(props) {
           inputProps={{ min: '0', step: '1' }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="Furniture"
           label="Nội thất"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="Juridical"
@@ -434,24 +444,28 @@ function EditForm(props) {
         )}
 
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="NameContact"
           label="Họ tên người bán"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="AddressContact"
           label="Địa chỉ người bán"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="PhoneContact"
           label="Số điện thoại liên hệ"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="EmailContact"

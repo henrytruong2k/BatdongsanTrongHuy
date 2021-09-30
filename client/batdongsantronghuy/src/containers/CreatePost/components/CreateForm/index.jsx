@@ -43,6 +43,8 @@ import { validationPost } from '../../../../ults/validationPost';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
+import projectAPI from '../../../../api/projectAPI';
+import categoryAPI from '../../../../api/categoryAPI';
 
 moment.locale('vi');
 const useStyles = makeStyles((theme) => ({
@@ -128,11 +130,11 @@ function CreateForm(props) {
       DistrictId: '',
       Direction: '',
       Description: '',
-      Price: '',
-      FrontiSpiece: '',
-      Wayin: '',
-      NumberofFloor: 1,
-      Bedroom: 1,
+      Price: 0,
+      FrontiSpiece: 0,
+      Wayin: 0,
+      NumberofFloor: 0,
+      Bedroom: 0,
       Furniture: [furnitureOptions[0], furnitureOptions[1]],
       Juridical: [juridicalOptions[0], juridicalOptions[1]],
       ImageFile: '',
@@ -155,8 +157,53 @@ function CreateForm(props) {
   const { cityOptions, isLoadingCity } = useCityOptions();
 
   //select
-  const [city, setCity] = useState(null);
-  const [district, setDistrict] = useState({});
+  const a = JSON.parse(localStorage.getItem('cities'));
+
+  const [city, setCity] = useState({
+    value: a[0]?.value,
+    label: a[0]?.label,
+  });
+  const [district, setDistrict] = useState(null);
+  const [project, setProject] = useState(null);
+  const [category, setCategory] = useState(null);
+  const [initLoading, setInitLoading] = useState(true);
+  useEffect(() => {
+    form.setValue('CityId', city?.value);
+    try {
+      const createFirstValue = async () => {
+        const res1 = cityAPI.getDistrictsByCityId(city?.value);
+        const res2 = projectAPI.getAll();
+        const res3 = categoryAPI.getAll();
+        await Promise.all([res1, res2, res3])
+          .then((values) => {
+            setDistrict({
+              value: parseInt(values[0]?.data[0]?.id),
+              label: values[0]?.data[0]?.districtName,
+            });
+            form.setValue('DistrictId', parseInt(values[0]?.data[0]?.id));
+            setProject({
+              value: values[1]?.data[0]?.id,
+              label: values[1]?.data[0].name,
+            });
+            form.setValue('ProjectId', values[1]?.data[0]?.id);
+            setCategory({
+              value: values[2]?.data[0]?.id,
+              label: values[2]?.data[0].name,
+            });
+            form.setValue('CategoryId', values[2]?.data[0]?.id);
+
+            //finish
+            setInitLoading(false);
+          })
+          .catch((error) => {
+            console.log('Failed to initial values in promise: ', error);
+          });
+      };
+      createFirstValue();
+    } catch (error) {
+      console.log('Failed to load initial values in useEffect: ', error);
+    }
+  }, []);
 
   const [isDisabled, setIsDisabled] = useState(true);
   const [isLoadingDistrict, setIsLoadingDistrict] = useState(false);
@@ -168,13 +215,12 @@ function CreateForm(props) {
   const onClear = () => {
     setDistrict(null);
   };
+
   useEffect(() => {
     try {
       const fetchDistricts = async () => {
         setIsDisabled(true);
-        if (city === null) {
-          onClear();
-        }
+
         if (city) {
           onClear();
           setIsLoadingDistrict(true);
@@ -191,7 +237,7 @@ function CreateForm(props) {
   }, [city]);
 
   const districtOptions = districts.map((item) => {
-    return { value: parseInt(item.id), label: item.districtName };
+    return { value: parseInt(item?.id), label: item?.districtName };
   });
   const { projectOptions, isLoadingProject } = useProjectOptions();
 
@@ -303,13 +349,14 @@ function CreateForm(props) {
   };
   return (
     <div className="mt-3">
-      <Backdrop className={classes.backdrop} open={loading}>
+      <Backdrop className={classes.backdrop} open={loading || initLoading}>
         <CircularProgress size="5rem" color="inherit" />
       </Backdrop>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <h3>Thông tin bài viết</h3>
         <div className="post">
           <InputField
+            InputLabelProps={{ shrink: true, required: true }}
             className={classes.inputLeft}
             form={form}
             name="Title"
@@ -318,6 +365,7 @@ function CreateForm(props) {
           />
 
           <InputField
+            InputLabelProps={{ shrink: true, required: true }}
             className={classes.inputRight}
             form={form}
             name="Street"
@@ -338,6 +386,7 @@ function CreateForm(props) {
               cacheOptions
               options={cityOptions}
               isLoading={isLoadingCity}
+              value={city}
               placeholder="Chọn thành phố..."
               loadingMessage={() => 'Đang tìm kiếm...'}
               noOptionsMessage={() => 'Không tìm thấy kết quả'}
@@ -374,6 +423,7 @@ function CreateForm(props) {
         </div>
 
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="Price"
@@ -385,6 +435,7 @@ function CreateForm(props) {
           }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="FrontiSpiece"
@@ -400,6 +451,7 @@ function CreateForm(props) {
           }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="Wayin"
@@ -415,12 +467,14 @@ function CreateForm(props) {
           }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="Direction"
           label="Hướng nhà"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="NumberofFloor"
@@ -429,10 +483,11 @@ function CreateForm(props) {
           inputProps={{ min: '0', step: '1' }}
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="Bedroom"
-          label="Giường ngủ"
+          label="Phòng ngủ"
           type="number"
           inputProps={{ min: '0', step: '1' }}
         />
@@ -531,24 +586,28 @@ function CreateForm(props) {
         )}
 
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="NameContact"
           label="Họ tên người bán"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="AddressContact"
           label="Địa chỉ người bán"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputLeft}
           form={form}
           name="PhoneContact"
           label="Số điện thoại liên hệ"
         />
         <InputField
+          InputLabelProps={{ shrink: true, required: true }}
           className={classes.inputRight}
           form={form}
           name="EmailContact"
@@ -562,6 +621,9 @@ function CreateForm(props) {
           type="date"
           defaultValue={today}
           name="StartDate"
+          inputProps={{
+            min: today,
+          }}
         />
         <InputField
           form={form}
@@ -571,31 +633,47 @@ function CreateForm(props) {
           name="EndDate"
           defaultValue={expPost}
           type="date"
+          inputProps={{
+            min: today,
+          }}
         />
 
         <div className="d-flex">
-          <SelectField
-            isClearable={false}
+          <Select
+            className={classes.selectLeft}
+            onChange={(value) => {
+              setProject(value);
+              form.setValue('ProjectId', value?.value);
+            }}
             styles={customStyles}
             form={form}
             name="ProjectId"
+            defaultOptions
+            cacheOptions
             options={projectOptions}
             isLoading={isLoadingProject}
+            value={project}
             placeholder="Chọn dự án..."
             loadingMessage={() => 'Đang tìm kiếm...'}
-            className={classes.selectLeft}
             noOptionsMessage={() => 'Không tìm thấy kết quả'}
           />
-          <SelectField
-            isClearable={false}
+
+          <Select
+            className={classes.selectRight}
+            onChange={(value) => {
+              setCategory(value);
+              form.setValue('CategoryId', value?.value);
+            }}
             styles={customStyles}
             form={form}
             name="CategoryId"
+            defaultOptions
+            cacheOptions
             options={categoryOptions}
             isLoading={isLoadingOption}
-            placeholder="Chọn loại bài viết..."
+            value={category}
+            placeholder="Chọn loại hình thức..."
             loadingMessage={() => 'Đang tìm kiếm...'}
-            className={classes.selectRight}
             noOptionsMessage={() => 'Không tìm thấy kết quả'}
           />
         </div>

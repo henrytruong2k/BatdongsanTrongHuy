@@ -9,4 +9,21 @@ export const validationPost = yup.object().shape({
     .string()
     .required('Vui lòng nhập số điện thoại người viết.'),
   EmailContact: yup.string().required('Vui lòng nhập email người viết.'),
+
+  //upgrade
+  Price: yup
+    .number()
+    .integer('Vui lòng nhập số tiền là số nguyên')
+    .moreThan(100000, 'Hạn mức tối thiểu là 100.000 VND.'),
+  FrontiSpiece: yup
+    .number()
+    .integer('Vui lòng nhập số diện tích mặt tiền là số nguyên')
+    .moreThan(0, 'Vui lòng nhập số diện tích mặt tiền'),
+  Wayin: yup
+    .number()
+    .integer('Vui lòng nhập số diện tích đường đi là số nguyên')
+    .moreThan(0, 'Vui lòng nhập số diện tích đường đi'),
+  Direction: yup.string().required('Vui lòng nhập hướng nhà.'),
+  NumberofFloor: yup.string().required('Vui lòng nhập số tầng.'),
+  Bedroom: yup.string().required('Vui lòng nhập số phòng ngủ.'),
 });

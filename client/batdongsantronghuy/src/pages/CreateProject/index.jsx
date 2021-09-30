@@ -1,19 +1,16 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 import styled from 'styled-components';
+import Wrapper from '../../components/Wrapper';
 import CreatePost from '../../containers/CreatePost';
-
-const CreatePostContainer = styled.div`
-  padding-top: 100px;
-`;
 
 function CreateProject(props) {
   return (
-    <CreatePostContainer>
+    <Wrapper>
       <Container>
         <CreatePost />
       </Container>
-    </CreatePostContainer>
+    </Wrapper>
   );
 }
 

@@ -65,24 +65,23 @@ function PostItem({ post, clicked }) {
             ,&nbsp;{post.address.city.cityName}
           </p>
 
-          <div
-            className="post__info"
-            onClick={() => handleAddToFavoriteList(post)}
-          >
+          <div className="post__info">
             <span>{moment(post.startDate).calendar()}</span>
-            {clicked ? (
-              <div style={{ cursor: 'pointer' }}>
-                <Tooltip title="Bấm để bỏ lưu tin" arrow>
-                  <FavoriteIcon />
-                </Tooltip>
-              </div>
-            ) : (
-              <div style={{ cursor: 'pointer' }}>
-                <Tooltip title="Bấm để lưu tin" arrow>
-                  <FavoriteBorderIcon />
-                </Tooltip>
-              </div>
-            )}
+            <div onClick={() => handleAddToFavoriteList(post)}>
+              {clicked ? (
+                <div style={{ cursor: 'pointer' }}>
+                  <Tooltip title="Bấm để bỏ lưu tin" arrow>
+                    <FavoriteIcon />
+                  </Tooltip>
+                </div>
+              ) : (
+                <div style={{ cursor: 'pointer' }}>
+                  <Tooltip title="Bấm để lưu tin" arrow>
+                    <FavoriteBorderIcon />
+                  </Tooltip>
+                </div>
+              )}
+            </div>
           </div>
         </Card.Body>
       </Card>

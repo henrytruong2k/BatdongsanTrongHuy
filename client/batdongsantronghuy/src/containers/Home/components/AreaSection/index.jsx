@@ -12,7 +12,7 @@ const AreaSection = ({ contentBanners }) => {
             src={contentBanners[0]?.image}
             alt={contentBanners[0]?.cityName}
           />
-          <Link>
+          <Link to={`/bai-dang?cityId=${contentBanners[0]?.cityId}`}>
             <p>{contentBanners[0]?.cityName}</p>
             <p>{contentBanners[0]?.numberPost} bài đăng</p>
           </Link>
@@ -24,7 +24,7 @@ const AreaSection = ({ contentBanners }) => {
               <div key={index} className="area__item">
                 <img src={item.image} alt={item.cityName} />
 
-                <Link>
+                <Link to={`/bai-dang?cityId=${item.cityId}`}>
                   <p>{item.cityName}</p>
                   <p>{item.numberPost} bài đăng</p>
                 </Link>

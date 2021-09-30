@@ -129,7 +129,6 @@ function Setting({ user }) {
                     list={postList}
                     loading={loading}
                     onDelete={handleDelete}
-                    x
                   />
                 )}
               />

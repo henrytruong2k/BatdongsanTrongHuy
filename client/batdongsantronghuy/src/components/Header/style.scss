@@ -2,8 +2,10 @@
   height: 60px;
   background-color: #1c1c1c;
   color: #fff;
-  position: fixed;
-  width: 100%;
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
   &__logo {
     font-size: 1.125rem;

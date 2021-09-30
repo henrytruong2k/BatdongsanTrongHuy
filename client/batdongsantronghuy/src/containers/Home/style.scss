@@ -65,6 +65,22 @@ button[type='submit'] {
     padding-top: 24px;
     z-index: 99;
   }
+  .tab-bar {
+    position: absolute;
+    left: 339px;
+    top: 55px;
+    &__item {
+      border-radius: 5px 5px 0 0;
+      padding: 12px 34px 6px 34px;
+      background: rgba(0, 0, 0, 0.65);
+      color: #fff;
+      font-size: 14px;
+      line-height: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+  }
 }
 .bg-grey {
   background: #f0f2f5;

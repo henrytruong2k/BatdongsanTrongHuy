@@ -1,7 +1,6 @@
 import { CircularProgress, makeStyles } from '@material-ui/core';
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import styled from 'styled-components';
 import './style.scss';
 
 function Loading(props) {

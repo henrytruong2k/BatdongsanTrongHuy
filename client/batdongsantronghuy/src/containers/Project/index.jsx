@@ -4,15 +4,16 @@ import styled from 'styled-components';
 import postAPI from '../../api/postAPI';
 import PostList from './components/PostList';
 import { useSelector } from 'react-redux';
+import SearchBar from './components/SearchBar';
+import useCityOptions from '../../components/hooks/useCityOptions';
+import Wrapper from '../../components/Wrapper';
 
-const Wrapper = styled.div`
-  padding-top: 100px;
-`;
-
-function PostContainer(props) {
+function PostContainer({ filterURL }) {
+  // console.log('filterURL: ', filterURL);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [request, setRequest] = useState({
+    CityId: filterURL?.cityId,
     PageNumber: 1,
     PageSize: 9,
   });
@@ -22,18 +23,9 @@ function PostContainer(props) {
     page: 1,
   });
 
-  // const render = useSelector((state) => state.favorite.favoriteItems);
   const favoriteList = useSelector((state) => state.favorite.favoriteItems);
 
-  // const [favoriteList, setFavoriteList] = useState(
-  //   JSON.parse(localStorage.getItem('favoriteList'))
-  // );
-  // useEffect(() => {
-  //   setFavoriteList(JSON.parse(localStorage.getItem('favoriteList')));
-  // }, [render]);
-
   useEffect(() => {
-    console.log('run effect');
     const fetchPosts = async () => {
       try {
         const postList = await postAPI.getAll(request);
@@ -55,7 +47,6 @@ function PostContainer(props) {
   }, [request]);
 
   const handlePageChange = (e, page) => {
-    console.log('handlePageCHANGE');
     setRequest({
       ...request,
       PageNumber: page,
@@ -69,6 +60,7 @@ function PostContainer(props) {
   return (
     <Container>
       <Wrapper>
+        <SearchBar filterURL={filterURL} />
         <PostList
           posts={posts}
           loading={loading}

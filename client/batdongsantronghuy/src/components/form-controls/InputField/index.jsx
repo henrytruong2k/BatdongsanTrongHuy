@@ -15,7 +15,8 @@ InputField.propTypes = {
 };
 
 function InputField(props) {
-  const { form, name, label, disabled, className, type, ...others } = props;
+  const { form, name, label, disabled, className, type, min, ...others } =
+    props;
 
   const { formState } = form;
 
@@ -34,6 +35,7 @@ function InputField(props) {
           disabled={disabled}
           error={!!hasError}
           helperText={formState.errors[name]?.message}
+          min={min}
           {...others}
           fullWidth
         />
