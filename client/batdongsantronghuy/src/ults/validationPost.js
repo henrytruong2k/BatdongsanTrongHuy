@@ -13,14 +13,17 @@ export const validationPost = yup.object().shape({
   //upgrade
   Price: yup
     .number()
+    .typeError('Diện tích đường đi bắt buộc phải là một con số.')
     .integer('Vui lòng nhập số tiền là số nguyên')
     .moreThan(100000, 'Hạn mức tối thiểu là 100.000 VND.'),
   FrontiSpiece: yup
     .number()
+    .typeError('Diện tích mặt tiền bắt buộc phải là một con số.')
     .integer('Vui lòng nhập số diện tích mặt tiền là số nguyên')
     .moreThan(0, 'Vui lòng nhập số diện tích mặt tiền'),
   Wayin: yup
     .number()
+    .typeError('Diện tích đường đi bắt buộc phải là một con số.')
     .integer('Vui lòng nhập số diện tích đường đi là số nguyên')
     .moreThan(0, 'Vui lòng nhập số diện tích đường đi'),
   Direction: yup.string().required('Vui lòng nhập hướng nhà.'),

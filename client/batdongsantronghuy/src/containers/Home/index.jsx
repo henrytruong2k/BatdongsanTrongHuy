@@ -228,184 +228,215 @@ export const HomeContainer = () => {
     autoplay: true,
     fade: true,
   };
+
+  //scroll event
+  const [styleAds, setStyleAds] = useState({ opacity: 0, transition: '0.3s' });
+  useEffect(() => {
+    window.addEventListener('scroll', () => {
+      const scrolled = window.scrollY;
+
+      if (Math.ceil(scrolled) >= 300 && Math.ceil(scrolled) <= 2000) {
+        setStyleAds({ ...styleAds, opacity: 1, transition: '0.5s' });
+      } else {
+        setStyleAds({ ...styleAds, opacity: 0, transition: '0s' });
+      }
+    });
+  }, []);
+
   return (
-    <Container fluid className="pl-0 pr-0">
-      <div className="slider-homepage">
-        <Slider {...settings}>
+    <>
+      <div>
+        <div className="ads ads--left" style={styleAds}>
           <img
-            src="https://file4.batdongsan.com.vn/Banners/HieuNM/HuyenNTD/1920x560/20210726-1127/images/bg1.jpg?1627273543079"
-            alt="Ads banner"
+            src="https://file4.batdongsan.com.vn/2021/09/30/UVSXfqBy/20210930224302-f269.jpg"
+            alt="Ads"
           />
-          <img
-            src="https://file4.batdongsan.com.vn/Banners/HieuNM/HuyenNTD/1920x560/20210726-1127/images/bg2.jpg?1627273543079"
-            alt="Ads banner"
-          />
-        </Slider>
-        <div className="tab-bar">
-          <div className="tab-bar__item">Nhà đất bán</div>
         </div>
-        <div className="search-bar">
-          <Container>
-            <Row>
-              <Col className="col-lg-4">
-                <Select
-                  defaultOptions
-                  cacheOptions
-                  value={filter?.city}
-                  onChange={handleChangeCity}
-                  options={cityOptions}
-                  isLoading={isLoadingCity}
-                  placeholder="Chọn thành phố..."
-                  loadingMessage={() => 'Đang tìm kiếm...'}
-                />
-              </Col>
-              <Col className="col-lg-4">
-                <Select
-                  ref={selectDistrict}
-                  defaultOptions
-                  cacheOptions
-                  value={filter?.district}
-                  onChange={handleChangeDistrict}
-                  options={districtOptions}
-                  isLoading={isLoadingDistrict}
-                  placeholder="Chọn quận..."
-                  loadingMessage={() => 'Đang tìm kiếm...'}
-                  noOptionsMessage={() => 'Không tìm thấy kết quả'}
-                  isDisabled={isDisabled}
-                />
-              </Col>
-              <Col className="col-lg-4 range">
-                <Range
-                  values={values}
-                  step={STEP}
-                  min={MIN}
-                  max={MAX}
-                  rtl={false}
-                  onChange={(values) => {
-                    setValues(values);
-                  }}
-                  onFinalChange={handleOnFinalChange}
-                  renderTrack={({ props, children }) => (
-                    <>
-                      <output
-                        style={{
-                          fontSize: '14px',
-                          marginTop: '-14px',
-                          color: '#fff',
-                        }}
-                        id="output"
-                      >
-                        Từ&nbsp;
-                        {nFormatter(values[0], 1)}
-                        &nbsp;đến&nbsp;
-                        {nFormatter(values[1], 1)}
-                      </output>
+        <div className="ads ads--right" style={styleAds}>
+          <img
+            src="https://file4.batdongsan.com.vn/2021/09/30/UVSXfqBy/20210930222106-8f2a.jpg"
+            alt="Ads"
+          />
+        </div>
+      </div>
+      <Container fluid className="pl-0 pr-0">
+        <div className="slider-homepage">
+          <Slider {...settings}>
+            <img
+              src="https://file4.batdongsan.com.vn/Banners/HieuNM/HuyenNTD/1920x560/20210726-1127/images/bg1.jpg?1627273543079"
+              alt="Ads banner"
+            />
+            <img
+              src="https://file4.batdongsan.com.vn/Banners/HieuNM/HuyenNTD/1920x560/20210726-1127/images/bg2.jpg?1627273543079"
+              alt="Ads banner"
+            />
+          </Slider>
+          <div className="tab-bar">
+            <div className="tab-bar__item">Nhà đất bán</div>
+          </div>
+          <div className="search-bar">
+            <Container>
+              <Row>
+                <Col className="col-lg-4">
+                  <Select
+                    defaultOptions
+                    cacheOptions
+                    value={filter?.city}
+                    onChange={handleChangeCity}
+                    options={cityOptions}
+                    isLoading={isLoadingCity}
+                    placeholder="Chọn thành phố..."
+                    loadingMessage={() => 'Đang tìm kiếm...'}
+                  />
+                </Col>
+                <Col className="col-lg-4">
+                  <Select
+                    ref={selectDistrict}
+                    defaultOptions
+                    cacheOptions
+                    value={filter?.district}
+                    onChange={handleChangeDistrict}
+                    options={districtOptions}
+                    isLoading={isLoadingDistrict}
+                    placeholder="Chọn quận..."
+                    loadingMessage={() => 'Đang tìm kiếm...'}
+                    noOptionsMessage={() => 'Không tìm thấy kết quả'}
+                    isDisabled={isDisabled}
+                  />
+                </Col>
+                <Col className="col-lg-4 range">
+                  <Range
+                    values={values}
+                    step={STEP}
+                    min={MIN}
+                    max={MAX}
+                    rtl={false}
+                    onChange={(values) => {
+                      setValues(values);
+                    }}
+                    onFinalChange={handleOnFinalChange}
+                    renderTrack={({ props, children }) => (
+                      <>
+                        <output
+                          style={{
+                            fontSize: '14px',
+                            marginTop: '-14px',
+                            color: '#fff',
+                          }}
+                          id="output"
+                        >
+                          Từ&nbsp;
+                          {nFormatter(values[0], 1)}
+                          &nbsp;đến&nbsp;
+                          {nFormatter(values[1], 1)}
+                        </output>
+                        <div
+                          onMouseDown={props.onMouseDown}
+                          onTouchStart={props.onTouchStart}
+                          style={{
+                            ...props.style,
+                            height: '32px',
+                            display: 'flex',
+                            width: '100%',
+                          }}
+                        >
+                          <div
+                            ref={props.ref}
+                            style={{
+                              height: '5px',
+                              width: '100%',
+                              borderRadius: '4px',
+                              background: getTrackBackground({
+                                values,
+                                colors: ['#ccc', '#548BF4', '#ccc'],
+                                min: MIN,
+                                max: MAX,
+                              }),
+                              alignSelf: 'center',
+                            }}
+                          >
+                            {children}
+                          </div>
+                        </div>
+                      </>
+                    )}
+                    renderThumb={({ props, isDragged }) => (
                       <div
-                        onMouseDown={props.onMouseDown}
-                        onTouchStart={props.onTouchStart}
+                        {...props}
                         style={{
                           ...props.style,
-                          height: '32px',
+                          height: '20px',
+                          width: '15px',
+                          borderRadius: '100%',
+                          backgroundColor: '#FFF',
                           display: 'flex',
-                          width: '100%',
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          boxShadow: '0px 2px 6px #AAA',
                         }}
                       >
                         <div
-                          ref={props.ref}
                           style={{
-                            height: '5px',
-                            width: '100%',
-                            borderRadius: '4px',
-                            background: getTrackBackground({
-                              values,
-                              colors: ['#ccc', '#548BF4', '#ccc'],
-                              min: MIN,
-                              max: MAX,
-                            }),
-                            alignSelf: 'center',
+                            height: '16px',
+                            width: '5px',
+                            backgroundColor: isDragged ? '#548BF4' : '#CCC',
                           }}
-                        >
-                          {children}
-                        </div>
+                        />
                       </div>
-                    </>
-                  )}
-                  renderThumb={({ props, isDragged }) => (
-                    <div
-                      {...props}
-                      style={{
-                        ...props.style,
-                        height: '20px',
-                        width: '15px',
-                        borderRadius: '100%',
-                        backgroundColor: '#FFF',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        boxShadow: '0px 2px 6px #AAA',
-                      }}
-                    >
-                      <div
-                        style={{
-                          height: '16px',
-                          width: '5px',
-                          backgroundColor: isDragged ? '#548BF4' : '#CCC',
-                        }}
-                      />
-                    </div>
-                  )}
-                />
-              </Col>
+                    )}
+                  />
+                </Col>
 
-              <Col className="col-lg-8 mt-3 mb-3">
-                <input
-                  id="inputSearch"
-                  className="outline-none"
-                  value={filter.keyword}
-                  onChange={handleChangeKeyword}
-                  placeholder="Nhập từ khóa bạn muốn tìm kiếm..."
-                />
-              </Col>
-              <Col className="col-lg-4 mt-3 mb-3">
-                <button
-                  type="submit"
-                  onClick={handleSearch}
-                  className="btn-search"
-                >
-                  Tìm kiếm
-                </button>
+                <Col className="col-lg-8 mt-3 mb-3">
+                  <input
+                    id="inputSearch"
+                    className="outline-none"
+                    value={filter.keyword}
+                    onChange={handleChangeKeyword}
+                    placeholder="Nhập từ khóa bạn muốn tìm kiếm..."
+                  />
+                </Col>
+                <Col className="col-lg-4 mt-3 mb-3">
+                  <button
+                    type="submit"
+                    onClick={handleSearch}
+                    className="btn-search"
+                  >
+                    Tìm kiếm
+                  </button>
 
-                {/* <RotateLeftIcon
+                  {/* <RotateLeftIcon
                     fontSize="large"
                     color="primary"
                     className="btn-refresh"
                     onClick={handleRefresh}
                   /> */}
-              </Col>
-            </Row>
-          </Container>
+                </Col>
+              </Row>
+            </Container>
+          </div>
         </div>
-      </div>
-      <Container>{renderPostList}</Container>
+        <Container>{renderPostList}</Container>
 
-      <Container fluid className="bg-grey">
+        <Container fluid className="bg-grey">
+          <Container>
+            <RecommendPost list={postsHighlight} favoriteList={favoriteList} />
+          </Container>
+        </Container>
         <Container>
-          <RecommendPost list={postsHighlight} favoriteList={favoriteList} />
+          <ProjectSection projects={projects} loading={loading} />
+        </Container>
+
+        <Container>
+          <AreaSection contentBanners={contentBanners} loading={loading} />
+        </Container>
+        <Container>
+          <AdsBanner />
+        </Container>
+        <Container>
+          <NewSection news={news} loading={loading} />
         </Container>
       </Container>
-      <Container>
-        <ProjectSection projects={projects} loading={loading} />
-      </Container>
-
-      <Container>
-        <AreaSection contentBanners={contentBanners} loading={loading} />
-      </Container>
-      <Container>
-        <AdsBanner />
-      </Container>
-      <Container>
-        <NewSection news={news} loading={loading} />
-      </Container>
-    </Container>
+    </>
   );
 };

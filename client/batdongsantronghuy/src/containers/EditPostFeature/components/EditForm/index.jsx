@@ -28,6 +28,8 @@ import {
   TileLayer,
 } from 'react-leaflet';
 import { Fab, Backdrop, CircularProgress } from '@material-ui/core';
+import { validationPost } from '../../../../ults/validationPost';
+import { yupResolver } from '@hookform/resolvers/yup';
 
 moment.locale('vi');
 
@@ -167,6 +169,7 @@ function EditForm(props) {
   };
 
   //handle form
+  const schema = validationPost;
   const form = useForm({
     defaultValues: {
       Title: post?.title,
@@ -194,6 +197,7 @@ function EditForm(props) {
       ProjectId: post?.project?.id,
       CategoryId: post?.category?.id,
     },
+    resolver: yupResolver(schema),
   });
 
   const [cityIdValue, setCityIdValue] = useState(post?.address?.cityId);
@@ -238,7 +242,7 @@ function EditForm(props) {
     if (onSubmit) {
       await onSubmit(newValues);
     }
-    // form.reset();
+    form.reset();
   };
 
   //handle images

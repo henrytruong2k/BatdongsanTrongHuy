@@ -85,3 +85,20 @@ button[type='submit'] {
 .bg-grey {
   background: #f0f2f5;
 }
+//style for ads
+.ads {
+  position: fixed;
+  width: 110px;
+  top: 130px;
+
+  img {
+    height: auto;
+    width: 100%;
+  }
+  &--left {
+    left: 0;
+  }
+  &--right {
+    right: 0;
+  }
+}
