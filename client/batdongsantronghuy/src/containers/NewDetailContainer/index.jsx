@@ -81,7 +81,7 @@ const NewDetailContainer = ({ newDetail }) => {
             <h4>Tin liên quan</h4>
             {newDetail.recommend.map((item) => {
               return (
-                <div className="mb-2">
+                <div className="mb-2" key={item.id}>
                   <Link to={router.TINTUC + '/' + item.id} title={item.title}>
                     {item.title}
                   </Link>

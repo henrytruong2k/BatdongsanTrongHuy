@@ -12,7 +12,11 @@ const SideBar = ({ list }) => {
         </div>
         <div className="box-content">
           {list.map((item) => {
-            return <Link to={router.TINTUC + `/${item.id}`}>{item.title}</Link>;
+            return (
+              <Link key={item.id} to={router.TINTUC + `/${item.id}`}>
+                {item.title}
+              </Link>
+            );
           })}
         </div>
       </div>
