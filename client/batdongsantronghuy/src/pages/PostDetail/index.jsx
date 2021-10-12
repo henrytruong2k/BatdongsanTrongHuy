@@ -6,6 +6,7 @@ import Wrapper from '../../components/Wrapper';
 import PostDetail from '../../containers/Project/components/PostDetail';
 import queryString from 'query-string';
 import './style.scss';
+import useNotifyCount from '../../seo/useNotifyCount';
 
 const PostDetailPage = () => {
   const location = useLocation();
@@ -25,11 +26,13 @@ const PostDetailPage = () => {
     };
     fetchPostDetail();
   }, [slug]);
-
+  useNotifyCount(post?.title);
   return (
-    <Wrapper>
-      {isLoading ? <Loading /> : <PostDetail post={post} type={filterType} />}
-    </Wrapper>
+    <>
+      <Wrapper>
+        {isLoading ? <Loading /> : <PostDetail post={post} type={filterType} />}
+      </Wrapper>
+    </>
   );
 };
 

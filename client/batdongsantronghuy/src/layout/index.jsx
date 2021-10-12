@@ -24,7 +24,7 @@ function Layout() {
       <Header />
       <Switch>
         <Route exact path={router.ROOT} component={HomePage} />
-        <Route path={router.TRANGCHU} component={HomePage} />
+        <Route exact path={router.TRANGCHU} component={HomePage} />
         <Route path={router.BAIDANG} component={ProjectRouter} />
         <Route exact path={router.DUAN} component={ProjectPage} />
         <Route path="/du-an/:slug" component={ProjectDetailPage} />
@@ -33,12 +33,6 @@ function Layout() {
           exact
           path={`${router.TINTUC}/:slug`}
           component={NewDetailPage}
-        />
-
-        <Route
-          exact
-          path={router.THAYDOITHONGTINCANHAN}
-          component={SettingPage}
         />
 
         <Route path="/thanh-toan/:id" component={PaymentPage} />

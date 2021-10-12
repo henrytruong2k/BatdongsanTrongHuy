@@ -4,6 +4,7 @@ import projectAPI from '../../api/projectAPI';
 import Loading from '../../components/Loading';
 import Wrapper from '../../components/Wrapper';
 import ProjectDetailContainer from '../../containers/ProjectDetailContainer';
+import useNotifyCount from '../../seo/useNotifyCount';
 
 const ProjectDetailPage = () => {
   const { slug } = useParams();
@@ -18,6 +19,7 @@ const ProjectDetailPage = () => {
     };
     fetchPostDetail();
   }, [slug]);
+  useNotifyCount(project?.name);
   return (
     <Wrapper>
       {isLoading ? <Loading /> : <ProjectDetailContainer project={project} />}

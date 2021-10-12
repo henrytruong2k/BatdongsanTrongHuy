@@ -10,6 +10,11 @@ const SettingRouter = () => {
       <Switch>
         <Route exact path={router.DOIMATKHAU} component={SettingPage} />
         <Route exact path={router.QUANLYBAIVIET} component={SettingPage} />
+        <Route
+          exact
+          path={router.THAYDOITHONGTINCANHAN}
+          component={SettingPage}
+        />
       </Switch>
     </div>
   );
