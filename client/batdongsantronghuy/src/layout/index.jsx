@@ -16,6 +16,7 @@ import ProjectDetailPage from '../pages/ProjectDetailPage';
 import NewDetailPage from '../pages/NewDetailPage';
 import ChangePassword from '../containers/Auth/components/Setting/components/ChangePassword';
 import CreateProject from '../pages/CreateProject';
+import SettingRouter from '../router/Setting';
 
 function Layout() {
   return (
@@ -41,10 +42,8 @@ function Layout() {
         />
 
         <Route path="/thanh-toan/:id" component={PaymentPage} />
-        {/* <Route exact path={router.CAIDATTAIKHOAN} component={SettingPage} /> */}
-        <Route exact path={router.DOIMATKHAU} component={SettingPage} />
+        <Route path={router.CAIDATTAIKHOAN} component={SettingRouter} />
 
-        <Route exact path={router.QUANLYBAIVIET} component={SettingPage} />
         <Route
           exact
           path={router.BAIVIETYEUTHICH}
