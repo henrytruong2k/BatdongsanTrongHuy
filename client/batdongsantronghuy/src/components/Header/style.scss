@@ -70,7 +70,7 @@
 .avatar-image {
   width: 30px;
   height: 30px;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 100%;
   margin-right: 6px;
 }

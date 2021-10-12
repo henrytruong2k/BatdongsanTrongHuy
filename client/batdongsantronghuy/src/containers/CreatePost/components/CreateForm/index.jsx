@@ -5,6 +5,7 @@ import {
   makeStyles,
   Backdrop,
   CircularProgress,
+  TextField,
 } from '@material-ui/core';
 import React, {
   useCallback,
@@ -31,7 +32,7 @@ import CKEditor from 'ckeditor4-react';
 import useGeoLocation from '../../../../components/hooks/useGeoLocation';
 import MarkersMap from '../../../Project/components/PostDetail/components/MarkersMap';
 import L from 'leaflet';
-
+import _debounce from 'lodash/debounce';
 import {
   MapContainer,
   useMapEvents,
@@ -45,6 +46,7 @@ import { useSelector } from 'react-redux';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 import projectAPI from '../../../../api/projectAPI';
 import categoryAPI from '../../../../api/categoryAPI';
+import promotionAPI from '../../../../api/promotionAPI';
 
 moment.locale('vi');
 const useStyles = makeStyles((theme) => ({
@@ -306,6 +308,36 @@ function CreateForm(props) {
     setDraggable((d) => !d);
   }, []);
 
+  const [promotionCode, setPromotionCode] = useState(null);
+  const [resCheck, setResCheck] = useState(null);
+  useEffect(() => {
+    try {
+      const checkPromotion = async () => {
+        if (promotionCode !== null && promotionCode !== undefined) {
+          const response = await promotionAPI.checkPromotionCode({
+            promotionCode,
+          });
+          console.log('check:', response);
+          if (!response?.succeeded) {
+            setResCheck({ ...response, message: 'Mã khuyến mãi không hợp lệ' });
+          } else {
+            setResCheck(response);
+            form.setValue('PromotionCode', promotionCode);
+          }
+        }
+      };
+      checkPromotion();
+    } catch (error) {
+      console.log('Failed to check promotion code: ', error);
+    }
+  }, [promotionCode]);
+
+  //promotion
+  const handlePromotionChange = (e) => {
+    _debounce(function () {
+      setPromotionCode(e.target.value);
+    }, 800)();
+  };
   const DraggableMarker = () => {
     return (
       <Marker
@@ -677,13 +709,35 @@ function CreateForm(props) {
             noOptionsMessage={() => 'Không tìm thấy kết quả'}
           />
         </div>
-        <InputField
+        <TextField
           className={classes.inputLeft}
           form={form}
           name="PromotionCode"
+          variant="outlined"
           label="Mã khuyến mãi"
+          onChange={handlePromotionChange}
         />
-
+        {resCheck?.succeeded !== undefined ? (
+          resCheck.succeeded ? (
+            <p className="text-success text-notify">
+              <i className="fa fa-check" aria-hidden="true"></i>
+              {resCheck?.message} mã <b>{resCheck?.data?.code}</b>&nbsp;giảm
+              giá&nbsp;
+              <b>
+                {Intl.NumberFormat('vi-VN', {
+                  style: 'currency',
+                  currency: 'VND',
+                }).format(resCheck?.data?.discount)}
+              </b>
+            </p>
+          ) : (
+            <p className="text-warning text-notify">
+              <i className="fa fa-warning"></i>Mã khuyến mãi không hợp lệ!
+            </p>
+          )
+        ) : (
+          ''
+        )}
         <Button
           variant="contained"
           color="primary"

@@ -53,7 +53,9 @@ function Setting({ user }) {
               <h4>{user?.fullName}</h4>
               <p>Email: {user?.email}</p>
               <p>Địa chỉ: {user?.address ? user?.address : 'Chưa cập nhật'}</p>
-              <p>SĐT: {user?.address ? user?.address : 'Chưa cập nhật'}</p>
+              <p>
+                SĐT: {user?.phoneNumber ? user?.phoneNumber : 'Chưa cập nhật'}
+              </p>
             </div>
 
             <div className="box__post-status">

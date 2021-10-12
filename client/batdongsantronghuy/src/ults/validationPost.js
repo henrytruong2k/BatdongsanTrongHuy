@@ -2,9 +2,15 @@ import * as yup from 'yup';
 
 export const validationPost = yup.object().shape({
   Title: yup.string().required('Vui lòng nhập tiêu đề bài viết.'),
-  Street: yup.string().required('Vui lòng nhập tên đường bài viết.'),
+  Street: yup
+    .string()
+    .min(5, 'Tên đường phải tối thiểu 5 kí tự')
+    .required('Vui lòng nhập tên đường bài viết.'),
   NameContact: yup.string().required('Vui lòng nhập tên người viết.'),
-  AddressContact: yup.string().required('Vui lòng nhập địa chỉ người viết.'),
+  AddressContact: yup
+    .string()
+    .min(5, 'Địa chỉ liên hệ phải tối thiểu 5 kí tự')
+    .required('Vui lòng nhập địa chỉ người viết.'),
   PhoneContact: yup
     .string()
     .required('Vui lòng nhập số điện thoại người viết.'),
@@ -15,7 +21,7 @@ export const validationPost = yup.object().shape({
     .number()
     .typeError('Diện tích đường đi bắt buộc phải là một con số.')
     .integer('Vui lòng nhập số tiền là số nguyên')
-    .moreThan(100000, 'Hạn mức tối thiểu là 100.000 VND.'),
+    .moreThan(99000, 'Hạn mức tối thiểu là 100.000 VND.'),
   FrontiSpiece: yup
     .number()
     .typeError('Diện tích mặt tiền bắt buộc phải là một con số.')
