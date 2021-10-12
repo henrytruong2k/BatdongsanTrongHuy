@@ -31,10 +31,9 @@ export const Header = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useState(loggedInUser?.id);
 
-  //a variable to avoid re-render
+  //avoid re-render
   const dependencies = localSavedParsed === null ? true : false;
   useEffect(() => {
-    console.log('use effect 2');
     setLoggedInUser(localSavedParsed);
     setIsLoggedIn(localSavedParsed?.id);
   }, [dependencies]);

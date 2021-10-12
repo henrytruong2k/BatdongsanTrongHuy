@@ -57,14 +57,25 @@ export const LoginModal = ({
               </p>
             )}
 
-            <Box textAlign="center" className="my-2">
+            <Box
+              textAlign="center"
+              className="d-flex justify-content-around my-2"
+            >
               <Button
                 color="primary"
                 onClick={() => {
                   navigate(MODE.REGISTER);
                 }}
               >
-                Chưa có tài khoản ?
+                Chưa có tài khoản?
+              </Button>
+              <Button
+                color="primary"
+                // onClick={() => {
+                //   navigate(MODE.FORGOTPASSWORD);
+                // }}
+              >
+                Quên mật khẩu?
               </Button>
             </Box>
           </>

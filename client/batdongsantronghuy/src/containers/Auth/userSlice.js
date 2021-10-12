@@ -5,13 +5,19 @@ const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 export const register = createAsyncThunk('user/register', async (payload) => {
   // call API to register
   const data = await userAPI.register(payload);
+  console.log('data register', data);
+  return data;
+  // if (!data?.succeeded) {
+  //   return data;
+  // } else {
 
+  // }
   // save data to local storage
-  localStorage.setItem('access_token', data.message);
-  localStorage.setItem('user', JSON.stringify(data.data));
+  // localStorage.setItem('access_token', data.message);
+  // localStorage.setItem('user', JSON.stringify(data.data));
 
   // return user data
-  return data.data;
+  // return data;
 });
 
 export const login = createAsyncThunk('user/login', async (payload) => {

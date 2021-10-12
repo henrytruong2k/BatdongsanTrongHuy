@@ -3,4 +3,5 @@ export const MODE = {
   REGISTER: 'register',
   SETTING: 'setting',
   SEARCH: 'search',
+  FORGOTPASSWORD: 'forgot',
 };

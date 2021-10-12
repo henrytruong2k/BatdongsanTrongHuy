@@ -22,10 +22,16 @@ function Register(props) {
         closeDialog();
       }
 
-      console.log('New user: ', user);
-      enqueueSnackbar('Đăng kí thành công. Vui lòng kiểm tra email', {
-        variant: 'success',
-      });
+      if (!user?.succeeded) {
+        enqueueSnackbar(user?.message, {
+          variant: 'warning',
+        });
+      } else {
+        console.log('New user: ', user);
+        enqueueSnackbar('Đăng kí thành công. Vui lòng kiểm tra email', {
+          variant: 'success',
+        });
+      }
     } catch (error) {
       console.log('Fail to register: ', error);
       enqueueSnackbar(error.message, { variant: 'error' });

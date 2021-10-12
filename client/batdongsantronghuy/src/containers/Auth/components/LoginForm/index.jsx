@@ -4,7 +4,7 @@ import {
   Button,
   LinearProgress,
   makeStyles,
-  Typography
+  Typography,
 } from '@material-ui/core';
 import { LockOutlined } from '@material-ui/icons';
 import React, { useState } from 'react';
@@ -37,9 +37,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: theme.spacing(2),
     width: '100%',
   },
-  submit: {
-    margin: theme.spacing(1, 0),
-  },
+
   progress: {
     position: 'absolute',
     top: 0,
@@ -47,12 +45,12 @@ const useStyles = makeStyles((theme) => ({
     right: 0,
   },
   socialLoginBtn: {
-    width: '100%',
-    marginTop: theme.spacing(1),
+    width: '48%',
   },
 }));
 
 function LoginForm(props) {
+  const { errorMessage } = props;
   const classes = useStyles();
   const schema = validationLogin;
   const form = useForm({
@@ -121,40 +119,46 @@ function LoginForm(props) {
           type="submit"
           variant="contained"
           color="primary"
-          className={classes.submit}
           fullWidth
         >
           Đăng nhập
         </Button>
       </form>
+      {errorMessage && (
+        <h5 className="text-center text-danger text-small mt-3 mb-0">
+          *{errorMessage}
+        </h5>
+      )}
       <hr />
-      <div className={classes.socialLoginBtn}>
-        <FacebookLogin
-          appId={FACEBOOK_ID}
-          fields="name,email,picture"
-          scope="public_profile, email"
-          callback={responseFacebook}
-          icon="fa-facebook"
-        />
-      </div>
-      <div className={classes.socialLoginBtn}>
-        <GoogleLogin
-          clientId={GOOGLE_ID}
-          render={(renderProps) => (
-            <button
-              onClick={renderProps.onClick}
-              disabled={renderProps.disabled}
-              className="loginGoogleBtn"
-            >
-              <i className="fa fa-google" />
-              <span>LOGIN WITH GOOGLE</span>
-            </button>
-          )}
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
+      <div className="d-flex justify-content-between">
+        <div className={classes.socialLoginBtn}>
+          <FacebookLogin
+            appId={FACEBOOK_ID}
+            fields="name,email,picture"
+            scope="public_profile, email"
+            callback={responseFacebook}
+            icon="fa-facebook"
+          />
+        </div>
+        <div className={classes.socialLoginBtn}>
+          <GoogleLogin
+            clientId={GOOGLE_ID}
+            render={(renderProps) => (
+              <button
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                className="loginGoogleBtn"
+              >
+                <i className="fa fa-google" />
+                <span>LOGIN WITH GOOGLE</span>
+              </button>
+            )}
+            buttonText="Login"
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+            cookiePolicy={'single_host_origin'}
+          />
+        </div>
       </div>
     </div>
   );

@@ -68,10 +68,8 @@ function Login(props) {
         onSubmit={handleFormSubmit}
         onFacebookLogin={handleLoginFacebook}
         onGoogleLogin={handleLoginGoogle}
+        errorMessage={errorMessage}
       />
-      {errorMessage && (
-        <p className="text-center text-danger mt-3 mb-0">*{errorMessage}</p>
-      )}
     </div>
   );
 }
