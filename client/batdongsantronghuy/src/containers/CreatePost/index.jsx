@@ -42,7 +42,6 @@ function CreatePost(props) {
 
   return (
     <div>
-      <h1>Tạo bài viết mới</h1>
       <CreateForm onSubmit={handleFormSubmit} loading={loading} />
       {errorMessage && (
         <p
