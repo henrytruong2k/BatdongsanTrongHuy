@@ -9,7 +9,6 @@ import useCityOptions from '../../components/hooks/useCityOptions';
 import Wrapper from '../../components/Wrapper';
 
 function PostContainer({ filterURL }) {
-  // console.log('filterURL: ', filterURL);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [request, setRequest] = useState({
@@ -28,6 +27,7 @@ function PostContainer({ filterURL }) {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
+        setLoading(true);
         const postList = await postAPI.getAll(request);
         if (!postList) return;
 
@@ -56,11 +56,21 @@ function PostContainer({ filterURL }) {
       page,
     });
   };
-
+  const handleSubmit = (filter) => {
+    if (!filter) return;
+    setRequest({
+      ...filter,
+      CityId: filter?.city?.value,
+      DistrictId: filter?.district?.value,
+      MinPrice: filter?.price[0],
+      MaxPrice: filter?.price[1],
+      Keyword: filter?.keyword,
+    });
+  };
   return (
     <Container>
       <Wrapper>
-        <SearchBar filterURL={filterURL} />
+        <SearchBar filterURL={filterURL} onSubmit={handleSubmit} />
         <PostList
           posts={posts}
           loading={loading}

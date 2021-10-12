@@ -6,7 +6,7 @@ import useCityOptions from '../../../../components/hooks/useCityOptions';
 import { nFormatter } from '../../../../ults/nFormatter';
 import './style.scss';
 
-const SearchBar = ({ filterURL }) => {
+const SearchBar = ({ filterURL, onSubmit }) => {
   const STEP = 1000000;
   const MIN = 0;
   const MAX = 10000000000;
@@ -14,7 +14,7 @@ const SearchBar = ({ filterURL }) => {
   const arr = JSON.parse(localStorage.getItem('cities'));
 
   const [filter, setFilter] = React.useState(() => {
-    const data = arr.filter((x) => x.value === parseInt(filterURL.cityId));
+    const data = arr.filter((x) => x.value === parseInt(filterURL?.cityId));
     return {
       PageSize: 9,
       PageNumber: 1,
@@ -90,10 +90,19 @@ const SearchBar = ({ filterURL }) => {
   const handleChangeKeyword = (e) => {
     setFilter({
       ...filter,
-      keyword: e.target.value,    
+      keyword: e.target.value,
     });
   };
-
+  const handleOnFinalChange = (values) => {
+    setFilter({
+      ...filter,
+      price: values,
+    });
+  };
+  const handleSubmit = (filter) => {
+    if (!onSubmit) return;
+    onSubmit(filter);
+  };
   return (
     <div style={{ position: 'relative' }}>
       <div className="tab-bar" id="tab-bar">
@@ -109,10 +118,7 @@ const SearchBar = ({ filterURL }) => {
               placeholder="Tìm kiếm địa điểm, khu vực"
               onChange={handleChangeKeyword}
             />
-            <div
-              className="btn-request"
-              onClick={() => console.log('request: ', filter)}
-            >
+            <div className="btn-request" onClick={() => handleSubmit(filter)}>
               <i className="fa fa-search" aria-hidden="true"></i> Tìm kiếm
             </div>
           </div>
@@ -157,7 +163,7 @@ const SearchBar = ({ filterURL }) => {
                     price: values,
                   });
                 }}
-                // onFinalChange={handleOnFinalChange}
+                onFinalChange={handleOnFinalChange}
                 renderTrack={({ props, children }) => (
                   <>
                     <output

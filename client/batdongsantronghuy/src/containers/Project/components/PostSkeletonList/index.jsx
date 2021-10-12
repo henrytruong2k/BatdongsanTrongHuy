@@ -16,9 +16,9 @@ function PostSkeletonList({ length }) {
     <>
       {Array.from(new Array(length)).map((x, index) => {
         return (
-          <Col className="col-lg-4" key={index}>
+          <Col className="post col-lg-3" key={index}>
             <Card>
-              <Skeleton variant="rect" width="100%" height={220} />
+              <Skeleton variant="rect" width="100%" height={144} />
               <Card.Body>
                 <Card.Title variant={'h5'}>
                   <Skeleton />
