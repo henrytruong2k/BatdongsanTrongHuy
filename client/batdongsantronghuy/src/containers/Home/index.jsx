@@ -3,6 +3,7 @@ import { Container } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 import Slider from 'react-slick';
 import useGeoLocation from '../../components/hooks/useGeoLocation';
+import PopUpChat from '../../components/PopUpChat';
 import AdsBanner from './components/AdsBanner';
 import AreaSection from './components/AreaSection';
 import NewSection from './components/NewSection';
@@ -91,6 +92,7 @@ export const HomeContainer = () => {
           <NewSection news={news} loading={loading} />
         </Container>
       </Container>
+      <PopUpChat />
     </>
   );
 };
