@@ -75,7 +75,11 @@ export const HomeContainer = () => {
 
         <Container fluid className="bg-grey">
           <Container>
-            <RecommendPost list={postsHighlight} favoriteList={favoriteList} />
+            <RecommendPost
+              list={postsHighlight}
+              favoriteList={favoriteList}
+              loading={loading}
+            />
           </Container>
         </Container>
         <Container>

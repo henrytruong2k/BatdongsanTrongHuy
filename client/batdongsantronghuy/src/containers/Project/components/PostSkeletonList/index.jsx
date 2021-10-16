@@ -11,7 +11,7 @@ PostSkeletonList.defaultProps = {
   length: 9,
 };
 
-function PostSkeletonList({ length }) {
+function PostSkeletonList({ length = 9 }) {
   return (
     <>
       {Array.from(new Array(length)).map((x, index) => {
