@@ -44,7 +44,7 @@ const NewsContainer = () => {
             <AllNews list={newList} loading={loading} type={type} />
           </div>
           <div>
-            <SideBar list={newTopList} />
+            <SideBar list={newTopList} loading={loading} />
           </div>
         </div>
       </Container>

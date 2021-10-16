@@ -1,9 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import HotNewsLoading from '../../../../components/Loading/HotNewsLoading';
 import { router } from '../../../../constants/router';
 import './style.scss';
 
-const SideBar = ({ list }) => {
+const SideBar = ({ list, loading }) => {
   return (
     <div className="side-bar">
       <div className="container-common">
@@ -11,13 +12,17 @@ const SideBar = ({ list }) => {
           <h2>Chủ đề được quan tâm</h2>
         </div>
         <div className="box-content">
-          {list.map((item) => {
-            return (
-              <Link key={item.id} to={router.TINTUC + `/${item.id}`}>
-                {item.title}
-              </Link>
-            );
-          })}
+          {loading ? (
+            <HotNewsLoading />
+          ) : (
+            list.map((item) => {
+              return (
+                <Link key={item.id} to={router.TINTUC + `/${item.id}`}>
+                  {item.title}
+                </Link>
+              );
+            })
+          )}
         </div>
       </div>
     </div>
