@@ -50,7 +50,11 @@ export const LoginModal = ({
             <Login closeDialog={handleClose} />
             {message && (
               <p
-                style={{ padding: '12px 16px 0' }}
+                style={{
+                  padding: '12px 16px 0',
+                  fontSize: '14px',
+                  fontWeight: 'bold',
+                }}
                 className="text-center text-danger mb-0"
               >
                 *{message}

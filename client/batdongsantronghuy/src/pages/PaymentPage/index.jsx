@@ -1,25 +1,33 @@
-import React, { useEffect, useState } from 'react';
-
-import { useParams } from 'react-router-dom';
-import styled from 'styled-components';
-import postAPI from '../../api/postAPI';
 import { CircularProgress, makeStyles } from '@material-ui/core';
-import PaymentDetail from '../../containers/PaymentDetail';
-import usePostDetail from './hooks/usePostDetail';
+import React from 'react';
+import { useParams } from 'react-router-dom';
 import { NotFound } from '../../components/NotFound';
 import Wrapper from '../../components/Wrapper';
+import PaymentDetail from '../../containers/PaymentDetail';
+import { Redirect } from 'react-router-dom';
+import usePostDetail from './hooks/usePostDetail';
 
-function PaymentPage(props) {
+const useStyles = makeStyles((theme) => ({
+  circular: {
+    display: 'flex',
+    margin: '20% auto',
+  },
+}));
+function PaymentPage({ authorized }) {
   const { id } = useParams();
   const { post, loading } = usePostDetail(id);
-  console.log('post của payment page: ', post);
-  const useStyles = makeStyles((theme) => ({
-    circular: {
-      display: 'flex',
-      margin: '20% auto',
-    },
-  }));
+
   const classes = useStyles();
+  if (!authorized) {
+    return (
+      <Redirect
+        to={{
+          pathname: '/',
+          search: '?login-required=true',
+        }}
+      />
+    );
+  }
   return (
     <div>
       <Wrapper>

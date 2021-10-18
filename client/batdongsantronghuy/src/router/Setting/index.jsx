@@ -3,6 +3,8 @@ import { Route, Switch, useRouteMatch } from 'react-router';
 import { router } from '../../constants/router';
 import SettingPage from '../../pages/SettingPage';
 import EditPost from '../../pages/EditPost';
+import { NotFoundPage } from '../../pages/NotFound';
+
 const SettingRouter = () => {
   //   const match = useRouteMatch();
   return (
@@ -15,6 +17,7 @@ const SettingRouter = () => {
           path={router.THAYDOITHONGTINCANHAN}
           component={SettingPage}
         />
+        <Route component={NotFoundPage} />
       </Switch>
     </div>
   );

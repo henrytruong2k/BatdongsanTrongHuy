@@ -1,6 +1,7 @@
 import { unwrapResult } from '@reduxjs/toolkit';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { login, loginFacebook, loginGoogle } from '../../userSlice';
 import LoginForm from '../LoginForm';
 
@@ -8,15 +9,18 @@ function Login(props) {
   const { closeDialog } = props;
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState(null);
-
+  const history = useHistory();
   const handleFormSubmit = async (values) => {
     try {
       const action = login(values);
       const resultAction = await dispatch(action);
       const user = unwrapResult(resultAction);
+
       if (user?.succeeded === false) {
         setErrorMessage(user.message);
         return;
+      } else {
+        history.push('/');
       }
       if (closeDialog) {
         closeDialog();

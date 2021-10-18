@@ -17,6 +17,7 @@ function usePostDetail(id) {
       console.log('Fail to fetch post detail of payment page: ', error);
     }
   }, [id]);
+
   return { post, loading };
 }
 

@@ -1,9 +1,13 @@
+import queryString from 'query-string';
 import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router';
 import Slider from 'react-slick';
 import useGeoLocation from '../../components/hooks/useGeoLocation';
 import PopUpChat from '../../components/PopUpChat';
+import { showLogin } from '../Auth/userSlice';
+
 import AdsBanner from './components/AdsBanner';
 import AreaSection from './components/AreaSection';
 import NewSection from './components/NewSection';
@@ -14,8 +18,24 @@ import './style.scss';
 
 export const HomeContainer = () => {
   useGeoLocation();
+  const dispatch = useDispatch();
+  const location = useLocation();
 
-  //projects
+  const [requiredLoginURL] = useState(() => {
+    const params = queryString.parse(location.search);
+    return params['login-required'] || false;
+  });
+
+  const loggedInUser = useSelector((state) => state.user.current.user);
+  const isLoggedIn = loggedInUser?.id;
+
+  useEffect(() => {
+    if (requiredLoginURL && !isLoggedIn) {
+      const action = showLogin();
+      dispatch(action);
+    }
+  }, [requiredLoginURL, isLoggedIn, dispatch]);
+
   const { projects, news, postsHighlight, contentBanners, loading } =
     useGetHomeContent();
   const settings = {

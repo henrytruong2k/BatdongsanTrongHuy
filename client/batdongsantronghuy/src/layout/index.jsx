@@ -1,24 +1,23 @@
-import React, { useEffect } from 'react';
-
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Switch } from 'react-router';
-import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
+import { Header } from '../components/Header';
+import { router } from '../constants/router';
+import FavoritePostsPage from '../pages/FavoritePostsPage';
 import HomePage from '../pages/Home';
+import NewDetailPage from '../pages/NewDetailPage';
 import NewsPage from '../pages/News';
 import { NotFoundPage } from '../pages/NotFound';
-import ProjectRouter from '../router/Project';
-import { router } from '../constants/router';
 import PaymentPage from '../pages/PaymentPage';
-import SettingPage from '../pages/SettingPage';
-import FavoritePostsPage from '../pages/FavoritePostsPage';
-import ProjectPage from '../pages/ProjectPage';
 import ProjectDetailPage from '../pages/ProjectDetailPage';
-import NewDetailPage from '../pages/NewDetailPage';
-import ChangePassword from '../containers/Auth/components/Setting/components/ChangePassword';
-import CreateProject from '../pages/CreateProject';
+import ProjectPage from '../pages/ProjectPage';
+import ProjectRouter from '../router/Project';
 import SettingRouter from '../router/Setting';
 
 function Layout() {
+  const loggedInUser = useSelector((state) => state.user.current.user);
+  const isLoggedIn = loggedInUser?.id;
   return (
     <>
       <Header />
@@ -34,15 +33,16 @@ function Layout() {
           path={`${router.TINTUC}/:slug`}
           component={NewDetailPage}
         />
-
-        <Route path="/thanh-toan/:id" component={PaymentPage} />
-        <Route path={router.CAIDATTAIKHOAN} component={SettingRouter} />
-
         <Route
           exact
-          path={router.BAIVIETYEUTHICH}
+          path={router.BAIVIETQUANTAM}
           component={FavoritePostsPage}
         />
+        <Route
+          path="/thanh-toan/:id"
+          component={() => <PaymentPage authorized={!!isLoggedIn} />}
+        />
+        <Route path={router.CAIDATTAIKHOAN} component={SettingRouter} />
 
         <Route component={NotFoundPage} />
       </Switch>
