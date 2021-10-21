@@ -8,7 +8,7 @@ import Box from '@material-ui/core/Box';
 import './style.scss';
 import StarIcon from '@material-ui/icons/Star';
 import moment from 'moment';
-import styled from 'styled-components';
+
 
 moment.locale('vi');
 function TabPanel(props) {
@@ -62,11 +62,6 @@ export default function TabsPanel({ tabProps }) {
         <Tabs value={value} onChange={handleChange} aria-label="">
           <Tab label="Tổng quan" className="no-outline" {...a11yProps(0)} />
           <Tab label="Đánh giá" className="no-outline" {...a11yProps(1)} />
-          <Tab
-            label="Thông tin người bán"
-            className="no-outline"
-            {...a11yProps(2)}
-          />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0} className="tab">
@@ -163,7 +158,10 @@ export default function TabsPanel({ tabProps }) {
           <div>
             {tabProps.rates.map((item) => {
               return (
-                <div key={item.id} className="rate__item d-flex justify-content-between align-items-center my-3">
+                <div
+                  key={item.id}
+                  className="rate__item d-flex justify-content-between align-items-center my-3"
+                >
                   <div className="d-flex">
                     <p>{item.rating}</p>
                     <StarIcon style={{ color: 'yellow' }} />
@@ -180,9 +178,6 @@ export default function TabsPanel({ tabProps }) {
             })}
           </div>
         </>
-      </TabPanel>
-      <TabPanel value={value} index={2} className="tab">
-        Item Three
       </TabPanel>
     </div>
   );

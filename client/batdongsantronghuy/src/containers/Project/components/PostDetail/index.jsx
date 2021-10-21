@@ -32,7 +32,7 @@ function PostDetail({ post, type = null }) {
     price: post.price,
     category: post.category.name,
     authorName: post.nameContact,
-    phoneNumber: post.phoneContact,
+    phoneNumber: isLoggedIn ? phonePublic : phoneSecret,
     email: post.emailContact,
     publicDate: moment(publishDate),
     numberOfFloor: post.numberofFloor,
@@ -75,7 +75,7 @@ function PostDetail({ post, type = null }) {
         <Row>
           <Col className="col-12">
             {type !== null && (
-              <p className="text-primary">
+              <p className="noti-demo">
                 <i className="fa fa-info-circle" aria-hidden="true"></i> Bạn
                 đang thực hiện hành động xem bài viết chưa thanh toán.
               </p>
