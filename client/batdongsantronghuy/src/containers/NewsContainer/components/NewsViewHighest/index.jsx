@@ -5,7 +5,7 @@ import NewListLoading from '../NewListLoading';
 const NewsViewHighest = ({ list, loading }) => {
   return (
     <div className="mt-4">
-      <h1>Tin nhiều người đọc</h1>
+      <h3>Tin nhiều người đọc</h3>
       {loading ? (
         <NewListLoading />
       ) : (

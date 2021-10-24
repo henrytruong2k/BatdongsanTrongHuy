@@ -82,6 +82,9 @@ button[type='submit'] {
     }
   }
 }
+.slick-slide img {
+  object-fit: cover;
+}
 .bg-grey {
   background: #f0f2f5;
 }

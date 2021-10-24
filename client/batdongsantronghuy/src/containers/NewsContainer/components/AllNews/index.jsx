@@ -18,7 +18,7 @@ const AllNews = ({ list, loading, type }) => {
   };
   return (
     <div className="mt-4">
-      <h1>{type === MODE.SEARCH ? 'Kết quả tìm kiếm' : 'Bảng tin'}</h1>
+      <h3>{type === MODE.SEARCH ? 'Kết quả tìm kiếm' : 'Bảng tin'}</h3>
       {loading ? (
         <NewListLoading />
       ) : (

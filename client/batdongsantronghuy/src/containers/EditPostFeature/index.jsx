@@ -16,7 +16,7 @@ function EditPostFeature({ post, loading }) {
       console.log('response ', response);
       if (response.succeeded) {
         setLoadingAPI(false);
-        history.push('/bai-dang/quan-ly-bai-viet');
+        history.push('/cai-dat-tai-khoan/quan-ly-bai-viet');
         Swal.fire({
           icon: 'success',
           title: 'Cập nhật thành công!',
