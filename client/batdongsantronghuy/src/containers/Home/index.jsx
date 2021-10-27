@@ -55,7 +55,7 @@ export const HomeContainer = () => {
   useEffect(() => {
     window.addEventListener('scroll', () => {
       const scrolled = window.scrollY;
-      if (Math.ceil(scrolled) >= 330 && Math.ceil(scrolled) <= 1660) {
+      if (Math.ceil(scrolled) >= 330 && Math.ceil(scrolled) <= 2000) {
         setStyleAds({ ...styleAds, opacity: 1, transition: '0.5s' });
       } else {
         setStyleAds({ ...styleAds, opacity: 0, transition: '0s' });
