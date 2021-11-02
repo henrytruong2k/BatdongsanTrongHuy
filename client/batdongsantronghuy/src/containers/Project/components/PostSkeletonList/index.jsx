@@ -2,16 +2,17 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Col, Row, Card } from 'react-bootstrap';
 import { Skeleton } from '@material-ui/lab';
+import { PAGESIZE } from '../../../../constants/config';
 
 PostSkeletonList.propTypes = {
   length: PropTypes.number,
 };
 
 PostSkeletonList.defaultProps = {
-  length: 9,
+  length: PAGESIZE,
 };
 
-function PostSkeletonList({ length = 9 }) {
+function PostSkeletonList({ length = PAGESIZE }) {
   return (
     <>
       {Array.from(new Array(length)).map((x, index) => {

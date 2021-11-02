@@ -6,6 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 import PostItem from '../PostItem';
 import PostSkeletonList from '../PostSkeletonList';
 import './style.scss';
+import { PAGESIZE } from '../../../../constants/config';
 
 const useStyles = makeStyles((theme) => ({
   pagination: {
@@ -40,7 +41,7 @@ function PostList(props) {
         <NoResultsFound />
       )}
 
-      <div className={clsx('col-12', pagination.total < 9 && 'd-none')}>
+      <div className={clsx('col-12', pagination.total <= PAGESIZE && 'd-none')}>
         <Box className={classes.pagination}>
           <Pagination
             className="paginate"

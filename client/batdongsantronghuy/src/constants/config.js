@@ -1,5 +1,8 @@
 export const domain = process.env.REACT_APP_DOMAIN_API;
 export const EXPDATE = 7;
+export const PAGENUMBER = 1;
+export const PAGESIZE = 8;
+
 // export const failedImages = '/assets/NoImage.svg';
 export const failedImages =
   'https://staticfile.batdongsan.com.vn/images/no-image.png';

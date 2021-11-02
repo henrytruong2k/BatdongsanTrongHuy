@@ -7,18 +7,19 @@ import { useSelector } from 'react-redux';
 import SearchBar from './components/SearchBar';
 import useCityOptions from '../../components/hooks/useCityOptions';
 import Wrapper from '../../components/Wrapper';
+import { PAGENUMBER, PAGESIZE } from '../../constants/config';
 
 function PostContainer({ filterURL }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [request, setRequest] = useState({
     CityId: filterURL?.cityId,
-    PageNumber: 1,
-    PageSize: 9,
+    PageNumber: PAGENUMBER,
+    PageSize: PAGESIZE,
   });
   const [pagination, setPagination] = useState({
-    limit: 9,
-    total: 9,
+    limit: 8,
+    total: 8,
     page: 1,
   });
 
