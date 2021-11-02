@@ -6,7 +6,7 @@ const HotNewsLoading = ({ length = 10 }) => {
     <>
       {Array.from(new Array(length)).map((x, index) => {
         return (
-          <div className="mt-1 mb-1">
+          <div className="mt-1 mb-1" key={index}>
             <Skeleton variant="text" height={18} />
           </div>
         );
